@@ -1,0 +1,13 @@
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.exe.config
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.exe
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.pdb
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\Assembly-CSharp.dll
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEngine.dll
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\Assembly-CSharp.pdb
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEngine.xml
+D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.csprojResolveAssemblyReference.cache
+D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.Form1.resources
+D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.Properties.Resources.resources
+D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.csproj.GenerateResource.Cache
+D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.exe
+D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.pdb

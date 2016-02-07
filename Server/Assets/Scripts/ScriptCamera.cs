@@ -21,7 +21,7 @@ public class ScriptCamera : MonoBehaviour
         Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
 
         if (networkThread.IsWorking)
-            target = Quaternion.Euler(tiltAroundX, 0, -networkThread.DataFloat * 5);
+            target = Quaternion.Euler(tiltAroundX, 0, (float)(networkThread.DataFloat * 0.01));
 
         transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
     }

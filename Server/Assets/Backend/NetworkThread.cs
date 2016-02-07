@@ -9,9 +9,11 @@ namespace Backend
 {
     public class NetworkThread
     {
-        public string Data { get; private set; }
+        public string stringOriginal { get; private set; }
+        public string stringEdited { get; private set; }
         public float DataFloat { get; private set; }
         public bool IsWorking { get; private set; }
+        public bool IsCorrect { get; private set; }
 
         protected Thread thread;
 
@@ -20,6 +22,7 @@ namespace Backend
             thread = new Thread(doThread);
             thread.Start();
             IsWorking = false;
+            IsCorrect = true;
         }
 
         public void doThread()
@@ -33,20 +36,47 @@ namespace Backend
                 socketListener.Listen(10);
                 Socket socketHandler = socketListener.Accept();
                 IsWorking = true;
-                socketHandler.ReceiveTimeout = 500;
+                IsCorrect = true;
+                socketHandler.ReceiveTimeout = 1000;
 
                 while (true)
                 {
                     byte[] bytes = new byte[1024];
                     int bytesLength = socketHandler.Receive(bytes);
-                    Data = Encoding.UTF8.GetString(bytes, 0, bytesLength);
-                    DataFloat = (float)Convert.ToDouble(Data);
+                    stringOriginal = Encoding.UTF8.GetString(bytes, 0, bytesLength);
+
+                    int index1 = stringOriginal.IndexOf('<');
+                    int index2 = stringOriginal.IndexOf('>');
+
+
+
+                    if ((index1 != -1) && (index2 != -1))
+                    {
+                        stringEdited = stringOriginal.Substring(index1 + 1, index2 - index1 - 1);
+                        stringEdited = stringEdited.Replace('.', ',');
+                    }
+                    else
+                    {
+                        stringEdited = "0";
+                        IsCorrect = false;
+                    }
+
+                    try
+                    {
+                        DataFloat = (float)Convert.ToDouble(stringEdited);
+                        IsCorrect = true;
+                    }
+                    catch (FormatException e)
+                    {
+                        IsCorrect = false;
+                    }
 
                     if (bytesLength == 0)
                         break;
                 }
 
                 IsWorking = false;
+                IsCorrect = true;
                 socketListener.Close();
                 ipEndPoint = null;
             }
