@@ -4,14 +4,14 @@ using Backend;
 
 public class ScriptCamera : MonoBehaviour
 {
-    private NetworkThread networkThread;
+    private SourceNetwork networkThread;
 
     private float smooth = 2.0F;
     private float tiltAngle = 30.0F;
 
     void Start()
     {
-        networkThread = new NetworkThread();
+        networkThread = new SourceNetwork();
     }
 
     void Update()

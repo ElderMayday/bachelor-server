@@ -7,17 +7,9 @@ using System.Threading;
 
 namespace Backend
 {
-    public class NetworkThread
+    public class SourceNetwork : Source
     {
-        public string stringOriginal { get; private set; }
-        public string stringEdited { get; private set; }
-        public float DataFloat { get; private set; }
-        public bool IsWorking { get; private set; }
-        public bool IsCorrect { get; private set; }
-
-        protected Thread thread;
-
-        public NetworkThread()
+        public SourceNetwork()
         {
             thread = new Thread(doThread);
             thread.Start();
@@ -25,7 +17,7 @@ namespace Backend
             IsCorrect = true;
         }
 
-        public void doThread()
+        protected override void doThread()
         {
             while (true)
             {
@@ -34,21 +26,23 @@ namespace Backend
                 Socket socketListener = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 socketListener.Bind(ipEndPoint);
                 socketListener.Listen(10);
+
                 Socket socketHandler = socketListener.Accept();
+                socketHandler.ReceiveTimeout = 1000;
+
                 IsWorking = true;
                 IsCorrect = true;
-                socketHandler.ReceiveTimeout = 1000;
 
                 while (true)
                 {
                     byte[] bytes = new byte[1024];
                     int bytesLength = socketHandler.Receive(bytes);
-                    stringOriginal = Encoding.UTF8.GetString(bytes, 0, bytesLength);
+
+                    string stringOriginal = Encoding.UTF8.GetString(bytes, 0, bytesLength);
+                    string stringEdited;
 
                     int index1 = stringOriginal.IndexOf('<');
                     int index2 = stringOriginal.IndexOf('>');
-
-
 
                     if ((index1 != -1) && (index2 != -1))
                     {
