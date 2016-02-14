@@ -33,7 +33,7 @@ namespace Analyzer
                 if (source.IsCorrect)
                 {
                     filter.AddX(source.DataFloat);
-                    label1.Text = "X=" + source.DataFloat.ToString() + "\nY=" + filter.GetY();
+                    label1.Text = "X=" + source.DataFloat + "\nY=" + filter.GetY();
                 }
                 else
                     label1.Text = "Not correct";
@@ -42,6 +42,11 @@ namespace Analyzer
             {
                 label1.Text = "Not working";
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            source.Stop();
         }
     }
 }

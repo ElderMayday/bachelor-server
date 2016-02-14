@@ -6,14 +6,14 @@ namespace Assets.Scripts
 {
     public class ScriptCamera : MonoBehaviour
     {
-        private SourceNetwork networkThread;
+        private Source source;
 
-        private float smooth = 2.0F;
+        private float smooth = 10.0F;
         private float tiltAngle = 30.0F;
 
         void Start()
         {
-            networkThread = new SourceNetwork();
+            source = new SourceNetwork();
         }
 
         void Update()
@@ -22,8 +22,8 @@ namespace Assets.Scripts
             float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
             Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
 
-            if (networkThread.IsWorking)
-                target = Quaternion.Euler(tiltAroundX, 0, (float)(networkThread.DataFloat * 0.01));
+            if (source.IsWorking)
+                target = Quaternion.Euler(0, 0, (float)(source.DataFloat));
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
         }

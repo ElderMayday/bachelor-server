@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Globalization;
 
 using System.Net;
 using System.Net.Sockets;
@@ -14,9 +15,10 @@ namespace Assets.Backend.Sources
             IsCorrect = true;
         }
 
+
         protected override void doThread()
         {
-            while (true)
+            while (mustWork)
             {
                 IPAddress ip = IPAddress.Parse("192.168.100.3");
                 IPEndPoint ipEndPoint = new IPEndPoint(ip, 11000);
@@ -30,7 +32,7 @@ namespace Assets.Backend.Sources
                 IsWorking = true;
                 IsCorrect = true;
 
-                while (true)
+                while (mustWork)
                 {
                     byte[] bytes = new byte[1024];
                     int bytesLength = socketHandler.Receive(bytes);
@@ -41,11 +43,8 @@ namespace Assets.Backend.Sources
                     int index1 = stringOriginal.IndexOf('<');
                     int index2 = stringOriginal.IndexOf('>');
 
-                    if ((index1 != -1) && (index2 != -1))
-                    {
+                    if ((index1 != -1) && (index2 != -1) && (index2 >= index1))
                         stringEdited = stringOriginal.Substring(index1 + 1, index2 - index1 - 1);
-                        stringEdited = stringEdited.Replace('.', ',');
-                    }
                     else
                     {
                         stringEdited = "0";
@@ -54,7 +53,7 @@ namespace Assets.Backend.Sources
 
                     try
                     {
-                        DataFloat = (float)Convert.ToDouble(stringEdited);
+                        DataFloat = Single.Parse(stringEdited, CultureInfo.InvariantCulture);
                         IsCorrect = true;
                     }
                     catch (FormatException e)

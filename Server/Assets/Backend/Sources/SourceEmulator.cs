@@ -15,26 +15,32 @@ namespace Assets.Backend.Sources
             float current = 0;
             float step = 5;
             int interval = 100;
+            float max = 90;
+            float min = -90;
+
             bool isIncreasing = true;       
 
             while (true)
             {
                 if (isIncreasing)
                 {
-                    if (current <= 90)
+                    if (current <= max)
                         current += step;
                     else
                     {
-                        current = 90;
+                        current = max;
                         isIncreasing = false;
                     }
                 }
                 else
                 {
-                    if (current >= 0)
+                    if (current >= min)
                         current -= step;
                     else
+                    {
+                        current = min;
                         isIncreasing = true;
+                    }
                 }
 
                 DataFloat = current;
