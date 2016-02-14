@@ -3,16 +3,13 @@ using System.Text;
 
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 
-namespace Backend
+namespace Assets.Backend.Sources
 {
     public class SourceNetwork : Source
     {
-        public SourceNetwork()
+        public SourceNetwork() : base()
         {
-            thread = new Thread(doThread);
-            thread.Start();
             IsWorking = false;
             IsCorrect = true;
         }

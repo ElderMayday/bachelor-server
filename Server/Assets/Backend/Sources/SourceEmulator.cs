@@ -1,13 +1,11 @@
 ﻿using System.Threading;
 
-namespace Backend
+namespace Assets.Backend.Sources
 {
     public class SourceEmulator : Source
     {
-        public SourceEmulator()
+        public SourceEmulator() : base()
         {
-            thread = new Thread(doThread);
-            thread.Start();
             IsWorking = true;
             IsCorrect = true;
         }
@@ -36,10 +34,7 @@ namespace Backend
                     if (current >= 0)
                         current -= step;
                     else
-                    {
-                        //current = 0;
                         isIncreasing = true;
-                    }
                 }
 
                 DataFloat = current;

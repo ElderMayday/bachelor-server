@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 
-using Backend;
+using Assets.Backend.Sources;
 
-public class ScriptCamera : MonoBehaviour
+namespace Assets.Scripts
 {
-    private SourceNetwork networkThread;
-
-    private float smooth = 2.0F;
-    private float tiltAngle = 30.0F;
-
-    void Start()
+    public class ScriptCamera : MonoBehaviour
     {
-        networkThread = new SourceNetwork();
-    }
+        private SourceNetwork networkThread;
 
-    void Update()
-    {
-        float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
-        float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
-        Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
+        private float smooth = 2.0F;
+        private float tiltAngle = 30.0F;
 
-        if (networkThread.IsWorking)
-            target = Quaternion.Euler(tiltAroundX, 0, (float)(networkThread.DataFloat * 0.01));
+        void Start()
+        {
+            networkThread = new SourceNetwork();
+        }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+        void Update()
+        {
+            float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
+            float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
+            Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
+
+            if (networkThread.IsWorking)
+                target = Quaternion.Euler(tiltAroundX, 0, (float)(networkThread.DataFloat * 0.01));
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+        }
     }
 }
