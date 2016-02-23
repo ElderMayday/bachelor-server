@@ -1,28 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 
 namespace Assets.Backend.Filters
 {
     public abstract class FilterFIR : Filter
     {
-        public FilterFIR(int length) : base()
+        public FilterFIR(int order) : base()
         {
             weight = new List<double>();
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < order; i++)
                 weight.Add(0.0);
         }
 
-        public override double GetY()
+        public override double GetOutput()
         {
-            double y = 0.0;
+            double result = 0.0;
 
-            if (x.Count >= weight.Count)
-                for (int i = 0; i < weight.Count; i++)
-                    y += weight[i] * x[x.Count - i - 1];
+            for (int i = 0; i < Math.Min(weight.Count, input.Count); i++)
+                result += weight[i] * input[input.Count - i - 1];
 
-            return y;
+            return result;
         }
+
 
         protected List<double> weight;
     }

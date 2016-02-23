@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace Assets.Backend.Sources
 {
@@ -13,6 +14,7 @@ namespace Assets.Backend.Sources
             thread = new Thread(doThread);
             thread.Start();
             mustWork = true;
+            random = new Random();
         }
 
         public void Stop()
@@ -21,6 +23,7 @@ namespace Assets.Backend.Sources
             thread.Join();
         }
 
+        protected Random random;
         protected Thread thread;
         protected bool mustWork;
         protected abstract void doThread();

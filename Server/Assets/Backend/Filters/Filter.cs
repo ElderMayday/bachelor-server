@@ -7,16 +7,24 @@ namespace Assets.Backend.Filters
     {
         public Filter()
         {
-            x = new List<double>();
+            input = new List<double>();
         }
 
-        public void AddX(double newX)
+        public Filter(int orderInput)
         {
-            x.Add(newX);
+            input = new List<double>();
+
+            for (int i = 0; i < orderInput; i++)
+                input.Add(0.0);
         }
 
-        public abstract double GetY();
+        public virtual void AddInput(double newX)
+        {
+            input.Add(newX);
+        }
 
-        protected List<double> x;
+        public abstract double GetOutput();
+
+        protected List<double> input;
     }
 }

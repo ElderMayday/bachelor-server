@@ -2,9 +2,9 @@
 
 namespace Assets.Backend.Sources
 {
-    public class SourceEmulator : Source
+    public class SourceEmulatorLinear : Source
     {
-        public SourceEmulator() : base()
+        public SourceEmulatorLinear() : base()
         {
             IsWorking = true;
             IsCorrect = true;

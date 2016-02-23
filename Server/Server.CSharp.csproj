@@ -70,11 +70,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Backend\ExtraMath.cs" />
     <Compile Include="Assets\Backend\Filters\Filter.cs" />
     <Compile Include="Assets\Backend\Filters\FilterFIR.cs" />
     <Compile Include="Assets\Backend\Filters\FilterIIR.cs" />
     <Compile Include="Assets\Backend\Filters\FilterMovingAverage.cs" />
-    <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
+    <Compile Include="Assets\Backend\Filters\FilterSinglePole.cs" />
+    <Compile Include="Assets\Backend\Sources\SourceEmulatorLinear.cs" />
+    <Compile Include="Assets\Backend\Sources\SourceEmulatorSin.cs" />
     <Compile Include="Assets\Backend\Sources\SourceNetwork.cs" />
     <Compile Include="Assets\Backend\Sources\Source.cs" />
     <Compile Include="Assets\Scripts\ScriptCamera.cs" />
