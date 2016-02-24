@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Drawing;
 
+using Assets.Backend;
 using Assets.Backend.Sources;
 using Assets.Backend.Filters;
 
@@ -11,19 +11,21 @@ namespace Analyzer
     {
         protected Source source;
         protected Filter filter;
-        protected int interval = 100;
+        protected UdpThread udpThread;
 
-        protected int maxPoints = 50;
+        protected int interval;
+        protected int maxPoints;
         protected int currentPoints;
         protected double time;
+
 
         public Form1()
         {
             InitializeComponent();
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            interval = 100;
+            maxPoints = 50;
+
             source = new SourceEmulatorSin();
             filter = new FilterSinglePole(4, 0.5);
 
@@ -32,8 +34,15 @@ namespace Analyzer
 
             time = 0;
 
+            udpThread = new UdpThread();
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
             refreshChart();
         }
+
 
         private void timerNetwork_Tick(object sender, EventArgs e)
         {
@@ -72,6 +81,7 @@ namespace Analyzer
             }
         }
 
+
         private void refreshChart()
         {
             currentPoints = 0;
@@ -89,9 +99,11 @@ namespace Analyzer
             mainChart.ChartAreas[0].AxisY.Maximum = 100;
         }
 
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             source.Stop();
+            udpThread.Stop();
         }
     }
 }

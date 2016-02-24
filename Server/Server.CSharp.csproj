@@ -80,6 +80,7 @@
     <Compile Include="Assets\Backend\Sources\SourceEmulatorSin.cs" />
     <Compile Include="Assets\Backend\Sources\SourceNetwork.cs" />
     <Compile Include="Assets\Backend\Sources\Source.cs" />
+    <Compile Include="Assets\Backend\UdpThread.cs" />
     <Compile Include="Assets\Scripts\ScriptCamera.cs" />
   </ItemGroup>
   <ItemGroup />

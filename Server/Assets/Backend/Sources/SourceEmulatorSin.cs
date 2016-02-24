@@ -9,6 +9,7 @@ namespace Assets.Backend.Sources
         {
             IsWorking = true;
             IsCorrect = true;
+            thread.Name = "SourceEmulatorSin";
         }
 
         protected override void doThread()

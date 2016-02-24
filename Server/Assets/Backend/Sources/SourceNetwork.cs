@@ -13,6 +13,7 @@ namespace Assets.Backend.Sources
         {
             IsWorking = false;
             IsCorrect = true;
+            thread.Name = "SourceNetwork";
         }
 
 

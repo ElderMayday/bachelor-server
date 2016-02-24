@@ -8,6 +8,7 @@ namespace Assets.Backend.Sources
         {
             IsWorking = true;
             IsCorrect = true;
+            thread.Name = "SourceEmulatorLinear";
         }
 
         protected override void doThread()
