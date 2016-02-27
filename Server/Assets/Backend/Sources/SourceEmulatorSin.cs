@@ -18,7 +18,7 @@ namespace Assets.Backend.Sources
             float step = 5;
             int interval = 100;
 
-            while (true)
+            while (mustWork)
             {
                 current += step;
                 DataFloat = 90.0f * (float)Math.Sin(current * Math.PI / 180.0) + random.Next(-10, 10);

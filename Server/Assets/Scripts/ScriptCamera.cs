@@ -13,7 +13,7 @@ namespace Assets.Scripts
 
         void Start()
         {
-            source = new SourceNetwork();
+            source = new SourceNetwork(Axis.Pitch);
         }
 
         void Update()

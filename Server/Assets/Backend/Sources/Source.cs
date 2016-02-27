@@ -17,7 +17,7 @@ namespace Assets.Backend.Sources
             random = new Random();
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
             mustWork = false;
             thread.Join();

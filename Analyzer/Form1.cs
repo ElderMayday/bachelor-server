@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 using Assets.Backend;
 using Assets.Backend.Sources;
@@ -18,7 +19,12 @@ namespace Analyzer
         protected int currentPoints;
         protected double time;
 
+        protected bool isWorking;
 
+        protected List<Control> controls;
+
+        
+            
         public Form1()
         {
             InitializeComponent();
@@ -26,13 +32,17 @@ namespace Analyzer
             interval = 100;
             maxPoints = 50;
 
-            source = new SourceEmulatorSin();
-            filter = new FilterSinglePole(4, 0.5);
+            source = null;
+            filter = null;
 
             timerNetwork.Interval = interval;
-            timerNetwork.Enabled = true;
+            timerNetwork.Enabled = false;
 
-            time = 0;
+            resetChart();
+
+            isWorking = false;
+
+            
 
             udpThread = new UdpThread();
         }
@@ -41,6 +51,17 @@ namespace Analyzer
         private void Form1_Load(object sender, EventArgs e)
         {
             refreshChart();
+
+            controls = new List<Control>();
+
+            controls.Add(radioFilterMovingAverage);
+            controls.Add(radioFilterSinglePole);
+            controls.Add(radioSourceEmulatorLinear);
+            controls.Add(radioSourceEmulatorSin);
+            controls.Add(radioSourceNetwork);
+            controls.Add(radioSourcePitch);
+            controls.Add(radioSourceRoll);
+            controls.Add(radioSourceYaw);
         }
 
 
@@ -70,7 +91,8 @@ namespace Analyzer
 
                     currentPoints++;
 
-                    label1.Text = "X=" + currentInput + "\nY=" + currentOutput;
+                    label1.Text = "Input = " + String.Format("{0:0.00}", currentInput)
+                        + "\nOutput = " + String.Format("{0:0.00}", currentOutput);
                 }
                 else
                     label1.Text = "Not correct";
@@ -82,9 +104,18 @@ namespace Analyzer
         }
 
 
+        private void resetChart()
+        {
+            time = 0;
+        }
+
         private void refreshChart()
         {
             currentPoints = 0;
+
+            foreach (var v in mainChart.Series)
+                v.Points.Clear();
+
             mainChart.Series.Clear();
 
             mainChart.Series.Add("input");
@@ -102,8 +133,65 @@ namespace Analyzer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            source.Stop();
-            udpThread.Stop();
+            if (source != null)
+                source.Stop();
+
+            if (udpThread != null)
+                udpThread.Stop();
+        }
+
+
+        private void buttonSwitch_Click(object sender, EventArgs e)
+        {
+            if (isWorking == false)
+            {
+                isWorking = true;
+
+                buttonSwitch.Text = "Выключить";
+
+                timerNetwork.Enabled = true;
+
+                if (radioFilterMovingAverage.Checked)
+                    filter = new FilterMovingAverage(5);
+                else if (radioFilterSinglePole.Checked)
+                    filter = new FilterSinglePole(4, 0.5);
+
+                if (radioSourceNetwork.Checked)
+                {
+                    if (radioSourcePitch.Checked)
+                        source = new SourceNetwork(Axis.Pitch);
+                    else if (radioSourceRoll.Checked)
+                        source = new SourceNetwork(Axis.Roll);
+                    else if (radioSourceYaw.Checked)
+                        source = new SourceNetwork(Axis.Yaw);
+                }
+                else if (radioSourceEmulatorSin.Checked)
+                    source = new SourceEmulatorSin();
+                else if (radioSourceEmulatorLinear.Checked)
+                    source = new SourceEmulatorLinear();
+
+                switchControls(false);
+
+                resetChart();
+                refreshChart();
+            }
+            else
+            {
+                isWorking = false;
+
+                buttonSwitch.Text = "Включить";
+
+                timerNetwork.Enabled = false;
+                source.Stop();
+
+                switchControls(true);
+            }
+        }
+
+        protected void switchControls(bool value)
+        {
+            foreach (Control c in controls)
+                c.Enabled = value;
         }
     }
 }

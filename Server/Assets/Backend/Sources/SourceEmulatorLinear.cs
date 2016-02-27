@@ -21,7 +21,7 @@ namespace Assets.Backend.Sources
 
             bool isIncreasing = true;       
 
-            while (true)
+            while (mustWork)
             {
                 if (isIncreasing)
                 {
