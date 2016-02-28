@@ -10,13 +10,14 @@ namespace Assets.Backend.Sources
 {
     public class SourceNetwork : Source
     {
-        public SourceNetwork(Axis _axis) : base()
+        public SourceNetwork(Axis _axis, IPAddress _ipAddress) : base()
         {
             IsWorking = false;
             IsCorrect = true;
             axis = _axis;
             thread.Name = "SourceNetwork";
-            localIp = AddressProvider.getLocalIp();
+            ipAddress = _ipAddress;
+            localIp = AddressProvider.GetLocalIp();
         }
 
         public override void Stop()
@@ -45,9 +46,8 @@ namespace Assets.Backend.Sources
             {
                 while (mustWork)
                 {
-                    IPAddress ip = localIp[localIp.Count - 1];
-                    IPEndPoint ipEndPoint = new IPEndPoint(ip, 11000);
-                    socketListener = new Socket(ip.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                    IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 11000);
+                    socketListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                     socketListener.Bind(ipEndPoint);
                     socketListener.Listen(10);
 
@@ -92,9 +92,9 @@ namespace Assets.Backend.Sources
 
                         switch (axis)
                         {
-                            case Axis.Pitch: DataFloat = pitch; break;
-                            case Axis.Roll: DataFloat = roll; break;
-                            case Axis.Yaw: DataFloat = yaw; break;
+                            case Axis.Pitch: Data = pitch; break;
+                            case Axis.Roll: Data = roll; break;
+                            case Axis.Yaw: Data = yaw; break;
                         }
 
                         if (bytesLength == 0)
@@ -113,6 +113,7 @@ namespace Assets.Backend.Sources
             }
         }
 
+        protected IPAddress ipAddress;
         protected List<IPAddress> localIp;
         protected Socket socketListener;
         protected Exception exception;

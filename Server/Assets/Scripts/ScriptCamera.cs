@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
 using Assets.Backend.Sources;
+using System.Collections.Generic;
+using System.Net;
+using Assets.Backend;
 
 namespace Assets.Scripts
 {
@@ -13,7 +16,9 @@ namespace Assets.Scripts
 
         void Start()
         {
-            source = new SourceNetwork(Axis.Pitch);
+            List<IPAddress> ipList = AddressProvider.GetLocalIp();
+
+            source = new SourceNetwork(Axis.Pitch, ipList[ipList.Count - 1]);
         }
 
         void Update()
@@ -23,7 +28,7 @@ namespace Assets.Scripts
             Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
 
             if (source.IsWorking)
-                target = Quaternion.Euler(0, 0, (float)(source.DataFloat));
+                target = Quaternion.Euler(0, 0, (float)(source.Data));
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
         }

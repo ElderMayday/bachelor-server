@@ -30,7 +30,7 @@ namespace Assets.Backend
 
         protected void doThread()
         {
-            List<IPAddress> broadcastIp = AddressProvider.getBroadcastIp();
+            List<IPAddress> broadcastIp = AddressProvider.GetBroadcastIp();
 
             while (mustWork)
             {

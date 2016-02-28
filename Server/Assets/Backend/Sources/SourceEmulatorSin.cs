@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Assets.Backend.Noisers;
+using System;
 using System.Threading;
 
 namespace Assets.Backend.Sources
 {
-    public class SourceEmulatorSin : Source
+    public class SourceEmulatorSin : SourceEmulator
     {
-        public SourceEmulatorSin() : base()
+        public SourceEmulatorSin(Noiser _noiser, double _step, double _amplitude, double _average) : base(_noiser)
         {
+            step = _step;
+            amplitude = _amplitude;
+            average = _average;
+
             IsWorking = true;
             IsCorrect = true;
             thread.Name = "SourceEmulatorSin";
@@ -21,9 +26,13 @@ namespace Assets.Backend.Sources
             while (mustWork)
             {
                 current += step;
-                DataFloat = 90.0f * (float)Math.Sin(current * Math.PI / 180.0) + random.Next(-10, 10);
+                DataPure = (float)(amplitude * Math.Sin(current * Math.PI / 180.0) + average);
                 Thread.Sleep(interval);
             }
         }
+
+        protected double step;
+        protected double amplitude;
+        protected double average;
     }
 }

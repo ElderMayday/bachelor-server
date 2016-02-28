@@ -9,12 +9,12 @@ namespace Assets.Backend
     {
         static AddressProvider()
         {
-            localIp = getLocalIp();
-            localMask = getSubnetMask();
-            broadcastIp = getBroadcastIp();
+            localIp = GetLocalIp();
+            localMask = GetSubnetMask();
+            broadcastIp = GetBroadcastIp();
         }
 
-        public static List<IPAddress> getLocalIp()
+        public static List<IPAddress> GetLocalIp()
         {
             List<IPAddress> result = new List<IPAddress>();
 
@@ -28,7 +28,7 @@ namespace Assets.Backend
         }
 
 
-        public static List<IPAddress> getSubnetMask()
+        public static List<IPAddress> GetSubnetMask()
         {
             List<IPAddress> result = new List<IPAddress>();
 
@@ -53,7 +53,7 @@ namespace Assets.Backend
         }
 
 
-        public static List<IPAddress> getBroadcastIp()
+        public static List<IPAddress> GetBroadcastIp()
         {
             List<IPAddress> result = new List<IPAddress>();
 

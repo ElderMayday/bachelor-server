@@ -42,20 +42,37 @@
             this.groupBoxData = new System.Windows.Forms.GroupBox();
             this.buttonSwitch = new System.Windows.Forms.Button();
             this.groupBoxSource = new System.Windows.Forms.GroupBox();
+            this.labelInterface = new System.Windows.Forms.Label();
+            this.comboIp = new System.Windows.Forms.ComboBox();
+            this.groupBoxSourceLinear = new System.Windows.Forms.GroupBox();
+            this.groupBoxSourceSin = new System.Windows.Forms.GroupBox();
+            this.groupBoxSourceNetwrok = new System.Windows.Forms.GroupBox();
+            this.radioSourceYaw = new System.Windows.Forms.RadioButton();
+            this.radioSourceRoll = new System.Windows.Forms.RadioButton();
+            this.radioSourcePitch = new System.Windows.Forms.RadioButton();
             this.radioSourceEmulatorLinear = new System.Windows.Forms.RadioButton();
             this.radioSourceEmulatorSin = new System.Windows.Forms.RadioButton();
             this.radioSourceNetwork = new System.Windows.Forms.RadioButton();
-            this.groupBoxSourceNetwrok = new System.Windows.Forms.GroupBox();
-            this.groupBoxSourceSin = new System.Windows.Forms.GroupBox();
-            this.groupBoxSourceLinear = new System.Windows.Forms.GroupBox();
-            this.radioSourcePitch = new System.Windows.Forms.RadioButton();
-            this.radioSourceRoll = new System.Windows.Forms.RadioButton();
-            this.radioSourceYaw = new System.Windows.Forms.RadioButton();
+            this.textSourceSinStep = new System.Windows.Forms.TextBox();
+            this.textSourceSinAmplitude = new System.Windows.Forms.TextBox();
+            this.textSourceSinAverage = new System.Windows.Forms.TextBox();
+            this.labelSinStep = new System.Windows.Forms.Label();
+            this.labelSinAmplitude = new System.Windows.Forms.Label();
+            this.labelSinAverage = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textSourceLinearMin = new System.Windows.Forms.TextBox();
+            this.textSourceLinearMax = new System.Windows.Forms.TextBox();
+            this.labelLinearMin = new System.Windows.Forms.Label();
+            this.labelLinearMax = new System.Windows.Forms.Label();
+            this.textSourceLinearStep = new System.Windows.Forms.TextBox();
+            this.labelLinearStep = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainChart)).BeginInit();
             this.groupBoxPanel.SuspendLayout();
             this.groupBoxFilter.SuspendLayout();
             this.groupBoxData.SuspendLayout();
             this.groupBoxSource.SuspendLayout();
+            this.groupBoxSourceLinear.SuspendLayout();
+            this.groupBoxSourceSin.SuspendLayout();
             this.groupBoxSourceNetwrok.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +101,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.mainChart.Series.Add(series1);
-            this.mainChart.Size = new System.Drawing.Size(928, 381);
+            this.mainChart.Size = new System.Drawing.Size(1124, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
             // 
@@ -96,7 +113,7 @@
             this.groupBoxPanel.Controls.Add(this.groupBoxSource);
             this.groupBoxPanel.Location = new System.Drawing.Point(12, 399);
             this.groupBoxPanel.Name = "groupBoxPanel";
-            this.groupBoxPanel.Size = new System.Drawing.Size(928, 169);
+            this.groupBoxPanel.Size = new System.Drawing.Size(1124, 223);
             this.groupBoxPanel.TabIndex = 2;
             this.groupBoxPanel.TabStop = false;
             // 
@@ -105,9 +122,9 @@
             this.groupBoxFilter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBoxFilter.Controls.Add(this.radioFilterSinglePole);
             this.groupBoxFilter.Controls.Add(this.radioFilterMovingAverage);
-            this.groupBoxFilter.Location = new System.Drawing.Point(714, 19);
+            this.groupBoxFilter.Location = new System.Drawing.Point(909, 19);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Size = new System.Drawing.Size(200, 137);
+            this.groupBoxFilter.Size = new System.Drawing.Size(192, 190);
             this.groupBoxFilter.TabIndex = 3;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Фильтр";
@@ -141,7 +158,7 @@
             this.groupBoxData.Controls.Add(this.label1);
             this.groupBoxData.Location = new System.Drawing.Point(19, 19);
             this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Size = new System.Drawing.Size(140, 137);
+            this.groupBoxData.Size = new System.Drawing.Size(140, 190);
             this.groupBoxData.TabIndex = 2;
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "Данные";
@@ -159,81 +176,102 @@
             // groupBoxSource
             // 
             this.groupBoxSource.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBoxSource.Controls.Add(this.groupBoxSourceLinear);
-            this.groupBoxSource.Controls.Add(this.groupBoxSourceSin);
-            this.groupBoxSource.Controls.Add(this.groupBoxSourceNetwrok);
             this.groupBoxSource.Controls.Add(this.radioSourceEmulatorLinear);
+            this.groupBoxSource.Controls.Add(this.groupBox2);
+            this.groupBoxSource.Controls.Add(this.groupBoxSourceLinear);
             this.groupBoxSource.Controls.Add(this.radioSourceEmulatorSin);
+            this.groupBoxSource.Controls.Add(this.groupBoxSourceNetwrok);
+            this.groupBoxSource.Controls.Add(this.groupBoxSourceSin);
             this.groupBoxSource.Controls.Add(this.radioSourceNetwork);
             this.groupBoxSource.Location = new System.Drawing.Point(165, 19);
             this.groupBoxSource.Name = "groupBoxSource";
-            this.groupBoxSource.Size = new System.Drawing.Size(543, 137);
+            this.groupBoxSource.Size = new System.Drawing.Size(738, 190);
             this.groupBoxSource.TabIndex = 1;
             this.groupBoxSource.TabStop = false;
             this.groupBoxSource.Text = "Источник";
             // 
-            // radioSourceEmulatorLinear
+            // labelInterface
             // 
-            this.radioSourceEmulatorLinear.AutoSize = true;
-            this.radioSourceEmulatorLinear.Location = new System.Drawing.Point(342, 20);
-            this.radioSourceEmulatorLinear.Name = "radioSourceEmulatorLinear";
-            this.radioSourceEmulatorLinear.Size = new System.Drawing.Size(127, 17);
-            this.radioSourceEmulatorLinear.TabIndex = 2;
-            this.radioSourceEmulatorLinear.Text = "Эмулятор линейный";
-            this.radioSourceEmulatorLinear.UseVisualStyleBackColor = true;
+            this.labelInterface.AutoSize = true;
+            this.labelInterface.Location = new System.Drawing.Point(6, 82);
+            this.labelInterface.Name = "labelInterface";
+            this.labelInterface.Size = new System.Drawing.Size(17, 13);
+            this.labelInterface.TabIndex = 7;
+            this.labelInterface.Text = "IP";
             // 
-            // radioSourceEmulatorSin
+            // comboIp
             // 
-            this.radioSourceEmulatorSin.AutoSize = true;
-            this.radioSourceEmulatorSin.Checked = true;
-            this.radioSourceEmulatorSin.Location = new System.Drawing.Point(181, 19);
-            this.radioSourceEmulatorSin.Name = "radioSourceEmulatorSin";
-            this.radioSourceEmulatorSin.Size = new System.Drawing.Size(162, 17);
-            this.radioSourceEmulatorSin.TabIndex = 1;
-            this.radioSourceEmulatorSin.TabStop = true;
-            this.radioSourceEmulatorSin.Text = "Эмулятор синусоидальный";
-            this.radioSourceEmulatorSin.UseVisualStyleBackColor = true;
+            this.comboIp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboIp.FormattingEnabled = true;
+            this.comboIp.Location = new System.Drawing.Point(29, 79);
+            this.comboIp.Name = "comboIp";
+            this.comboIp.Size = new System.Drawing.Size(116, 21);
+            this.comboIp.TabIndex = 6;
             // 
-            // radioSourceNetwork
+            // groupBoxSourceLinear
             // 
-            this.radioSourceNetwork.AutoSize = true;
-            this.radioSourceNetwork.Location = new System.Drawing.Point(24, 20);
-            this.radioSourceNetwork.Name = "radioSourceNetwork";
-            this.radioSourceNetwork.Size = new System.Drawing.Size(85, 17);
-            this.radioSourceNetwork.TabIndex = 0;
-            this.radioSourceNetwork.Text = "Устройство";
-            this.radioSourceNetwork.UseVisualStyleBackColor = true;
+            this.groupBoxSourceLinear.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBoxSourceLinear.Controls.Add(this.labelLinearStep);
+            this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearStep);
+            this.groupBoxSourceLinear.Controls.Add(this.labelLinearMax);
+            this.groupBoxSourceLinear.Controls.Add(this.labelLinearMin);
+            this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearMax);
+            this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearMin);
+            this.groupBoxSourceLinear.Location = new System.Drawing.Point(324, 53);
+            this.groupBoxSourceLinear.Name = "groupBoxSourceLinear";
+            this.groupBoxSourceLinear.Size = new System.Drawing.Size(151, 111);
+            this.groupBoxSourceLinear.TabIndex = 5;
+            this.groupBoxSourceLinear.TabStop = false;
+            // 
+            // groupBoxSourceSin
+            // 
+            this.groupBoxSourceSin.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBoxSourceSin.Controls.Add(this.labelSinAverage);
+            this.groupBoxSourceSin.Controls.Add(this.labelSinAmplitude);
+            this.groupBoxSourceSin.Controls.Add(this.labelSinStep);
+            this.groupBoxSourceSin.Controls.Add(this.textSourceSinAverage);
+            this.groupBoxSourceSin.Controls.Add(this.textSourceSinAmplitude);
+            this.groupBoxSourceSin.Controls.Add(this.textSourceSinStep);
+            this.groupBoxSourceSin.Location = new System.Drawing.Point(167, 53);
+            this.groupBoxSourceSin.Name = "groupBoxSourceSin";
+            this.groupBoxSourceSin.Size = new System.Drawing.Size(151, 111);
+            this.groupBoxSourceSin.TabIndex = 4;
+            this.groupBoxSourceSin.TabStop = false;
             // 
             // groupBoxSourceNetwrok
             // 
             this.groupBoxSourceNetwrok.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBoxSourceNetwrok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBoxSourceNetwrok.Controls.Add(this.labelInterface);
             this.groupBoxSourceNetwrok.Controls.Add(this.radioSourceYaw);
+            this.groupBoxSourceNetwrok.Controls.Add(this.comboIp);
             this.groupBoxSourceNetwrok.Controls.Add(this.radioSourceRoll);
             this.groupBoxSourceNetwrok.Controls.Add(this.radioSourcePitch);
-            this.groupBoxSourceNetwrok.Location = new System.Drawing.Point(24, 43);
+            this.groupBoxSourceNetwrok.Location = new System.Drawing.Point(6, 53);
             this.groupBoxSourceNetwrok.Name = "groupBoxSourceNetwrok";
-            this.groupBoxSourceNetwrok.Size = new System.Drawing.Size(151, 77);
+            this.groupBoxSourceNetwrok.Size = new System.Drawing.Size(151, 110);
             this.groupBoxSourceNetwrok.TabIndex = 3;
             this.groupBoxSourceNetwrok.TabStop = false;
             // 
-            // groupBoxSourceSin
+            // radioSourceYaw
             // 
-            this.groupBoxSourceSin.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBoxSourceSin.Location = new System.Drawing.Point(181, 42);
-            this.groupBoxSourceSin.Name = "groupBoxSourceSin";
-            this.groupBoxSourceSin.Size = new System.Drawing.Size(151, 78);
-            this.groupBoxSourceSin.TabIndex = 4;
-            this.groupBoxSourceSin.TabStop = false;
+            this.radioSourceYaw.AutoSize = true;
+            this.radioSourceYaw.Location = new System.Drawing.Point(18, 56);
+            this.radioSourceYaw.Name = "radioSourceYaw";
+            this.radioSourceYaw.Size = new System.Drawing.Size(76, 17);
+            this.radioSourceYaw.TabIndex = 2;
+            this.radioSourceYaw.Text = "Рысканье";
+            this.radioSourceYaw.UseVisualStyleBackColor = true;
             // 
-            // groupBoxSourceLinear
+            // radioSourceRoll
             // 
-            this.groupBoxSourceLinear.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBoxSourceLinear.Location = new System.Drawing.Point(342, 42);
-            this.groupBoxSourceLinear.Name = "groupBoxSourceLinear";
-            this.groupBoxSourceLinear.Size = new System.Drawing.Size(151, 78);
-            this.groupBoxSourceLinear.TabIndex = 5;
-            this.groupBoxSourceLinear.TabStop = false;
+            this.radioSourceRoll.AutoSize = true;
+            this.radioSourceRoll.Location = new System.Drawing.Point(18, 33);
+            this.radioSourceRoll.Name = "radioSourceRoll";
+            this.radioSourceRoll.Size = new System.Drawing.Size(50, 17);
+            this.radioSourceRoll.TabIndex = 1;
+            this.radioSourceRoll.Text = "Крен";
+            this.radioSourceRoll.UseVisualStyleBackColor = true;
             // 
             // radioSourcePitch
             // 
@@ -247,31 +285,155 @@
             this.radioSourcePitch.Text = "Тангаж";
             this.radioSourcePitch.UseVisualStyleBackColor = true;
             // 
-            // radioSourceRoll
+            // radioSourceEmulatorLinear
             // 
-            this.radioSourceRoll.AutoSize = true;
-            this.radioSourceRoll.Location = new System.Drawing.Point(18, 33);
-            this.radioSourceRoll.Name = "radioSourceRoll";
-            this.radioSourceRoll.Size = new System.Drawing.Size(50, 17);
-            this.radioSourceRoll.TabIndex = 1;
-            this.radioSourceRoll.Text = "Крен";
-            this.radioSourceRoll.UseVisualStyleBackColor = true;
+            this.radioSourceEmulatorLinear.AutoSize = true;
+            this.radioSourceEmulatorLinear.Location = new System.Drawing.Point(324, 19);
+            this.radioSourceEmulatorLinear.Name = "radioSourceEmulatorLinear";
+            this.radioSourceEmulatorLinear.Size = new System.Drawing.Size(127, 17);
+            this.radioSourceEmulatorLinear.TabIndex = 2;
+            this.radioSourceEmulatorLinear.Text = "Эмулятор линейный";
+            this.radioSourceEmulatorLinear.UseVisualStyleBackColor = true;
             // 
-            // radioSourceYaw
+            // radioSourceEmulatorSin
             // 
-            this.radioSourceYaw.AutoSize = true;
-            this.radioSourceYaw.Location = new System.Drawing.Point(18, 54);
-            this.radioSourceYaw.Name = "radioSourceYaw";
-            this.radioSourceYaw.Size = new System.Drawing.Size(76, 17);
-            this.radioSourceYaw.TabIndex = 2;
-            this.radioSourceYaw.Text = "Рысканье";
-            this.radioSourceYaw.UseVisualStyleBackColor = true;
+            this.radioSourceEmulatorSin.AutoSize = true;
+            this.radioSourceEmulatorSin.Checked = true;
+            this.radioSourceEmulatorSin.Location = new System.Drawing.Point(167, 19);
+            this.radioSourceEmulatorSin.Name = "radioSourceEmulatorSin";
+            this.radioSourceEmulatorSin.Size = new System.Drawing.Size(162, 17);
+            this.radioSourceEmulatorSin.TabIndex = 1;
+            this.radioSourceEmulatorSin.TabStop = true;
+            this.radioSourceEmulatorSin.Text = "Эмулятор синусоидальный";
+            this.radioSourceEmulatorSin.UseVisualStyleBackColor = true;
+            // 
+            // radioSourceNetwork
+            // 
+            this.radioSourceNetwork.AutoSize = true;
+            this.radioSourceNetwork.Location = new System.Drawing.Point(6, 20);
+            this.radioSourceNetwork.Name = "radioSourceNetwork";
+            this.radioSourceNetwork.Size = new System.Drawing.Size(85, 17);
+            this.radioSourceNetwork.TabIndex = 0;
+            this.radioSourceNetwork.Text = "Устройство";
+            this.radioSourceNetwork.UseVisualStyleBackColor = true;
+            // 
+            // textSourceSinStep
+            // 
+            this.textSourceSinStep.Location = new System.Drawing.Point(64, 10);
+            this.textSourceSinStep.Name = "textSourceSinStep";
+            this.textSourceSinStep.Size = new System.Drawing.Size(81, 20);
+            this.textSourceSinStep.TabIndex = 0;
+            this.textSourceSinStep.Text = "1.0";
+            // 
+            // textSourceSinAmplitude
+            // 
+            this.textSourceSinAmplitude.Location = new System.Drawing.Point(64, 33);
+            this.textSourceSinAmplitude.Name = "textSourceSinAmplitude";
+            this.textSourceSinAmplitude.Size = new System.Drawing.Size(81, 20);
+            this.textSourceSinAmplitude.TabIndex = 1;
+            this.textSourceSinAmplitude.Text = "30.0";
+            // 
+            // textSourceSinAverage
+            // 
+            this.textSourceSinAverage.Location = new System.Drawing.Point(64, 56);
+            this.textSourceSinAverage.Name = "textSourceSinAverage";
+            this.textSourceSinAverage.Size = new System.Drawing.Size(81, 20);
+            this.textSourceSinAverage.TabIndex = 2;
+            this.textSourceSinAverage.Text = "10.0";
+            // 
+            // labelSinStep
+            // 
+            this.labelSinStep.AutoSize = true;
+            this.labelSinStep.Location = new System.Drawing.Point(2, 13);
+            this.labelSinStep.Name = "labelSinStep";
+            this.labelSinStep.Size = new System.Drawing.Size(58, 13);
+            this.labelSinStep.TabIndex = 3;
+            this.labelSinStep.Text = "Шаг фазы";
+            // 
+            // labelSinAmplitude
+            // 
+            this.labelSinAmplitude.AutoSize = true;
+            this.labelSinAmplitude.Location = new System.Drawing.Point(2, 36);
+            this.labelSinAmplitude.Name = "labelSinAmplitude";
+            this.labelSinAmplitude.Size = new System.Drawing.Size(62, 13);
+            this.labelSinAmplitude.TabIndex = 4;
+            this.labelSinAmplitude.Text = "Амплитуда";
+            // 
+            // labelSinAverage
+            // 
+            this.labelSinAverage.AutoSize = true;
+            this.labelSinAverage.Location = new System.Drawing.Point(2, 59);
+            this.labelSinAverage.Name = "labelSinAverage";
+            this.labelSinAverage.Size = new System.Drawing.Size(50, 13);
+            this.labelSinAverage.TabIndex = 5;
+            this.labelSinAverage.Text = "Средняя";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.groupBox2.Location = new System.Drawing.Point(481, 54);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(186, 110);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Шум";
+            // 
+            // textSourceLinearMin
+            // 
+            this.textSourceLinearMin.Location = new System.Drawing.Point(45, 10);
+            this.textSourceLinearMin.Name = "textSourceLinearMin";
+            this.textSourceLinearMin.Size = new System.Drawing.Size(100, 20);
+            this.textSourceLinearMin.TabIndex = 0;
+            this.textSourceLinearMin.Text = "-90.0";
+            // 
+            // textSourceLinearMax
+            // 
+            this.textSourceLinearMax.Location = new System.Drawing.Point(45, 32);
+            this.textSourceLinearMax.Name = "textSourceLinearMax";
+            this.textSourceLinearMax.Size = new System.Drawing.Size(100, 20);
+            this.textSourceLinearMax.TabIndex = 1;
+            this.textSourceLinearMax.Text = "90.0";
+            // 
+            // labelLinearMin
+            // 
+            this.labelLinearMin.AutoSize = true;
+            this.labelLinearMin.Location = new System.Drawing.Point(6, 12);
+            this.labelLinearMin.Name = "labelLinearMin";
+            this.labelLinearMin.Size = new System.Drawing.Size(31, 13);
+            this.labelLinearMin.TabIndex = 2;
+            this.labelLinearMin.Text = "Мин.";
+            // 
+            // labelLinearMax
+            // 
+            this.labelLinearMax.AutoSize = true;
+            this.labelLinearMax.Location = new System.Drawing.Point(6, 36);
+            this.labelLinearMax.Name = "labelLinearMax";
+            this.labelLinearMax.Size = new System.Drawing.Size(37, 13);
+            this.labelLinearMax.TabIndex = 3;
+            this.labelLinearMax.Text = "Макс.";
+            // 
+            // textSourceLinearStep
+            // 
+            this.textSourceLinearStep.Location = new System.Drawing.Point(45, 55);
+            this.textSourceLinearStep.Name = "textSourceLinearStep";
+            this.textSourceLinearStep.Size = new System.Drawing.Size(100, 20);
+            this.textSourceLinearStep.TabIndex = 4;
+            this.textSourceLinearStep.Text = "5.0";
+            // 
+            // labelLinearStep
+            // 
+            this.labelLinearStep.AutoSize = true;
+            this.labelLinearStep.Location = new System.Drawing.Point(6, 58);
+            this.labelLinearStep.Name = "labelLinearStep";
+            this.labelLinearStep.Size = new System.Drawing.Size(27, 13);
+            this.labelLinearStep.TabIndex = 5;
+            this.labelLinearStep.Text = "Шаг";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 572);
+            this.ClientSize = new System.Drawing.Size(1148, 630);
             this.Controls.Add(this.groupBoxPanel);
             this.Controls.Add(this.mainChart);
             this.Name = "Form1";
@@ -286,6 +448,10 @@
             this.groupBoxData.PerformLayout();
             this.groupBoxSource.ResumeLayout(false);
             this.groupBoxSource.PerformLayout();
+            this.groupBoxSourceLinear.ResumeLayout(false);
+            this.groupBoxSourceLinear.PerformLayout();
+            this.groupBoxSourceSin.ResumeLayout(false);
+            this.groupBoxSourceSin.PerformLayout();
             this.groupBoxSourceNetwrok.ResumeLayout(false);
             this.groupBoxSourceNetwrok.PerformLayout();
             this.ResumeLayout(false);
@@ -313,6 +479,21 @@
         private System.Windows.Forms.RadioButton radioSourceYaw;
         private System.Windows.Forms.RadioButton radioSourceRoll;
         private System.Windows.Forms.RadioButton radioSourcePitch;
+        private System.Windows.Forms.ComboBox comboIp;
+        private System.Windows.Forms.Label labelInterface;
+        private System.Windows.Forms.TextBox textSourceSinAverage;
+        private System.Windows.Forms.TextBox textSourceSinAmplitude;
+        private System.Windows.Forms.TextBox textSourceSinStep;
+        private System.Windows.Forms.Label labelSinAverage;
+        private System.Windows.Forms.Label labelSinAmplitude;
+        private System.Windows.Forms.Label labelSinStep;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label labelLinearStep;
+        private System.Windows.Forms.TextBox textSourceLinearStep;
+        private System.Windows.Forms.Label labelLinearMax;
+        private System.Windows.Forms.Label labelLinearMin;
+        private System.Windows.Forms.TextBox textSourceLinearMax;
+        private System.Windows.Forms.TextBox textSourceLinearMin;
     }
 }
 

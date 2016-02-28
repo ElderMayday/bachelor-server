@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Assets.Backend;
 using Assets.Backend.Sources;
 using Assets.Backend.Filters;
+using System.Net;
+using System.Globalization;
+using Assets.Backend.Noisers;
 
 namespace Analyzer
 {
@@ -12,6 +15,8 @@ namespace Analyzer
     {
         protected Source source;
         protected Filter filter;
+        protected Noiser noiser;
+
         protected UdpThread udpThread;
 
         protected int interval;
@@ -20,11 +25,10 @@ namespace Analyzer
         protected double time;
 
         protected bool isWorking;
-
         protected List<Control> controls;
 
-        
-            
+        #region GuiEvents
+
         public Form1()
         {
             InitializeComponent();
@@ -40,30 +44,20 @@ namespace Analyzer
 
             resetChart();
 
-            isWorking = false;
-
-            
-
-            udpThread = new UdpThread();
+            isWorking = false;      
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
             refreshChart();
 
-            controls = new List<Control>();
+            setControlList();
 
-            controls.Add(radioFilterMovingAverage);
-            controls.Add(radioFilterSinglePole);
-            controls.Add(radioSourceEmulatorLinear);
-            controls.Add(radioSourceEmulatorSin);
-            controls.Add(radioSourceNetwork);
-            controls.Add(radioSourcePitch);
-            controls.Add(radioSourceRoll);
-            controls.Add(radioSourceYaw);
+            List<IPAddress> list = AddressProvider.GetLocalIp();
+            foreach (IPAddress ip in list)
+                comboIp.Items.Add(ip.ToString());
+            comboIp.Text = list[list.Count - 1].ToString();
         }
-
 
         private void timerNetwork_Tick(object sender, EventArgs e)
         {
@@ -71,7 +65,7 @@ namespace Analyzer
             {
                 if (source.IsCorrect)
                 {
-                    double currentInput = source.DataFloat;
+                    double currentInput = source.Data;
 
                     filter.AddInput(currentInput);
 
@@ -103,6 +97,103 @@ namespace Analyzer
             }
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (source != null)
+                source.Stop();
+
+            if (udpThread != null)
+                udpThread.Stop();
+        }
+
+        private void buttonSwitch_Click(object sender, EventArgs e)
+        {
+            if (isWorking == false)
+            {
+                isWorking = true;
+
+                buttonSwitch.Text = "Выключить";
+
+                timerNetwork.Enabled = true;
+
+                if (radioFilterMovingAverage.Checked)
+                    filter = new FilterMovingAverage(5);
+                else if (radioFilterSinglePole.Checked)
+                    filter = new FilterSinglePole(4, 0.5);
+
+                noiser = new NoiserUniform(-20.0f, 20.0f);
+
+                if (radioSourceNetwork.Checked)
+                {
+                    udpThread = new UdpThread();
+
+                    if (radioSourcePitch.Checked)
+                        source = new SourceNetwork(Axis.Pitch, IPAddress.Parse(comboIp.Text));
+                    else if (radioSourceRoll.Checked)
+                        source = new SourceNetwork(Axis.Roll, IPAddress.Parse(comboIp.Text));
+                    else if (radioSourceYaw.Checked)
+                        source = new SourceNetwork(Axis.Yaw, IPAddress.Parse(comboIp.Text));
+                }
+                else if (radioSourceEmulatorSin.Checked)
+                {
+                    source = new SourceEmulatorSin(noiser, double.Parse(textSourceSinStep.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture));
+                }
+                else if (radioSourceEmulatorLinear.Checked)
+                {
+                    source = new SourceEmulatorLinear(noiser, double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceLinearStep.Text, CultureInfo.InvariantCulture));
+                }
+
+                switchControls(false);
+
+                resetChart();
+                refreshChart();
+            }
+            else
+            {
+                isWorking = false;
+
+                buttonSwitch.Text = "Включить";
+
+                timerNetwork.Enabled = false;
+
+                source.Stop();
+
+                if (udpThread != null)
+                    udpThread.Stop();
+
+                switchControls(true);
+            }
+        }
+
+        #endregion
+
+
+        #region GuiExtra
+
+        private void setControlList()
+        {
+            controls = new List<Control>();
+
+            controls.Add(radioFilterMovingAverage);
+            controls.Add(radioFilterSinglePole);
+            controls.Add(radioSourceEmulatorLinear);
+            controls.Add(radioSourceEmulatorSin);
+            controls.Add(radioSourceNetwork);
+            controls.Add(radioSourcePitch);
+            controls.Add(radioSourceRoll);
+            controls.Add(radioSourceYaw);
+            controls.Add(comboIp);
+            controls.Add(textSourceSinStep);
+            controls.Add(textSourceSinAmplitude);
+            controls.Add(textSourceSinAverage);
+            controls.Add(textSourceLinearMin);
+            controls.Add(textSourceLinearMax);
+            controls.Add(textSourceLinearStep);
+        }
 
         private void resetChart()
         {
@@ -128,70 +219,14 @@ namespace Analyzer
             mainChart.ChartAreas[0].AxisX.Maximum = time + maxPoints - 1;
             mainChart.ChartAreas[0].AxisY.Minimum = -100;
             mainChart.ChartAreas[0].AxisY.Maximum = 100;
-        }
-
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (source != null)
-                source.Stop();
-
-            if (udpThread != null)
-                udpThread.Stop();
-        }
-
-
-        private void buttonSwitch_Click(object sender, EventArgs e)
-        {
-            if (isWorking == false)
-            {
-                isWorking = true;
-
-                buttonSwitch.Text = "Выключить";
-
-                timerNetwork.Enabled = true;
-
-                if (radioFilterMovingAverage.Checked)
-                    filter = new FilterMovingAverage(5);
-                else if (radioFilterSinglePole.Checked)
-                    filter = new FilterSinglePole(4, 0.5);
-
-                if (radioSourceNetwork.Checked)
-                {
-                    if (radioSourcePitch.Checked)
-                        source = new SourceNetwork(Axis.Pitch);
-                    else if (radioSourceRoll.Checked)
-                        source = new SourceNetwork(Axis.Roll);
-                    else if (radioSourceYaw.Checked)
-                        source = new SourceNetwork(Axis.Yaw);
-                }
-                else if (radioSourceEmulatorSin.Checked)
-                    source = new SourceEmulatorSin();
-                else if (radioSourceEmulatorLinear.Checked)
-                    source = new SourceEmulatorLinear();
-
-                switchControls(false);
-
-                resetChart();
-                refreshChart();
-            }
-            else
-            {
-                isWorking = false;
-
-                buttonSwitch.Text = "Включить";
-
-                timerNetwork.Enabled = false;
-                source.Stop();
-
-                switchControls(true);
-            }
-        }
+        }     
 
         protected void switchControls(bool value)
         {
             foreach (Control c in controls)
                 c.Enabled = value;
         }
+
+        #endregion
     }
 }
