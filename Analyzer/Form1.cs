@@ -112,42 +112,11 @@ namespace Analyzer
             {
                 isWorking = true;
 
-                buttonSwitch.Text = "Выключить";
-
-                timerNetwork.Enabled = true;
-
-                if (radioFilterMovingAverage.Checked)
-                    filter = new FilterMovingAverage(5);
-                else if (radioFilterSinglePole.Checked)
-                    filter = new FilterSinglePole(4, 0.5);
-
-                noiser = new NoiserUniform(-20.0f, 20.0f);
-
-                if (radioSourceNetwork.Checked)
-                {
-                    udpThread = new UdpThread();
-
-                    if (radioSourcePitch.Checked)
-                        source = new SourceNetwork(Axis.Pitch, IPAddress.Parse(comboIp.Text));
-                    else if (radioSourceRoll.Checked)
-                        source = new SourceNetwork(Axis.Roll, IPAddress.Parse(comboIp.Text));
-                    else if (radioSourceYaw.Checked)
-                        source = new SourceNetwork(Axis.Yaw, IPAddress.Parse(comboIp.Text));
-                }
-                else if (radioSourceEmulatorSin.Checked)
-                {
-                    source = new SourceEmulatorSin(noiser, double.Parse(textSourceSinStep.Text, CultureInfo.InvariantCulture),
-                        double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture),
-                        double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture));
-                }
-                else if (radioSourceEmulatorLinear.Checked)
-                {
-                    source = new SourceEmulatorLinear(noiser, double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture),
-                        double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture),
-                        double.Parse(textSourceLinearStep.Text, CultureInfo.InvariantCulture));
-                }
-
+                setStrategies();
                 switchControls(false);
+
+                buttonSwitch.Text = "Выключить";
+                timerNetwork.Enabled = true;
 
                 resetChart();
                 refreshChart();
@@ -220,6 +189,52 @@ namespace Analyzer
             mainChart.ChartAreas[0].AxisY.Minimum = -100;
             mainChart.ChartAreas[0].AxisY.Maximum = 100;
         }     
+
+        private void setStrategies()
+        {
+            if (radioFilterMovingAverage.Checked)
+                filter = new FilterMovingAverage(5);
+            else if (radioFilterSinglePole.Checked)
+                filter = new FilterSinglePole(4, 0.5);
+
+            if (radioNoiserIdle.Checked)
+                noiser = new NoiserIdle();
+            else if (radioNoiserUniform.Checked)
+                noiser = new NoiserUniform(float.Parse(textNoiseUniformMin.Text, CultureInfo.InvariantCulture),
+                    float.Parse(textNoiseUniformMax.Text, CultureInfo.InvariantCulture));
+            else if (radioNoiserNormal.Checked)
+                noiser = new NoiserNormal(float.Parse(textNoiseNormalMean.Text, CultureInfo.InvariantCulture),
+                    float.Parse(textNoiseNormalDeviation.Text, CultureInfo.InvariantCulture));
+            else if (radioNoiserExponential.Checked)
+                noiser = new NoiserExponential(float.Parse(textNoiseExponentialLambda.Text, CultureInfo.InvariantCulture));
+            else if (radioNoiserErlang.Checked)
+                noiser = new NoiserErlang(float.Parse(textNoiseErlangLambda.Text, CultureInfo.InvariantCulture),
+                    int.Parse(textNoiseErlangK.Text, CultureInfo.InvariantCulture));
+
+            if (radioSourceNetwork.Checked)
+            {
+                udpThread = new UdpThread();
+
+                if (radioSourcePitch.Checked)
+                    source = new SourceNetwork(Axis.Pitch, IPAddress.Parse(comboIp.Text));
+                else if (radioSourceRoll.Checked)
+                    source = new SourceNetwork(Axis.Roll, IPAddress.Parse(comboIp.Text));
+                else if (radioSourceYaw.Checked)
+                    source = new SourceNetwork(Axis.Yaw, IPAddress.Parse(comboIp.Text));
+            }
+            else if (radioSourceEmulatorSin.Checked)
+            {
+                source = new SourceEmulatorSin(noiser, double.Parse(textSourceSinStep.Text, CultureInfo.InvariantCulture),
+                    double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture),
+                    double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture));
+            }
+            else if (radioSourceEmulatorLinear.Checked)
+            {
+                source = new SourceEmulatorLinear(noiser, double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture),
+                    double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture),
+                    double.Parse(textSourceLinearStep.Text, CultureInfo.InvariantCulture));
+            }
+        }
 
         protected void switchControls(bool value)
         {

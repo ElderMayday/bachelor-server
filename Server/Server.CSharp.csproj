@@ -78,7 +78,10 @@
     <Compile Include="Assets\Backend\Filters\FilterMovingAverage.cs" />
     <Compile Include="Assets\Backend\Filters\FilterSinglePole.cs" />
     <Compile Include="Assets\Backend\Noisers\Noiser.cs" />
+    <Compile Include="Assets\Backend\Noisers\NoiserErlang.cs" />
+    <Compile Include="Assets\Backend\Noisers\NoiserExponential.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserIdle.cs" />
+    <Compile Include="Assets\Backend\Noisers\NoiserNormal.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserUniform.cs" />
     <Compile Include="Assets\Backend\Sources\Axis.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
