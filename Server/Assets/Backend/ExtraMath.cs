@@ -24,5 +24,20 @@ namespace Assets.Backend
         {
             return ExtraMath.Factorial(n) / (ExtraMath.Factorial(k) * ExtraMath.Factorial(n - k));
         }
+
+
+        public static double PieceWiseExample1(double x)
+        {
+            if (x < 5.0)
+                return 0.0;
+
+            if ((5.0 <= x) && (x < 10.0))
+                return (x - 5.0) / 10.0; // f(5.0) = 0.0, f(10.0) = 0.5
+
+            if ((10.0 <= x) && (x < 20.0))
+                return (x - 10.0) / 20.0 + 0.5; // f(10.0) = 0.5, f(20.0) = 1.0
+
+            return 1.0;
+        }
     }
 }

@@ -210,6 +210,8 @@ namespace Analyzer
             else if (radioNoiserErlang.Checked)
                 noiser = new NoiserErlang(float.Parse(textNoiseErlangLambda.Text, CultureInfo.InvariantCulture),
                     int.Parse(textNoiseErlangK.Text, CultureInfo.InvariantCulture));
+            else if (radioNoiserFunction.Checked)
+                noiser = new NoiserFunction(ExtraMath.PieceWiseExample1);
 
             if (radioSourceNetwork.Checked)
             {
