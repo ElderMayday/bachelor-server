@@ -5,11 +5,6 @@ namespace Assets.Backend.Filters
 {
     public abstract class Filter
     {
-        public Filter()
-        {
-            input = new List<double>();
-        }
-
         public Filter(int orderInput)
         {
             input = new List<double>();
@@ -18,9 +13,10 @@ namespace Assets.Backend.Filters
                 input.Add(0.0);
         }
 
-        public virtual void AddInput(double newX)
+        public virtual void AddInput(double newInput)
         {
-            input.Add(newX);
+            input.Add(newInput);
+            input.RemoveAt(0);
         }
 
         public abstract double GetOutput();

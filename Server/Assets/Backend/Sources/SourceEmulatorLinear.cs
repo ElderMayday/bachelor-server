@@ -19,7 +19,6 @@ namespace Assets.Backend.Sources
         protected override void doThread()
         {
             float current = 0;
-            int interval = 100;
             
             bool isIncreasing = true;       
 

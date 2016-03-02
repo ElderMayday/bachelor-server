@@ -21,7 +21,6 @@ namespace Assets.Backend.Sources
         {
             float current = 0;
             float step = 5;
-            int interval = 100;
 
             while (mustWork)
             {

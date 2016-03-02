@@ -9,6 +9,8 @@ namespace Assets.Backend.Sources
     {
         public SourceEmulator(Noiser _noiser)
         {
+            interval = 100;
+
             noiser = _noiser;
         }
 
@@ -18,6 +20,7 @@ namespace Assets.Backend.Sources
             protected set { dataPure = value; Data = value + noiser.Get(); }
         }
 
+        protected int interval;
         protected Noiser noiser;
         protected float dataPure;
     }

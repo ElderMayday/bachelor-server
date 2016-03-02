@@ -6,7 +6,7 @@ namespace Assets.Backend.Filters
 {
     public abstract class FilterFIR : Filter
     {
-        public FilterFIR(int order) : base()
+        public FilterFIR(int order) : base(order)
         {
             weight = new List<double>();
 
@@ -18,7 +18,7 @@ namespace Assets.Backend.Filters
         {
             double result = 0.0;
 
-            for (int i = 0; i < Math.Min(weight.Count, input.Count); i++)
+            for (int i = 0; i < weight.Count; i++)
                 result += weight[i] * input[input.Count - i - 1];
 
             return result;

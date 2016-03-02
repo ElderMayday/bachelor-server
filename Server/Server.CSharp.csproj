@@ -88,6 +88,7 @@
     <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorLinear.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorSin.cs" />
+    <Compile Include="Assets\Backend\Sources\SourceEmulatorFourier.cs" />
     <Compile Include="Assets\Backend\Sources\SourceNetwork.cs" />
     <Compile Include="Assets\Backend\Sources\Source.cs" />
     <Compile Include="Assets\Backend\UdpThread.cs" />

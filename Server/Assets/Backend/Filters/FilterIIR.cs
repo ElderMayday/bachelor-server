@@ -30,6 +30,8 @@ namespace Assets.Backend.Filters
         public override void AddInput(double newX)
         {
             input.Add(newX);
+            input.RemoveAt(0);
+
             output.Add(0.0);
 
             double result = 0.0;
@@ -41,6 +43,8 @@ namespace Assets.Backend.Filters
                 result += weightOutput[i] * output[output.Count - i - 2];
 
             output[output.Count - 1] = result;
+
+            output.RemoveAt(0);
         }
 
         protected List<double> weightInput, weightOutput;
