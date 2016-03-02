@@ -44,6 +44,7 @@
             this.groupBoxSource = new System.Windows.Forms.GroupBox();
             this.radioSourceEmulatorLinear = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioNoiserFunction = new System.Windows.Forms.RadioButton();
             this.labelNoiseErlangLambda = new System.Windows.Forms.Label();
             this.textNoiseErlangLambda = new System.Windows.Forms.TextBox();
             this.labelNoiseErlangK = new System.Windows.Forms.Label();
@@ -85,7 +86,6 @@
             this.textSourceSinAmplitude = new System.Windows.Forms.TextBox();
             this.textSourceSinStep = new System.Windows.Forms.TextBox();
             this.radioSourceNetwork = new System.Windows.Forms.RadioButton();
-            this.radioNoiserFunction = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.mainChart)).BeginInit();
             this.groupBoxPanel.SuspendLayout();
             this.groupBoxFilter.SuspendLayout();
@@ -104,10 +104,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 37);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(6, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "No data";
             // 
@@ -117,14 +116,13 @@
             this.mainChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.mainChart.Legends.Add(legend1);
-            this.mainChart.Location = new System.Drawing.Point(18, 18);
-            this.mainChart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mainChart.Location = new System.Drawing.Point(12, 12);
             this.mainChart.Name = "mainChart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.mainChart.Series.Add(series1);
-            this.mainChart.Size = new System.Drawing.Size(1686, 586);
+            this.mainChart.Size = new System.Drawing.Size(1124, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
             // 
@@ -134,11 +132,9 @@
             this.groupBoxPanel.Controls.Add(this.groupBoxFilter);
             this.groupBoxPanel.Controls.Add(this.groupBoxData);
             this.groupBoxPanel.Controls.Add(this.groupBoxSource);
-            this.groupBoxPanel.Location = new System.Drawing.Point(18, 614);
-            this.groupBoxPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxPanel.Location = new System.Drawing.Point(12, 399);
             this.groupBoxPanel.Name = "groupBoxPanel";
-            this.groupBoxPanel.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxPanel.Size = new System.Drawing.Size(1686, 585);
+            this.groupBoxPanel.Size = new System.Drawing.Size(1124, 380);
             this.groupBoxPanel.TabIndex = 2;
             this.groupBoxPanel.TabStop = false;
             // 
@@ -147,11 +143,9 @@
             this.groupBoxFilter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBoxFilter.Controls.Add(this.radioFilterSinglePole);
             this.groupBoxFilter.Controls.Add(this.radioFilterMovingAverage);
-            this.groupBoxFilter.Location = new System.Drawing.Point(1364, 29);
-            this.groupBoxFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxFilter.Location = new System.Drawing.Point(909, 19);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxFilter.Size = new System.Drawing.Size(288, 537);
+            this.groupBoxFilter.Size = new System.Drawing.Size(192, 349);
             this.groupBoxFilter.TabIndex = 3;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Фильтр";
@@ -159,10 +153,9 @@
             // radioFilterSinglePole
             // 
             this.radioFilterSinglePole.AutoSize = true;
-            this.radioFilterSinglePole.Location = new System.Drawing.Point(42, 69);
-            this.radioFilterSinglePole.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioFilterSinglePole.Location = new System.Drawing.Point(28, 45);
             this.radioFilterSinglePole.Name = "radioFilterSinglePole";
-            this.radioFilterSinglePole.Size = new System.Drawing.Size(150, 24);
+            this.radioFilterSinglePole.Size = new System.Drawing.Size(101, 17);
             this.radioFilterSinglePole.TabIndex = 1;
             this.radioFilterSinglePole.Text = "Однополярный";
             this.radioFilterSinglePole.UseVisualStyleBackColor = true;
@@ -171,10 +164,9 @@
             // 
             this.radioFilterMovingAverage.AutoSize = true;
             this.radioFilterMovingAverage.Checked = true;
-            this.radioFilterMovingAverage.Location = new System.Drawing.Point(42, 34);
-            this.radioFilterMovingAverage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioFilterMovingAverage.Location = new System.Drawing.Point(28, 22);
             this.radioFilterMovingAverage.Name = "radioFilterMovingAverage";
-            this.radioFilterMovingAverage.Size = new System.Drawing.Size(197, 24);
+            this.radioFilterMovingAverage.Size = new System.Drawing.Size(134, 17);
             this.radioFilterMovingAverage.TabIndex = 0;
             this.radioFilterMovingAverage.TabStop = true;
             this.radioFilterMovingAverage.Text = "Скользящая средняя";
@@ -185,21 +177,18 @@
             this.groupBoxData.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBoxData.Controls.Add(this.buttonSwitch);
             this.groupBoxData.Controls.Add(this.label1);
-            this.groupBoxData.Location = new System.Drawing.Point(28, 29);
-            this.groupBoxData.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxData.Location = new System.Drawing.Point(19, 19);
             this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxData.Size = new System.Drawing.Size(210, 537);
+            this.groupBoxData.Size = new System.Drawing.Size(140, 349);
             this.groupBoxData.TabIndex = 2;
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "Данные";
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(14, 82);
-            this.buttonSwitch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonSwitch.Location = new System.Drawing.Point(9, 53);
             this.buttonSwitch.Name = "buttonSwitch";
-            this.buttonSwitch.Size = new System.Drawing.Size(188, 63);
+            this.buttonSwitch.Size = new System.Drawing.Size(125, 41);
             this.buttonSwitch.TabIndex = 1;
             this.buttonSwitch.Text = "Включить";
             this.buttonSwitch.UseVisualStyleBackColor = true;
@@ -215,11 +204,9 @@
             this.groupBoxSource.Controls.Add(this.groupBoxSourceNetwrok);
             this.groupBoxSource.Controls.Add(this.groupBoxSourceSin);
             this.groupBoxSource.Controls.Add(this.radioSourceNetwork);
-            this.groupBoxSource.Location = new System.Drawing.Point(248, 29);
-            this.groupBoxSource.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxSource.Location = new System.Drawing.Point(165, 19);
             this.groupBoxSource.Name = "groupBoxSource";
-            this.groupBoxSource.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxSource.Size = new System.Drawing.Size(1107, 537);
+            this.groupBoxSource.Size = new System.Drawing.Size(738, 349);
             this.groupBoxSource.TabIndex = 1;
             this.groupBoxSource.TabStop = false;
             this.groupBoxSource.Text = "Источник";
@@ -227,10 +214,9 @@
             // radioSourceEmulatorLinear
             // 
             this.radioSourceEmulatorLinear.AutoSize = true;
-            this.radioSourceEmulatorLinear.Location = new System.Drawing.Point(486, 29);
-            this.radioSourceEmulatorLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSourceEmulatorLinear.Location = new System.Drawing.Point(324, 19);
             this.radioSourceEmulatorLinear.Name = "radioSourceEmulatorLinear";
-            this.radioSourceEmulatorLinear.Size = new System.Drawing.Size(189, 24);
+            this.radioSourceEmulatorLinear.Size = new System.Drawing.Size(127, 17);
             this.radioSourceEmulatorLinear.TabIndex = 2;
             this.radioSourceEmulatorLinear.Text = "Эмулятор линейный";
             this.radioSourceEmulatorLinear.UseVisualStyleBackColor = true;
@@ -258,155 +244,150 @@
             this.groupBox2.Controls.Add(this.radioNoiserNormal);
             this.groupBox2.Controls.Add(this.radioNoiserUniform);
             this.groupBox2.Controls.Add(this.radioNoiserIdle);
-            this.groupBox2.Location = new System.Drawing.Point(722, 31);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Location = new System.Drawing.Point(481, 20);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(354, 497);
+            this.groupBox2.Size = new System.Drawing.Size(236, 323);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Шум";
             // 
+            // radioNoiserFunction
+            // 
+            this.radioNoiserFunction.AutoSize = true;
+            this.radioNoiserFunction.Location = new System.Drawing.Point(128, 24);
+            this.radioNoiserFunction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioNoiserFunction.Name = "radioNoiserFunction";
+            this.radioNoiserFunction.Size = new System.Drawing.Size(72, 17);
+            this.radioNoiserFunction.TabIndex = 19;
+            this.radioNoiserFunction.TabStop = true;
+            this.radioNoiserFunction.Text = "Кусочная";
+            this.radioNoiserFunction.UseVisualStyleBackColor = true;
+            // 
             // labelNoiseErlangLambda
             // 
             this.labelNoiseErlangLambda.AutoSize = true;
-            this.labelNoiseErlangLambda.Location = new System.Drawing.Point(22, 462);
-            this.labelNoiseErlangLambda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseErlangLambda.Location = new System.Drawing.Point(15, 300);
             this.labelNoiseErlangLambda.Name = "labelNoiseErlangLambda";
-            this.labelNoiseErlangLambda.Size = new System.Drawing.Size(70, 20);
+            this.labelNoiseErlangLambda.Size = new System.Drawing.Size(47, 13);
             this.labelNoiseErlangLambda.TabIndex = 18;
             this.labelNoiseErlangLambda.Text = "Лямбда";
             // 
             // textNoiseErlangLambda
             // 
-            this.textNoiseErlangLambda.Location = new System.Drawing.Point(114, 457);
-            this.textNoiseErlangLambda.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseErlangLambda.Location = new System.Drawing.Point(76, 297);
             this.textNoiseErlangLambda.Name = "textNoiseErlangLambda";
-            this.textNoiseErlangLambda.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseErlangLambda.Size = new System.Drawing.Size(86, 20);
             this.textNoiseErlangLambda.TabIndex = 17;
             this.textNoiseErlangLambda.Text = "5.0";
             // 
             // labelNoiseErlangK
             // 
             this.labelNoiseErlangK.AutoSize = true;
-            this.labelNoiseErlangK.Location = new System.Drawing.Point(22, 417);
-            this.labelNoiseErlangK.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseErlangK.Location = new System.Drawing.Point(15, 271);
             this.labelNoiseErlangK.Name = "labelNoiseErlangK";
-            this.labelNoiseErlangK.Size = new System.Drawing.Size(19, 20);
+            this.labelNoiseErlangK.Size = new System.Drawing.Size(14, 13);
             this.labelNoiseErlangK.TabIndex = 16;
             this.labelNoiseErlangK.Text = "K";
             // 
             // labelNoiseExponentialLambda
             // 
             this.labelNoiseExponentialLambda.AutoSize = true;
-            this.labelNoiseExponentialLambda.Location = new System.Drawing.Point(22, 346);
-            this.labelNoiseExponentialLambda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseExponentialLambda.Location = new System.Drawing.Point(15, 225);
             this.labelNoiseExponentialLambda.Name = "labelNoiseExponentialLambda";
-            this.labelNoiseExponentialLambda.Size = new System.Drawing.Size(70, 20);
+            this.labelNoiseExponentialLambda.Size = new System.Drawing.Size(47, 13);
             this.labelNoiseExponentialLambda.TabIndex = 15;
             this.labelNoiseExponentialLambda.Text = "Лямбда";
             // 
             // labelNoiseNormalDeviation
             // 
             this.labelNoiseNormalDeviation.AutoSize = true;
-            this.labelNoiseNormalDeviation.Location = new System.Drawing.Point(9, 275);
-            this.labelNoiseNormalDeviation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseNormalDeviation.Location = new System.Drawing.Point(6, 179);
             this.labelNoiseNormalDeviation.Name = "labelNoiseNormalDeviation";
-            this.labelNoiseNormalDeviation.Size = new System.Drawing.Size(91, 20);
+            this.labelNoiseNormalDeviation.Size = new System.Drawing.Size(64, 13);
             this.labelNoiseNormalDeviation.TabIndex = 14;
             this.labelNoiseNormalDeviation.Text = "Дисперсия";
             // 
             // labelNoiseNormalMean
             // 
             this.labelNoiseNormalMean.AutoSize = true;
-            this.labelNoiseNormalMean.Location = new System.Drawing.Point(9, 235);
-            this.labelNoiseNormalMean.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseNormalMean.Location = new System.Drawing.Point(6, 153);
             this.labelNoiseNormalMean.Name = "labelNoiseNormalMean";
-            this.labelNoiseNormalMean.Size = new System.Drawing.Size(78, 20);
+            this.labelNoiseNormalMean.Size = new System.Drawing.Size(52, 13);
             this.labelNoiseNormalMean.TabIndex = 13;
             this.labelNoiseNormalMean.Text = "Медиана";
             // 
             // labelNoiseIdleMax
             // 
             this.labelNoiseIdleMax.AutoSize = true;
-            this.labelNoiseIdleMax.Location = new System.Drawing.Point(9, 160);
-            this.labelNoiseIdleMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseIdleMax.Location = new System.Drawing.Point(6, 104);
             this.labelNoiseIdleMax.Name = "labelNoiseIdleMax";
-            this.labelNoiseIdleMax.Size = new System.Drawing.Size(51, 20);
+            this.labelNoiseIdleMax.Size = new System.Drawing.Size(37, 13);
             this.labelNoiseIdleMax.TabIndex = 12;
             this.labelNoiseIdleMax.Text = "Макс.";
             // 
             // labelNoiseIdleMin
             // 
             this.labelNoiseIdleMin.AutoSize = true;
-            this.labelNoiseIdleMin.Location = new System.Drawing.Point(9, 120);
-            this.labelNoiseIdleMin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNoiseIdleMin.Location = new System.Drawing.Point(6, 78);
             this.labelNoiseIdleMin.Name = "labelNoiseIdleMin";
-            this.labelNoiseIdleMin.Size = new System.Drawing.Size(44, 20);
+            this.labelNoiseIdleMin.Size = new System.Drawing.Size(31, 13);
             this.labelNoiseIdleMin.TabIndex = 11;
             this.labelNoiseIdleMin.Text = "Мин.";
             // 
             // textNoiseNormalMean
             // 
-            this.textNoiseNormalMean.Location = new System.Drawing.Point(114, 231);
-            this.textNoiseNormalMean.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseNormalMean.Location = new System.Drawing.Point(76, 150);
             this.textNoiseNormalMean.Name = "textNoiseNormalMean";
-            this.textNoiseNormalMean.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseNormalMean.Size = new System.Drawing.Size(86, 20);
             this.textNoiseNormalMean.TabIndex = 10;
             this.textNoiseNormalMean.Text = "0.0";
             // 
             // textNoiseErlangK
             // 
-            this.textNoiseErlangK.Location = new System.Drawing.Point(114, 417);
-            this.textNoiseErlangK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseErlangK.Location = new System.Drawing.Point(76, 271);
             this.textNoiseErlangK.Name = "textNoiseErlangK";
-            this.textNoiseErlangK.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseErlangK.Size = new System.Drawing.Size(86, 20);
             this.textNoiseErlangK.TabIndex = 9;
             this.textNoiseErlangK.Text = "10";
             // 
             // textNoiseExponentialLambda
             // 
-            this.textNoiseExponentialLambda.Location = new System.Drawing.Point(114, 346);
-            this.textNoiseExponentialLambda.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseExponentialLambda.Location = new System.Drawing.Point(76, 225);
             this.textNoiseExponentialLambda.Name = "textNoiseExponentialLambda";
-            this.textNoiseExponentialLambda.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseExponentialLambda.Size = new System.Drawing.Size(86, 20);
             this.textNoiseExponentialLambda.TabIndex = 8;
             this.textNoiseExponentialLambda.Text = "1.0";
             // 
             // textNoiseNormalDeviation
             // 
-            this.textNoiseNormalDeviation.Location = new System.Drawing.Point(114, 271);
-            this.textNoiseNormalDeviation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseNormalDeviation.Location = new System.Drawing.Point(76, 176);
             this.textNoiseNormalDeviation.Name = "textNoiseNormalDeviation";
-            this.textNoiseNormalDeviation.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseNormalDeviation.Size = new System.Drawing.Size(86, 20);
             this.textNoiseNormalDeviation.TabIndex = 7;
             this.textNoiseNormalDeviation.Text = "10.0";
             // 
             // textNoiseUniformMax
             // 
-            this.textNoiseUniformMax.Location = new System.Drawing.Point(114, 149);
-            this.textNoiseUniformMax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseUniformMax.Location = new System.Drawing.Point(76, 97);
             this.textNoiseUniformMax.Name = "textNoiseUniformMax";
-            this.textNoiseUniformMax.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseUniformMax.Size = new System.Drawing.Size(86, 20);
             this.textNoiseUniformMax.TabIndex = 6;
             this.textNoiseUniformMax.Text = "10.0";
             // 
             // textNoiseUniformMin
             // 
-            this.textNoiseUniformMin.Location = new System.Drawing.Point(114, 109);
-            this.textNoiseUniformMin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNoiseUniformMin.Location = new System.Drawing.Point(76, 71);
             this.textNoiseUniformMin.Name = "textNoiseUniformMin";
-            this.textNoiseUniformMin.Size = new System.Drawing.Size(127, 26);
+            this.textNoiseUniformMin.Size = new System.Drawing.Size(86, 20);
             this.textNoiseUniformMin.TabIndex = 5;
             this.textNoiseUniformMin.Text = "-10.0";
             // 
             // radioNoiserErlang
             // 
             this.radioNoiserErlang.AutoSize = true;
-            this.radioNoiserErlang.Location = new System.Drawing.Point(22, 386);
-            this.radioNoiserErlang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioNoiserErlang.Location = new System.Drawing.Point(15, 251);
             this.radioNoiserErlang.Name = "radioNoiserErlang";
-            this.radioNoiserErlang.Size = new System.Drawing.Size(99, 24);
+            this.radioNoiserErlang.Size = new System.Drawing.Size(67, 17);
             this.radioNoiserErlang.TabIndex = 4;
             this.radioNoiserErlang.Text = "Эрланга";
             this.radioNoiserErlang.UseVisualStyleBackColor = true;
@@ -414,10 +395,9 @@
             // radioNoiserExponential
             // 
             this.radioNoiserExponential.AutoSize = true;
-            this.radioNoiserExponential.Location = new System.Drawing.Point(22, 311);
-            this.radioNoiserExponential.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioNoiserExponential.Location = new System.Drawing.Point(15, 202);
             this.radioNoiserExponential.Name = "radioNoiserExponential";
-            this.radioNoiserExponential.Size = new System.Drawing.Size(182, 24);
+            this.radioNoiserExponential.Size = new System.Drawing.Size(124, 17);
             this.radioNoiserExponential.TabIndex = 3;
             this.radioNoiserExponential.Text = "Экспоненциальный";
             this.radioNoiserExponential.UseVisualStyleBackColor = true;
@@ -425,10 +405,9 @@
             // radioNoiserNormal
             // 
             this.radioNoiserNormal.AutoSize = true;
-            this.radioNoiserNormal.Location = new System.Drawing.Point(22, 189);
-            this.radioNoiserNormal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioNoiserNormal.Location = new System.Drawing.Point(15, 123);
             this.radioNoiserNormal.Name = "radioNoiserNormal";
-            this.radioNoiserNormal.Size = new System.Drawing.Size(132, 24);
+            this.radioNoiserNormal.Size = new System.Drawing.Size(91, 17);
             this.radioNoiserNormal.TabIndex = 2;
             this.radioNoiserNormal.Text = "Нормальный";
             this.radioNoiserNormal.UseVisualStyleBackColor = true;
@@ -436,10 +415,9 @@
             // radioNoiserUniform
             // 
             this.radioNoiserUniform.AutoSize = true;
-            this.radioNoiserUniform.Location = new System.Drawing.Point(22, 74);
-            this.radioNoiserUniform.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioNoiserUniform.Location = new System.Drawing.Point(15, 48);
             this.radioNoiserUniform.Name = "radioNoiserUniform";
-            this.radioNoiserUniform.Size = new System.Drawing.Size(138, 24);
+            this.radioNoiserUniform.Size = new System.Drawing.Size(96, 17);
             this.radioNoiserUniform.TabIndex = 1;
             this.radioNoiserUniform.Text = "Равномерный";
             this.radioNoiserUniform.UseVisualStyleBackColor = true;
@@ -448,10 +426,9 @@
             // 
             this.radioNoiserIdle.AutoSize = true;
             this.radioNoiserIdle.Checked = true;
-            this.radioNoiserIdle.Location = new System.Drawing.Point(22, 38);
-            this.radioNoiserIdle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioNoiserIdle.Location = new System.Drawing.Point(15, 25);
             this.radioNoiserIdle.Name = "radioNoiserIdle";
-            this.radioNoiserIdle.Size = new System.Drawing.Size(64, 24);
+            this.radioNoiserIdle.Size = new System.Drawing.Size(44, 17);
             this.radioNoiserIdle.TabIndex = 0;
             this.radioNoiserIdle.TabStop = true;
             this.radioNoiserIdle.Text = "Нет";
@@ -466,68 +443,60 @@
             this.groupBoxSourceLinear.Controls.Add(this.labelLinearMin);
             this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearMax);
             this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearMin);
-            this.groupBoxSourceLinear.Location = new System.Drawing.Point(486, 82);
-            this.groupBoxSourceLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxSourceLinear.Location = new System.Drawing.Point(324, 53);
             this.groupBoxSourceLinear.Name = "groupBoxSourceLinear";
-            this.groupBoxSourceLinear.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxSourceLinear.Size = new System.Drawing.Size(226, 171);
+            this.groupBoxSourceLinear.Size = new System.Drawing.Size(151, 111);
             this.groupBoxSourceLinear.TabIndex = 5;
             this.groupBoxSourceLinear.TabStop = false;
             // 
             // labelLinearStep
             // 
             this.labelLinearStep.AutoSize = true;
-            this.labelLinearStep.Location = new System.Drawing.Point(9, 89);
-            this.labelLinearStep.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLinearStep.Location = new System.Drawing.Point(6, 58);
             this.labelLinearStep.Name = "labelLinearStep";
-            this.labelLinearStep.Size = new System.Drawing.Size(38, 20);
+            this.labelLinearStep.Size = new System.Drawing.Size(27, 13);
             this.labelLinearStep.TabIndex = 5;
             this.labelLinearStep.Text = "Шаг";
             // 
             // textSourceLinearStep
             // 
-            this.textSourceLinearStep.Location = new System.Drawing.Point(68, 85);
-            this.textSourceLinearStep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textSourceLinearStep.Location = new System.Drawing.Point(45, 55);
             this.textSourceLinearStep.Name = "textSourceLinearStep";
-            this.textSourceLinearStep.Size = new System.Drawing.Size(148, 26);
+            this.textSourceLinearStep.Size = new System.Drawing.Size(100, 20);
             this.textSourceLinearStep.TabIndex = 4;
             this.textSourceLinearStep.Text = "5.0";
             // 
             // labelLinearMax
             // 
             this.labelLinearMax.AutoSize = true;
-            this.labelLinearMax.Location = new System.Drawing.Point(9, 55);
-            this.labelLinearMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLinearMax.Location = new System.Drawing.Point(6, 36);
             this.labelLinearMax.Name = "labelLinearMax";
-            this.labelLinearMax.Size = new System.Drawing.Size(51, 20);
+            this.labelLinearMax.Size = new System.Drawing.Size(37, 13);
             this.labelLinearMax.TabIndex = 3;
             this.labelLinearMax.Text = "Макс.";
             // 
             // labelLinearMin
             // 
             this.labelLinearMin.AutoSize = true;
-            this.labelLinearMin.Location = new System.Drawing.Point(9, 18);
-            this.labelLinearMin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLinearMin.Location = new System.Drawing.Point(6, 12);
             this.labelLinearMin.Name = "labelLinearMin";
-            this.labelLinearMin.Size = new System.Drawing.Size(44, 20);
+            this.labelLinearMin.Size = new System.Drawing.Size(31, 13);
             this.labelLinearMin.TabIndex = 2;
             this.labelLinearMin.Text = "Мин.";
             // 
             // textSourceLinearMax
             // 
-            this.textSourceLinearMax.Location = new System.Drawing.Point(68, 49);
-            this.textSourceLinearMax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textSourceLinearMax.Location = new System.Drawing.Point(45, 32);
             this.textSourceLinearMax.Name = "textSourceLinearMax";
-            this.textSourceLinearMax.Size = new System.Drawing.Size(148, 26);
+            this.textSourceLinearMax.Size = new System.Drawing.Size(100, 20);
             this.textSourceLinearMax.TabIndex = 1;
             this.textSourceLinearMax.Text = "90.0";
             // 
             // textSourceLinearMin
             // 
-            this.textSourceLinearMin.Location = new System.Drawing.Point(68, 15);
-            this.textSourceLinearMin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textSourceLinearMin.Location = new System.Drawing.Point(45, 10);
             this.textSourceLinearMin.Name = "textSourceLinearMin";
-            this.textSourceLinearMin.Size = new System.Drawing.Size(148, 26);
+            this.textSourceLinearMin.Size = new System.Drawing.Size(100, 20);
             this.textSourceLinearMin.TabIndex = 0;
             this.textSourceLinearMin.Text = "-90.0";
             // 
@@ -535,10 +504,9 @@
             // 
             this.radioSourceEmulatorSin.AutoSize = true;
             this.radioSourceEmulatorSin.Checked = true;
-            this.radioSourceEmulatorSin.Location = new System.Drawing.Point(250, 29);
-            this.radioSourceEmulatorSin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSourceEmulatorSin.Location = new System.Drawing.Point(167, 19);
             this.radioSourceEmulatorSin.Name = "radioSourceEmulatorSin";
-            this.radioSourceEmulatorSin.Size = new System.Drawing.Size(241, 24);
+            this.radioSourceEmulatorSin.Size = new System.Drawing.Size(162, 17);
             this.radioSourceEmulatorSin.TabIndex = 1;
             this.radioSourceEmulatorSin.TabStop = true;
             this.radioSourceEmulatorSin.Text = "Эмулятор синусоидальный";
@@ -553,31 +521,27 @@
             this.groupBoxSourceNetwrok.Controls.Add(this.comboIp);
             this.groupBoxSourceNetwrok.Controls.Add(this.radioSourceRoll);
             this.groupBoxSourceNetwrok.Controls.Add(this.radioSourcePitch);
-            this.groupBoxSourceNetwrok.Location = new System.Drawing.Point(9, 82);
-            this.groupBoxSourceNetwrok.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxSourceNetwrok.Location = new System.Drawing.Point(6, 53);
             this.groupBoxSourceNetwrok.Name = "groupBoxSourceNetwrok";
-            this.groupBoxSourceNetwrok.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxSourceNetwrok.Size = new System.Drawing.Size(226, 169);
+            this.groupBoxSourceNetwrok.Size = new System.Drawing.Size(151, 110);
             this.groupBoxSourceNetwrok.TabIndex = 3;
             this.groupBoxSourceNetwrok.TabStop = false;
             // 
             // labelInterface
             // 
             this.labelInterface.AutoSize = true;
-            this.labelInterface.Location = new System.Drawing.Point(9, 126);
-            this.labelInterface.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelInterface.Location = new System.Drawing.Point(6, 82);
             this.labelInterface.Name = "labelInterface";
-            this.labelInterface.Size = new System.Drawing.Size(24, 20);
+            this.labelInterface.Size = new System.Drawing.Size(17, 13);
             this.labelInterface.TabIndex = 7;
             this.labelInterface.Text = "IP";
             // 
             // radioSourceYaw
             // 
             this.radioSourceYaw.AutoSize = true;
-            this.radioSourceYaw.Location = new System.Drawing.Point(27, 86);
-            this.radioSourceYaw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSourceYaw.Location = new System.Drawing.Point(18, 56);
             this.radioSourceYaw.Name = "radioSourceYaw";
-            this.radioSourceYaw.Size = new System.Drawing.Size(107, 24);
+            this.radioSourceYaw.Size = new System.Drawing.Size(76, 17);
             this.radioSourceYaw.TabIndex = 2;
             this.radioSourceYaw.Text = "Рысканье";
             this.radioSourceYaw.UseVisualStyleBackColor = true;
@@ -586,19 +550,17 @@
             // 
             this.comboIp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboIp.FormattingEnabled = true;
-            this.comboIp.Location = new System.Drawing.Point(44, 122);
-            this.comboIp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboIp.Location = new System.Drawing.Point(29, 79);
             this.comboIp.Name = "comboIp";
-            this.comboIp.Size = new System.Drawing.Size(172, 28);
+            this.comboIp.Size = new System.Drawing.Size(116, 21);
             this.comboIp.TabIndex = 6;
             // 
             // radioSourceRoll
             // 
             this.radioSourceRoll.AutoSize = true;
-            this.radioSourceRoll.Location = new System.Drawing.Point(27, 51);
-            this.radioSourceRoll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSourceRoll.Location = new System.Drawing.Point(18, 33);
             this.radioSourceRoll.Name = "radioSourceRoll";
-            this.radioSourceRoll.Size = new System.Drawing.Size(71, 24);
+            this.radioSourceRoll.Size = new System.Drawing.Size(50, 17);
             this.radioSourceRoll.TabIndex = 1;
             this.radioSourceRoll.Text = "Крен";
             this.radioSourceRoll.UseVisualStyleBackColor = true;
@@ -607,10 +569,9 @@
             // 
             this.radioSourcePitch.AutoSize = true;
             this.radioSourcePitch.Checked = true;
-            this.radioSourcePitch.Location = new System.Drawing.Point(27, 15);
-            this.radioSourcePitch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSourcePitch.Location = new System.Drawing.Point(18, 10);
             this.radioSourcePitch.Name = "radioSourcePitch";
-            this.radioSourcePitch.Size = new System.Drawing.Size(88, 24);
+            this.radioSourcePitch.Size = new System.Drawing.Size(63, 17);
             this.radioSourcePitch.TabIndex = 0;
             this.radioSourcePitch.TabStop = true;
             this.radioSourcePitch.Text = "Тангаж";
@@ -625,101 +586,80 @@
             this.groupBoxSourceSin.Controls.Add(this.textSourceSinAverage);
             this.groupBoxSourceSin.Controls.Add(this.textSourceSinAmplitude);
             this.groupBoxSourceSin.Controls.Add(this.textSourceSinStep);
-            this.groupBoxSourceSin.Location = new System.Drawing.Point(250, 82);
-            this.groupBoxSourceSin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxSourceSin.Location = new System.Drawing.Point(167, 53);
             this.groupBoxSourceSin.Name = "groupBoxSourceSin";
-            this.groupBoxSourceSin.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxSourceSin.Size = new System.Drawing.Size(226, 171);
+            this.groupBoxSourceSin.Size = new System.Drawing.Size(151, 111);
             this.groupBoxSourceSin.TabIndex = 4;
             this.groupBoxSourceSin.TabStop = false;
             // 
             // labelSinAverage
             // 
             this.labelSinAverage.AutoSize = true;
-            this.labelSinAverage.Location = new System.Drawing.Point(3, 91);
-            this.labelSinAverage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSinAverage.Location = new System.Drawing.Point(2, 59);
             this.labelSinAverage.Name = "labelSinAverage";
-            this.labelSinAverage.Size = new System.Drawing.Size(76, 20);
+            this.labelSinAverage.Size = new System.Drawing.Size(50, 13);
             this.labelSinAverage.TabIndex = 5;
             this.labelSinAverage.Text = "Средняя";
             // 
             // labelSinAmplitude
             // 
             this.labelSinAmplitude.AutoSize = true;
-            this.labelSinAmplitude.Location = new System.Drawing.Point(3, 55);
-            this.labelSinAmplitude.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSinAmplitude.Location = new System.Drawing.Point(2, 36);
             this.labelSinAmplitude.Name = "labelSinAmplitude";
-            this.labelSinAmplitude.Size = new System.Drawing.Size(95, 20);
+            this.labelSinAmplitude.Size = new System.Drawing.Size(62, 13);
             this.labelSinAmplitude.TabIndex = 4;
             this.labelSinAmplitude.Text = "Амплитуда";
             // 
             // labelSinStep
             // 
             this.labelSinStep.AutoSize = true;
-            this.labelSinStep.Location = new System.Drawing.Point(3, 20);
-            this.labelSinStep.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSinStep.Location = new System.Drawing.Point(2, 13);
             this.labelSinStep.Name = "labelSinStep";
-            this.labelSinStep.Size = new System.Drawing.Size(85, 20);
+            this.labelSinStep.Size = new System.Drawing.Size(58, 13);
             this.labelSinStep.TabIndex = 3;
             this.labelSinStep.Text = "Шаг фазы";
             // 
             // textSourceSinAverage
             // 
-            this.textSourceSinAverage.Location = new System.Drawing.Point(96, 86);
-            this.textSourceSinAverage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textSourceSinAverage.Location = new System.Drawing.Point(64, 56);
             this.textSourceSinAverage.Name = "textSourceSinAverage";
-            this.textSourceSinAverage.Size = new System.Drawing.Size(120, 26);
+            this.textSourceSinAverage.Size = new System.Drawing.Size(81, 20);
             this.textSourceSinAverage.TabIndex = 2;
             this.textSourceSinAverage.Text = "10.0";
             // 
             // textSourceSinAmplitude
             // 
-            this.textSourceSinAmplitude.Location = new System.Drawing.Point(96, 51);
-            this.textSourceSinAmplitude.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textSourceSinAmplitude.Location = new System.Drawing.Point(64, 33);
             this.textSourceSinAmplitude.Name = "textSourceSinAmplitude";
-            this.textSourceSinAmplitude.Size = new System.Drawing.Size(120, 26);
+            this.textSourceSinAmplitude.Size = new System.Drawing.Size(81, 20);
             this.textSourceSinAmplitude.TabIndex = 1;
             this.textSourceSinAmplitude.Text = "30.0";
             // 
             // textSourceSinStep
             // 
-            this.textSourceSinStep.Location = new System.Drawing.Point(96, 15);
-            this.textSourceSinStep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textSourceSinStep.Location = new System.Drawing.Point(64, 10);
             this.textSourceSinStep.Name = "textSourceSinStep";
-            this.textSourceSinStep.Size = new System.Drawing.Size(120, 26);
+            this.textSourceSinStep.Size = new System.Drawing.Size(81, 20);
             this.textSourceSinStep.TabIndex = 0;
             this.textSourceSinStep.Text = "1.0";
             // 
             // radioSourceNetwork
             // 
             this.radioSourceNetwork.AutoSize = true;
-            this.radioSourceNetwork.Location = new System.Drawing.Point(9, 31);
-            this.radioSourceNetwork.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioSourceNetwork.Location = new System.Drawing.Point(6, 20);
             this.radioSourceNetwork.Name = "radioSourceNetwork";
-            this.radioSourceNetwork.Size = new System.Drawing.Size(123, 24);
+            this.radioSourceNetwork.Size = new System.Drawing.Size(85, 17);
             this.radioSourceNetwork.TabIndex = 0;
             this.radioSourceNetwork.Text = "Устройство";
             this.radioSourceNetwork.UseVisualStyleBackColor = true;
             // 
-            // radioNoiserFunction
-            // 
-            this.radioNoiserFunction.AutoSize = true;
-            this.radioNoiserFunction.Location = new System.Drawing.Point(192, 37);
-            this.radioNoiserFunction.Name = "radioNoiserFunction";
-            this.radioNoiserFunction.Size = new System.Drawing.Size(104, 24);
-            this.radioNoiserFunction.TabIndex = 19;
-            this.radioNoiserFunction.TabStop = true;
-            this.radioNoiserFunction.Text = "Кусочная";
-            this.radioNoiserFunction.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1722, 1038);
+            this.ClientSize = new System.Drawing.Size(1133, 782);
             this.Controls.Add(this.groupBoxPanel);
             this.Controls.Add(this.mainChart);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Analyzer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

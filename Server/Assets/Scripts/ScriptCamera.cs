@@ -19,6 +19,7 @@ namespace Assets.Scripts
             List<IPAddress> ipList = AddressProvider.GetLocalIp();
 
             source = new SourceNetwork(Axis.Pitch, ipList[ipList.Count - 1]);
+            source.Start();
         }
 
         void Update()

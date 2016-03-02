@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+
 
 namespace Assets.Backend.Noisers
 {
@@ -16,22 +15,30 @@ namespace Assets.Backend.Noisers
         {
             double r = getRandom();
 
-            double left = 10.0;
+            double result = binarySearch(r);
+
+            return (float)result;
+        }
+
+        protected double binarySearch(double yValue)
+        {
+            double startValue = 10.0;
             double step = 5.0;
             double accuracy = 0.1;
 
-            double right;
+            double left, right;
             double swap;
 
-            right = left;
+            left = right = startValue;
 
-            if (f(left) >= r)
+            if (f(left) >= yValue)
             {
                 do
                 {
+                    left = right;
                     right -= step;
                 }
-                while (f(right) > r);
+                while (f(right) > yValue);
 
                 swap = left;
                 left = right;
@@ -41,9 +48,10 @@ namespace Assets.Backend.Noisers
             {
                 do
                 {
+                    left = right;
                     right += step;
                 }
-                while (f(right) < r);
+                while (f(right) < yValue);
             }
 
             double current = left;
@@ -52,7 +60,7 @@ namespace Assets.Backend.Noisers
             {
                 current = (right + left) / 2.0;
 
-                if (f(current) > r)
+                if (f(current) > yValue)
                     right = current;
                 else
                     left = current;

@@ -22,7 +22,7 @@ namespace Assets.Backend
 
         public static int Combination(int n, int k)
         {
-            return ExtraMath.Factorial(n) / (ExtraMath.Factorial(k) * ExtraMath.Factorial(n - k));
+            return Factorial(n) / (Factorial(k) * Factorial(n - k));
         }
 
 

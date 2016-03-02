@@ -12,9 +12,13 @@ namespace Assets.Backend.Sources
         public Source()
         {
             thread = new Thread(doThread);
-            thread.Start();
             mustWork = true;
             random = new Random();
+        }
+
+        public virtual void Start()
+        {
+            thread.Start();
         }
 
         public virtual void Stop()

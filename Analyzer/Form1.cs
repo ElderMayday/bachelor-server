@@ -129,7 +129,7 @@ namespace Analyzer
 
                 timerNetwork.Enabled = false;
 
-                source.Stop();
+                unsetStrategies();
 
                 if (udpThread != null)
                     udpThread.Stop();
@@ -162,6 +162,19 @@ namespace Analyzer
             controls.Add(textSourceLinearMin);
             controls.Add(textSourceLinearMax);
             controls.Add(textSourceLinearStep);
+            controls.Add(radioNoiserIdle);
+            controls.Add(radioNoiserUniform);
+            controls.Add(textNoiseUniformMin);
+            controls.Add(textNoiseUniformMax);
+            controls.Add(radioNoiserNormal);
+            controls.Add(textNoiseNormalMean);
+            controls.Add(textNoiseNormalDeviation);
+            controls.Add(radioNoiserExponential);
+            controls.Add(textNoiseExponentialLambda);
+            controls.Add(radioNoiserErlang);
+            controls.Add(textNoiseErlangK);
+            controls.Add(textNoiseErlangLambda);
+            controls.Add(radioNoiserFunction);
         }
 
         private void resetChart()
@@ -236,6 +249,18 @@ namespace Analyzer
                     double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture),
                     double.Parse(textSourceLinearStep.Text, CultureInfo.InvariantCulture));
             }
+
+            source.Start();
+        }
+
+        private void unsetStrategies()
+        {
+            if (source != null)
+                source.Stop();
+
+            filter = null;
+            noiser = null;
+            source = null;
         }
 
         protected void switchControls(bool value)

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.CSharp", "Server.CSharp.csproj", "{1FB10D9C-4EE2-69A5-2C2E-BB388C449E38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer", "..\Analyzer\Analyzer.csproj", "{367E4748-8234-4C16-9117-316732F47C41}"
