@@ -2,7 +2,6 @@
 
 
 
-
 namespace Assets.Backend.Sources
 {
     public abstract class SourceEmulator : Source
@@ -14,7 +13,7 @@ namespace Assets.Backend.Sources
             noiser = _noiser;
         }
 
-        public float DataPure
+        public double DataPure
         {
             get { return dataPure; }
             protected set { dataPure = value; Data = value + noiser.Get(); }
@@ -22,6 +21,6 @@ namespace Assets.Backend.Sources
 
         protected int interval;
         protected Noiser noiser;
-        protected float dataPure;
+        protected double dataPure;
     }
 }

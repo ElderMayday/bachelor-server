@@ -5,15 +5,15 @@ namespace Assets.Backend.Noisers
 {
     public class NoiserNormal : Noiser
     {
-        public NoiserNormal(float _mean, float _deviation)
+        public NoiserNormal(double _mean, double _deviation)
         {
             mean = _mean;
             deviation = _deviation;
         }
 
-        public override float Get()
+        public override double Get()
         {
-            float sum = 0.0f;
+            double sum = 0.0;
 
             for (int i = 0; i < 12; i++)
                 sum += getRandom();
@@ -23,6 +23,6 @@ namespace Assets.Backend.Noisers
             return sum;
         }
 
-        protected float mean, deviation;
+        protected double mean, deviation;
     }
 }

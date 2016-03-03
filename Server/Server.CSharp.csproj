@@ -70,8 +70,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Backend\AddressProvider.cs" />
-    <Compile Include="Assets\Backend\ExtraMath.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\AddressProvider.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\ExceptionServer.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\ExtraMath.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\Logger.cs" />
     <Compile Include="Assets\Backend\Filters\Filter.cs" />
     <Compile Include="Assets\Backend\Filters\FilterFIR.cs" />
     <Compile Include="Assets\Backend\Filters\FilterIIR.cs" />
@@ -91,7 +93,7 @@
     <Compile Include="Assets\Backend\Sources\SourceEmulatorFourier.cs" />
     <Compile Include="Assets\Backend\Sources\SourceNetwork.cs" />
     <Compile Include="Assets\Backend\Sources\Source.cs" />
-    <Compile Include="Assets\Backend\UdpThread.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\UdpThread.cs" />
     <Compile Include="Assets\Scripts\ScriptCamera.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,6 +1,9 @@
-﻿using Assets.Backend.Noisers;
-using System;
+﻿using System;
 using System.Threading;
+
+using Assets.Backend.Noisers;
+
+
 
 namespace Assets.Backend.Sources
 {
@@ -19,13 +22,12 @@ namespace Assets.Backend.Sources
 
         protected override void doThread()
         {
-            float current = 0;
-            float step = 5;
+            double current = 0.0;
 
             while (mustWork)
             {
                 current += step;
-                DataPure = (float)(amplitude * Math.Sin(current * Math.PI / 180.0) + average);
+                DataPure = amplitude * Math.Sin(current * Math.PI / 180.0) + average;
                 Thread.Sleep(interval);
             }
         }

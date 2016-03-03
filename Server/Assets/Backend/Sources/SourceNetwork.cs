@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Text;
 using System.Globalization;
-
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
+
+using Assets.Backend.Auxiliary;
+
+
 
 namespace Assets.Backend.Sources
 {
@@ -17,7 +20,6 @@ namespace Assets.Backend.Sources
             axis = _axis;
             thread.Name = "SourceNetwork";
             ipAddress = _ipAddress;
-            localIp = AddressProvider.GetLocalIp();
         }
 
         public override void Stop()
@@ -26,7 +28,7 @@ namespace Assets.Backend.Sources
 
             try
             {
-                socketListener.Shutdown(SocketShutdown.Both);        
+                socketListener.Shutdown(SocketShutdown.Both);
             }
             catch (Exception e)
             {
@@ -38,7 +40,9 @@ namespace Assets.Backend.Sources
             thread.Join();
         }
 
-        
+        public double Pitch { get; protected set; }
+        public double Roll { get; protected set; }
+        public double Yaw { get; protected set; }
 
         protected override void doThread()
         {
@@ -80,9 +84,9 @@ namespace Assets.Backend.Sources
 
                         try
                         {
-                            pitch = Single.Parse(parameters[0], CultureInfo.InvariantCulture);
-                            roll = Single.Parse(parameters[1], CultureInfo.InvariantCulture);
-                            yaw = Single.Parse(parameters[2], CultureInfo.InvariantCulture);
+                            Pitch = double.Parse(parameters[0], CultureInfo.InvariantCulture);
+                            Roll = double.Parse(parameters[1], CultureInfo.InvariantCulture);
+                            Yaw = double.Parse(parameters[2], CultureInfo.InvariantCulture);
                             IsCorrect = true;
                         }
                         catch (FormatException e)
@@ -92,9 +96,9 @@ namespace Assets.Backend.Sources
 
                         switch (axis)
                         {
-                            case Axis.Pitch: Data = pitch; break;
-                            case Axis.Roll: Data = roll; break;
-                            case Axis.Yaw: Data = yaw; break;
+                            case Axis.Pitch: Data = Pitch; break;
+                            case Axis.Roll: Data = Roll; break;
+                            case Axis.Yaw: Data = Yaw; break;
                         }
 
                         if (bytesLength == 0)
@@ -114,10 +118,8 @@ namespace Assets.Backend.Sources
         }
 
         protected IPAddress ipAddress;
-        protected List<IPAddress> localIp;
         protected Socket socketListener;
         protected Exception exception;
-        protected float pitch, roll, yaw;
         protected Axis axis;
     }
 }

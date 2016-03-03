@@ -11,11 +11,11 @@ namespace Assets.Backend.Noisers
             random = new Random();
         }
 
-        public abstract float Get();
+        public abstract double Get();
 
-        protected float getRandom()
+        protected double getRandom()
         {
-            return random.Next(1, 1000) / 1000.0f;
+            return random.Next(1, 1000) / 1000.0;
         }
 
         private Random random;

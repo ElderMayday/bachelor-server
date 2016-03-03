@@ -3,10 +3,17 @@ using System.Net;
 using System.Net.Sockets;
 
 
-namespace Assets.Backend
+
+namespace Assets.Backend.Auxiliary
 {
+    /// <summary>
+    /// Поставщик сетевых адресов и масок
+    /// </summary>
     public static class AddressProvider
     {
+        /// <summary>
+        /// Устанавливает все 3 списка в начале работы программы
+        /// </summary>
         static AddressProvider()
         {
             localIp = GetLocalIp();
@@ -14,6 +21,10 @@ namespace Assets.Backend
             broadcastIp = GetBroadcastIp();
         }
 
+        /// <summary>
+        /// Устанавливает локальные TCP/IP интерфейсы
+        /// </summary>
+        /// <returns>Список интерфейсов</returns>
         public static List<IPAddress> GetLocalIp()
         {
             List<IPAddress> result = new List<IPAddress>();
@@ -27,7 +38,10 @@ namespace Assets.Backend
             return result;
         }
 
-
+        /// <summary>
+        /// Устанавливает маски подсетей
+        /// </summary>
+        /// <returns>Список масок подсетей</returns>
         public static List<IPAddress> GetSubnetMask()
         {
             List<IPAddress> result = new List<IPAddress>();
@@ -52,7 +66,10 @@ namespace Assets.Backend
             return result;
         }
 
-
+        /// <summary>
+        /// Устанавилвает адреса широковещательной передачи
+        /// </summary>
+        /// <returns>Список адремов широковещательной передачи</returns>
         public static List<IPAddress> GetBroadcastIp()
         {
             List<IPAddress> result = new List<IPAddress>();

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-
-using Assets.Backend;
-using Assets.Backend.Sources;
-using Assets.Backend.Filters;
 using System.Net;
 using System.Globalization;
+
+using Assets.Backend.Auxiliary;
+using Assets.Backend.Sources;
+using Assets.Backend.Filters;
 using Assets.Backend.Noisers;
 
 namespace Analyzer
@@ -26,6 +26,9 @@ namespace Analyzer
 
         protected bool isWorking;
         protected List<Control> controls;
+        protected List<double> aList, bList;
+
+        
 
         #region GuiEvents
 
@@ -41,6 +44,9 @@ namespace Analyzer
 
             timerNetwork.Interval = interval;
             timerNetwork.Enabled = false;
+
+            aList = new List<double>();
+            bList = new List<double>();
 
             resetChart();
 
@@ -85,15 +91,15 @@ namespace Analyzer
 
                     currentPoints++;
 
-                    label1.Text = "Input = " + String.Format("{0:0.00}", currentInput)
+                    labelData.Text = "Input = " + String.Format("{0:0.00}", currentInput)
                         + "\nOutput = " + String.Format("{0:0.00}", currentOutput);
                 }
                 else
-                    label1.Text = "Not correct";
+                    labelData.Text = "Not correct";
             }
             else
             {
-                label1.Text = "Not working";
+                labelData.Text = "Not working";
             }
         }
 
@@ -138,6 +144,29 @@ namespace Analyzer
             }
         }
 
+        private void buttonNoiserFourierAdd_Click(object sender, EventArgs e)
+        {
+            string s = textSourceFourierCoefficients.Text;
+
+            string[] parameters = s.Split(';');
+
+            if (parameters.Length < 2)
+                throw new Exception("Not enough parameters");
+
+            aList.Add(Double.Parse(parameters[0], CultureInfo.InvariantCulture));
+            bList.Add(Double.Parse(parameters[1], CultureInfo.InvariantCulture));
+
+            updateListBoxFourier();
+        }
+
+        private void buttonSourceFourierClear_Click(object sender, EventArgs e)
+        {
+            aList.Clear();
+            bList.Clear();
+
+            updateListBoxFourier();
+        }
+
         #endregion
 
 
@@ -175,6 +204,11 @@ namespace Analyzer
             controls.Add(textNoiseErlangK);
             controls.Add(textNoiseErlangLambda);
             controls.Add(radioNoiserFunction);
+            controls.Add(radioSourceEmulatorFourier);
+            controls.Add(textSourceFourierHalfOffset);
+            controls.Add(textSourceFourierCoefficients);
+            controls.Add(buttonSourceFourierClear);
+            controls.Add(buttonSourceFourierAdd);
         }
 
         private void resetChart()
@@ -213,15 +247,15 @@ namespace Analyzer
             if (radioNoiserIdle.Checked)
                 noiser = new NoiserIdle();
             else if (radioNoiserUniform.Checked)
-                noiser = new NoiserUniform(float.Parse(textNoiseUniformMin.Text, CultureInfo.InvariantCulture),
-                    float.Parse(textNoiseUniformMax.Text, CultureInfo.InvariantCulture));
+                noiser = new NoiserUniform(double.Parse(textNoiseUniformMin.Text, CultureInfo.InvariantCulture),
+                    double.Parse(textNoiseUniformMax.Text, CultureInfo.InvariantCulture));
             else if (radioNoiserNormal.Checked)
-                noiser = new NoiserNormal(float.Parse(textNoiseNormalMean.Text, CultureInfo.InvariantCulture),
-                    float.Parse(textNoiseNormalDeviation.Text, CultureInfo.InvariantCulture));
+                noiser = new NoiserNormal(double.Parse(textNoiseNormalMean.Text, CultureInfo.InvariantCulture),
+                    double.Parse(textNoiseNormalDeviation.Text, CultureInfo.InvariantCulture));
             else if (radioNoiserExponential.Checked)
-                noiser = new NoiserExponential(float.Parse(textNoiseExponentialLambda.Text, CultureInfo.InvariantCulture));
+                noiser = new NoiserExponential(double.Parse(textNoiseExponentialLambda.Text, CultureInfo.InvariantCulture));
             else if (radioNoiserErlang.Checked)
-                noiser = new NoiserErlang(float.Parse(textNoiseErlangLambda.Text, CultureInfo.InvariantCulture),
+                noiser = new NoiserErlang(double.Parse(textNoiseErlangLambda.Text, CultureInfo.InvariantCulture),
                     int.Parse(textNoiseErlangK.Text, CultureInfo.InvariantCulture));
             else if (radioNoiserFunction.Checked)
                 noiser = new NoiserFunction(ExtraMath.PieceWiseExample1);
@@ -229,6 +263,7 @@ namespace Analyzer
             if (radioSourceNetwork.Checked)
             {
                 udpThread = new UdpThread();
+                udpThread.Start();
 
                 if (radioSourcePitch.Checked)
                     source = new SourceNetwork(Axis.Pitch, IPAddress.Parse(comboIp.Text));
@@ -249,8 +284,15 @@ namespace Analyzer
                     double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture),
                     double.Parse(textSourceLinearStep.Text, CultureInfo.InvariantCulture));
             }
+            else if (radioSourceEmulatorFourier.Checked)
+            {
+                source = new SourceEmulatorFourier(noiser,
+                    double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture),
+                    aList, bList);
+            }
 
-            source.Start();
+            if (source != null)
+                source.Start();
         }
 
         private void unsetStrategies()
@@ -258,17 +300,39 @@ namespace Analyzer
             if (source != null)
                 source.Stop();
 
+            if (udpThread != null)
+                udpThread.Stop();
+
+            udpThread = null;
             filter = null;
             noiser = null;
             source = null;
         }
 
-        protected void switchControls(bool value)
+        private void switchControls(bool value)
         {
             foreach (Control c in controls)
                 c.Enabled = value;
         }
 
+        private void updateListBoxFourier()
+        {
+            listBoxSourceFourierCoefficients.Items.Clear();
+
+            for (int i = 0; i < aList.Count; i++)
+            {
+                string s = "";
+
+                s += (i + 1).ToString();
+                s += ": (" + String.Format("{0:0.00}", aList[i]) + ";";
+                s += String.Format("{0:0.00}", bList[i]) + ")";
+
+                listBoxSourceFourierCoefficients.Items.Add(s);
+            }
+        }
+
         #endregion
+
+        
     }
 }

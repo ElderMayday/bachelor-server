@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
+
 namespace Assets.Backend.Filters
 {
     public abstract class Filter

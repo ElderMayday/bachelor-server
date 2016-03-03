@@ -6,16 +6,16 @@ namespace Assets.Backend.Noisers
 {
     public class NoiserExponential : Noiser
     {
-        public NoiserExponential(float _lambda)
+        public NoiserExponential(double _lambda)
         {
             lambda = _lambda;
         }
 
-        public override float Get()
+        public override double Get()
         {
-            return - 1.0f / lambda * (float)Math.Log(1.0f - getRandom());
+            return - 1.0 / lambda * Math.Log(1.0 - getRandom());
         }
 
-        protected float lambda;
+        protected double lambda;
     }
 }

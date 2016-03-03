@@ -5,9 +5,9 @@ namespace Assets.Backend.Noisers
 {
     public class NoiserIdle : Noiser
     {
-        public override float Get()
+        public override double Get()
         {
-            return 0.0f;
+            return 0.0;
         }
     }
 }

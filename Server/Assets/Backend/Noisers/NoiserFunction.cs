@@ -11,13 +11,13 @@ namespace Assets.Backend.Noisers
             f = _f;
         }
 
-        public override float Get()
+        public override double Get()
         {
             double r = getRandom();
 
             double result = binarySearch(r);
 
-            return (float)result;
+            return result;
         }
 
         protected double binarySearch(double yValue)
@@ -66,7 +66,7 @@ namespace Assets.Backend.Noisers
                     left = current;
             }
 
-            return (float)current;
+            return current;
         }
 
         Func<double, double> f;

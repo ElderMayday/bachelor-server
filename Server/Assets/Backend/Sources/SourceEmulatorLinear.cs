@@ -1,5 +1,8 @@
-﻿using Assets.Backend.Noisers;
-using System.Threading;
+﻿using System.Threading;
+
+using Assets.Backend.Noisers;
+
+
 
 namespace Assets.Backend.Sources
 {
@@ -7,9 +10,9 @@ namespace Assets.Backend.Sources
     {
         public SourceEmulatorLinear(Noiser _noiser, double _min, double _max, double _step) : base(_noiser)
         {
-            min = (float)_min;
-            max = (float)_max;
-            step = (float)_step;
+            min = _min;
+            max = _max;
+            step = _step;
 
             IsWorking = true;
             IsCorrect = true;
@@ -18,7 +21,7 @@ namespace Assets.Backend.Sources
 
         protected override void doThread()
         {
-            float current = 0;
+            double current = 0;
             
             bool isIncreasing = true;       
 
@@ -50,8 +53,8 @@ namespace Assets.Backend.Sources
             }
         }
 
-        protected float max = 90;
-        protected float min = -90;
-        protected float step = 5;
+        protected double max = 90;
+        protected double min = -90;
+        protected double step = 5;
     }
 }
