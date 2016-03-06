@@ -9,7 +9,14 @@ namespace Assets.Backend.Sources
 {
     public class SourceEmulatorFourier : SourceEmulator
     {
-        public SourceEmulatorFourier(Noiser _noiser, double _halfOffset, List<double> _aList, List<double> _bList) : base(_noiser)
+        /// <summary>
+        /// Создает источник-эмулятор данных по функции частичной суммы ряда Фурье 
+        /// </summary>
+        /// <param name="_noiser"></param>
+        /// <param name="_halfOffset"></param>
+        /// <param name="_aList"></param>
+        /// <param name="_bList"></param>
+        public SourceEmulatorFourier(EmulatorSettings _emulatorSettings, double _halfOffset, List<double> _aList, List<double> _bList) : base(_emulatorSettings)
         {
             if (_aList.Count != _bList.Count)
                 throw new ExceptionServer("Coefficient lists length mismatch");
@@ -20,37 +27,45 @@ namespace Assets.Backend.Sources
 
             order = aList.Count;
 
-            IsWorking = true;
-            IsCorrect = true;
             thread.Name = "SourceEmulatorFourier";
+
+            current = -Math.PI * order;
         }
 
-        protected override void doThread()
-        {
-            double current = -Math.PI * order;
 
-            while (mustWork)
-            {
-                DataPure = calculate(current);
-                Thread.Sleep(interval);
-                current += 0.1;
-            }
-        }
 
-        protected double calculate(double x)
+        /// <summary>
+        /// Подсчитывает частичную сумму ряда
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        protected override double calculateNext()
         {
             double result;
 
             result = halfOffset;
 
             for (int i = 0; i < order; i++)
-                result += aList[i] * Math.Cos((i + 1) * x) + bList[i] * Math.Sin((i + 1) * x);
+                result += aList[i] * Math.Cos((i + 1) * current) + bList[i] * Math.Sin((i + 1) * current);
 
             return result;
         }
 
+
+
+        /// <summary>
+        /// Списки коэффициентов ряда
+        /// </summary>
         protected List<double> aList, bList;
+
+        /// <summary>
+        /// Порядок суммы
+        /// </summary>
         protected int order;
+
+        /// <summary>
+        /// Смещение ряда
+        /// </summary>
         protected double halfOffset;
     }
 }

@@ -29,6 +29,11 @@ namespace Assets.Backend.Auxiliary
             }
         }
 
+
+
+        /// <summary>
+        /// Список сообщений
+        /// </summary>
         private static List<string> logs;
     }
 }

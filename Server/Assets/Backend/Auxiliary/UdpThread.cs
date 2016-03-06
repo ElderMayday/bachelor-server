@@ -45,6 +45,8 @@ namespace Assets.Backend.Auxiliary
         /// </summary>
         public bool isWorking { get; protected set; }
 
+
+
         /// <summary>
         /// Функция-обработчик потока
         /// </summary>
@@ -81,7 +83,15 @@ namespace Assets.Backend.Auxiliary
         }
 
         
+
+        /// <summary>
+        /// Флаг необходимости работы
+        /// </summary>
         protected bool mustWork;
+
+        /// <summary>
+        /// Поток обновления данных
+        /// </summary>
         protected Thread thread;
     }
 }

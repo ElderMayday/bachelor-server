@@ -20,15 +20,25 @@ namespace Analyzer
         protected UdpThread udpThread;
 
         protected int interval;
+        protected double range;
+        protected bool fast;
+        protected double step;
+
         protected int maxPoints;
         protected int currentPoints;
         protected double time;
 
         protected bool isWorking;
+        
+
         protected List<Control> controls;
+        protected List<GroupBox> sourceGroups;
+
         protected List<double> aList, bList;
 
         
+
+        protected List<double> input, pure, output, noise;
 
         #region GuiEvents
 
@@ -36,19 +46,15 @@ namespace Analyzer
         {
             InitializeComponent();
 
-            interval = 100;
             maxPoints = 50;
 
             source = null;
             filter = null;
 
-            timerNetwork.Interval = interval;
             timerNetwork.Enabled = false;
 
             aList = new List<double>();
             bList = new List<double>();
-
-            resetChart();
 
             isWorking = false;      
         }
@@ -57,7 +63,9 @@ namespace Analyzer
         {
             refreshChart();
 
-            setControlList();
+            setGUI();
+
+            hideSources();
 
             List<IPAddress> list = AddressProvider.GetLocalIp();
             foreach (IPAddress ip in list)
@@ -81,7 +89,7 @@ namespace Analyzer
                     {
                         mainChart.Series["input"].Points.AddXY(time, currentInput);
                         mainChart.Series["output"].Points.AddXY(time, currentOutput);
-                        time += 1;
+                        time += interval / 1000.0;
                     }
                     else
                     {
@@ -106,7 +114,8 @@ namespace Analyzer
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (source != null)
-                source.Stop();
+                if (source.IsWorking)
+                    source.Stop();
 
             if (udpThread != null)
                 udpThread.Stop();
@@ -114,33 +123,74 @@ namespace Analyzer
 
         private void buttonSwitch_Click(object sender, EventArgs e)
         {
-            if (isWorking == false)
+            fast = checkBoxFast.Checked && !radioSourceNetwork.Checked;
+            interval = int.Parse(textEmulationInterval.Text);
+            range = double.Parse(textEmulationRange.Text, CultureInfo.InvariantCulture);
+            step = double.Parse(textEmulationStep.Text, CultureInfo.InvariantCulture);
+
+            if (!fast)
             {
-                isWorking = true;
+                if (isWorking == false)
+                {
+                    time = 0.0;
 
-                setStrategies();
-                switchControls(false);
+                    isWorking = true;
 
-                buttonSwitch.Text = "Выключить";
-                timerNetwork.Enabled = true;
+                    setStrategies();
+                    switchControls(false);
 
-                resetChart();
-                refreshChart();
+                    buttonSwitch.Text = "Выключить";
+                    timerNetwork.Enabled = true;
+
+                    refreshChart();
+
+                    if ((source != null) && (filter != null) && (noiser != null))
+                        source.Start();
+                }
+                else
+                {
+                    isWorking = false;
+
+                    buttonSwitch.Text = "Включить";
+
+                    timerNetwork.Enabled = false;
+
+                    unsetStrategies();
+
+                    if (udpThread != null)
+                        udpThread.Stop();
+
+                    switchControls(true);
+
+                    textEmulationRange.Enabled = checkBoxFast.Checked;
+                }
             }
             else
             {
-                isWorking = false;
+                double x = 0.0;
 
-                buttonSwitch.Text = "Включить";
+                setStrategies();
 
-                timerNetwork.Enabled = false;
+                time = 0.0;
 
-                unsetStrategies();
+                refreshChart();
 
-                if (udpThread != null)
-                    udpThread.Stop();
+                while (x <= range)
+                {
+                    double currentInput, currentOutput;
 
-                switchControls(true);
+                    currentInput = ((SourceEmulator)source).GetNext();
+                    input.Add(currentInput);
+
+                    filter.AddInput(currentInput);
+                    currentOutput = filter.GetOutput();
+                    output.Add(currentOutput);
+
+                    mainChart.Series["input"].Points.AddXY(x, currentInput);
+                    mainChart.Series["output"].Points.AddXY(x, currentOutput);
+
+                    x += interval / 1000.0;
+                }
             }
         }
 
@@ -167,12 +217,45 @@ namespace Analyzer
             updateListBoxFourier();
         }
 
+        private void radioSourceNetwork_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = false;
+            hideSources();
+            groupBoxSourceNetwork.Visible = true;
+        }
+
+        private void radioSourceEmulatorSin_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = true;
+            hideSources();
+            groupBoxSourceSin.Visible = true;
+        }
+
+        private void radioSourceEmulatorLinear_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = true;
+            hideSources();
+            groupBoxSourceLinear.Visible = true;
+        }
+
+        private void radioSourceEmulatorFourier_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = true;
+            hideSources();
+            groupBoxSourceFourier.Visible = true;
+        }
+
+        private void checkBoxFast_CheckedChanged(object sender, EventArgs e)
+        {
+            textEmulationRange.Enabled = checkBoxFast.Checked;
+        }
+
         #endregion
 
 
         #region GuiExtra
 
-        private void setControlList()
+        private void setGUI()
         {
             controls = new List<Control>();
 
@@ -185,12 +268,10 @@ namespace Analyzer
             controls.Add(radioSourceRoll);
             controls.Add(radioSourceYaw);
             controls.Add(comboIp);
-            controls.Add(textSourceSinStep);
             controls.Add(textSourceSinAmplitude);
             controls.Add(textSourceSinAverage);
             controls.Add(textSourceLinearMin);
             controls.Add(textSourceLinearMax);
-            controls.Add(textSourceLinearStep);
             controls.Add(radioNoiserIdle);
             controls.Add(radioNoiserUniform);
             controls.Add(textNoiseUniformMin);
@@ -209,15 +290,24 @@ namespace Analyzer
             controls.Add(textSourceFourierCoefficients);
             controls.Add(buttonSourceFourierClear);
             controls.Add(buttonSourceFourierAdd);
-        }
+            controls.Add(checkBoxFast);
+            controls.Add(textEmulationRange);
+            controls.Add(textEmulationStep);
+            controls.Add(textEmulationInterval);
+            controls.Add(textSourceSinPeriod);
 
-        private void resetChart()
-        {
-            time = 0;
+            sourceGroups = new List<GroupBox>();
+
+            sourceGroups.Add(groupBoxSourceLinear);
+            sourceGroups.Add(groupBoxSourceSin);
+            sourceGroups.Add(groupBoxSourceNetwork);
+            sourceGroups.Add(groupBoxSourceFourier);
         }
 
         private void refreshChart()
         {
+            mainChart.ChartAreas[0].AxisY.Interval = 25;
+
             currentPoints = 0;
 
             foreach (var v in mainChart.Series)
@@ -227,18 +317,25 @@ namespace Analyzer
 
             mainChart.Series.Add("input");
             mainChart.Series["input"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            mainChart.Series["input"].BorderWidth = 2;
 
             mainChart.Series.Add("output");
             mainChart.Series["output"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            mainChart.Series["output"].BorderWidth = 2;
 
-            mainChart.ChartAreas[0].AxisX.Minimum = time;
-            mainChart.ChartAreas[0].AxisX.Maximum = time + maxPoints - 1;
+            mainChart.ChartAreas[0].AxisX.Minimum = Math.Round(time);
+            mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * interval / 1000);
             mainChart.ChartAreas[0].AxisY.Minimum = -100;
             mainChart.ChartAreas[0].AxisY.Maximum = 100;
         }     
 
         private void setStrategies()
         {
+            input = new List<double>();
+            output = new List<double>();
+            pure = new List<double>();
+            noise = new List<double>();
+
             if (radioFilterMovingAverage.Checked)
                 filter = new FilterMovingAverage(5);
             else if (radioFilterSinglePole.Checked)
@@ -272,33 +369,38 @@ namespace Analyzer
                 else if (radioSourceYaw.Checked)
                     source = new SourceNetwork(Axis.Yaw, IPAddress.Parse(comboIp.Text));
             }
-            else if (radioSourceEmulatorSin.Checked)
+            else
             {
-                source = new SourceEmulatorSin(noiser, double.Parse(textSourceSinStep.Text, CultureInfo.InvariantCulture),
-                    double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture),
-                    double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture));
-            }
-            else if (radioSourceEmulatorLinear.Checked)
-            {
-                source = new SourceEmulatorLinear(noiser, double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture),
-                    double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture),
-                    double.Parse(textSourceLinearStep.Text, CultureInfo.InvariantCulture));
-            }
-            else if (radioSourceEmulatorFourier.Checked)
-            {
-                source = new SourceEmulatorFourier(noiser,
-                    double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture),
-                    aList, bList);
+                EmulatorSettings settings = new EmulatorSettings(noiser, interval, step, fast, range);
+
+                if (radioSourceEmulatorSin.Checked)
+                {
+                    source = new SourceEmulatorSin(settings,
+                        double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceSinPeriod.Text, CultureInfo.InvariantCulture));
+                }
+                else if (radioSourceEmulatorLinear.Checked)
+                {
+                    source = new SourceEmulatorLinear(settings, double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture),
+                        double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture));
+                }
+                else if (radioSourceEmulatorFourier.Checked)
+                {
+                    source = new SourceEmulatorFourier(settings,
+                        double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture),
+                        aList, bList);
+                }
             }
 
-            if (source != null)
-                source.Start();
+            
         }
 
         private void unsetStrategies()
         {
             if (source != null)
-                source.Stop();
+                if (source.IsWorking)
+                    source.Stop();
 
             if (udpThread != null)
                 udpThread.Stop();
@@ -313,6 +415,12 @@ namespace Analyzer
         {
             foreach (Control c in controls)
                 c.Enabled = value;
+        }
+
+        private void hideSources()
+        {
+            foreach (GroupBox g in sourceGroups)
+                g.Visible = false;
         }
 
         private void updateListBoxFourier()

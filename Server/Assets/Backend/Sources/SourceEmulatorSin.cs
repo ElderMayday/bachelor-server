@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-using Assets.Backend.Noisers;
+using Assets.Backend.Auxiliary;
 
 
 
@@ -9,31 +9,48 @@ namespace Assets.Backend.Sources
 {
     public class SourceEmulatorSin : SourceEmulator
     {
-        public SourceEmulatorSin(Noiser _noiser, double _step, double _amplitude, double _average) : base(_noiser)
+        /// <summary>
+        /// Создает синусоидальный источник-эмулятор данных
+        /// </summary>
+        /// <param name="_noiser"></param>
+        /// <param name="_step"></param>
+        /// <param name="_amplitude"></param>
+        /// <param name="_average"></param>
+        public SourceEmulatorSin(EmulatorSettings _emulatorSettings, double _amplitude, double _average, double _period) : base(_emulatorSettings)
         {
-            step = _step;
             amplitude = _amplitude;
             average = _average;
+            period = _period;
 
-            IsWorking = true;
-            IsCorrect = true;
             thread.Name = "SourceEmulatorSin";
         }
 
-        protected override void doThread()
-        {
-            double current = 0.0;
 
-            while (mustWork)
-            {
-                current += step;
-                DataPure = amplitude * Math.Sin(current * Math.PI / 180.0) + average;
-                Thread.Sleep(interval);
-            }
+
+        /// <summary>
+        /// Вычисляет следующее выходное значение
+        /// </summary>
+        /// <returns>Выходное значение</returns>
+        protected override double calculateNext()
+        {
+            return amplitude * Math.Sin(2.0 * Math.PI / period * current) + average;
         }
 
-        protected double step;
+
+
+        /// <summary>
+        /// Амплитуда
+        /// </summary>
         protected double amplitude;
+
+        /// <summary>
+        /// Смещение
+        /// </summary>
         protected double average;
+
+        /// <summary>
+        /// Период
+        /// </summary>
+        protected double period;
     }
 }

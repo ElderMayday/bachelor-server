@@ -3,8 +3,16 @@
 
 namespace Assets.Backend.Filters
 {
+    /// <summary>
+    /// Абстрактный БИХ-фильтр
+    /// </summary>
     public abstract class FilterIIR : Filter
     {
+        /// <summary>
+        /// Создает БИХ-фильтр
+        /// </summary>
+        /// <param name="orderInput"></param>
+        /// <param name="orderOutput"></param>
         public FilterIIR(int orderInput, int orderOutput) : base(orderInput)
         {
             weightInput = new List<double>();
@@ -22,11 +30,19 @@ namespace Assets.Backend.Filters
                 output.Add(0.0);
         }
 
+        /// <summary>
+        /// Получить выходные данные
+        /// </summary>
+        /// <returns>Выходные отфильтрованные данные</returns>
         public override double GetOutput()
         {
             return output[output.Count - 1];
         }
 
+        /// <summary>
+        /// Добавить входные данные
+        /// </summary>
+        /// <param name="newInput"></param>
         public override void AddInput(double newX)
         {
             input.Add(newX);
@@ -47,7 +63,16 @@ namespace Assets.Backend.Filters
             output.RemoveAt(0);
         }
 
+
+
+        /// <summary>
+        /// Список значений импульсной переходной функции для входных и выходных данных
+        /// </summary>
         protected List<double> weightInput, weightOutput;
+
+        /// <summary>
+        /// Список значений выходных данных
+        /// </summary>
         protected List<double> output;
     }
 }

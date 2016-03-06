@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Backend\Auxiliary\AddressProvider.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\EmulatorSettings.cs" />
     <Compile Include="Assets\Backend\Auxiliary\ExceptionServer.cs" />
     <Compile Include="Assets\Backend\Auxiliary\ExtraMath.cs" />
     <Compile Include="Assets\Backend\Auxiliary\Logger.cs" />

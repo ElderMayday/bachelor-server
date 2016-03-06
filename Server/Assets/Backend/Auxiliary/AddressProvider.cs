@@ -107,8 +107,20 @@ namespace Assets.Backend.Auxiliary
         }
 
 
+
+        /// <summary>
+        /// Список список локальных TCP/IP интерфейсов
+        /// </summary>
         public static List<IPAddress> localIp;
+
+        /// <summary>
+        /// Список локальных масок подсети
+        /// </summary>
         public static List<IPAddress> localMask;
+
+        /// <summary>
+        /// Список адресов UDP передачи
+        /// </summary>
         public static List<IPAddress> broadcastIp;
     }
 }

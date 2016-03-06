@@ -3,25 +3,32 @@ using System.Text;
 using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
-using System.Collections.Generic;
-
-using Assets.Backend.Auxiliary;
 
 
 
 namespace Assets.Backend.Sources
 {
+    /// <summary>
+    /// Сетевой источник данных
+    /// </summary>
     public class SourceNetwork : Source
     {
+        /// <summary>
+        /// Создает сетевой источник данных
+        /// </summary>
+        /// <param name="_axis">выбранная ось вращения</param>
+        /// <param name="_ipAddress">IP-адрес сервера</param>
         public SourceNetwork(Axis _axis, IPAddress _ipAddress) : base()
         {
             IsWorking = false;
-            IsCorrect = true;
             axis = _axis;
             thread.Name = "SourceNetwork";
             ipAddress = _ipAddress;
         }
 
+        /// <summary>
+        /// Останавливает поток обновления данных (закрывает сокет)
+        /// </summary>
         public override void Stop()
         {
             mustWork = false;
@@ -40,10 +47,28 @@ namespace Assets.Backend.Sources
             thread.Join();
         }
 
+
+
+        /// <summary>
+        /// Тангаж
+        /// </summary>
         public double Pitch { get; protected set; }
+
+        /// <summary>
+        /// Крен
+        /// </summary>
         public double Roll { get; protected set; }
+
+        /// <summary>
+        /// Рысканье
+        /// </summary>
         public double Yaw { get; protected set; }
 
+
+
+        /// <summary>
+        /// Функция-обработчик потока
+        /// </summary>
         protected override void doThread()
         {
             try
@@ -117,9 +142,26 @@ namespace Assets.Backend.Sources
             }
         }
 
+
+
+        /// <summary>
+        /// IP-адрес сервера
+        /// </summary>
         protected IPAddress ipAddress;
+
+        /// <summary>
+        /// Сокет сервера
+        /// </summary>
         protected Socket socketListener;
+
+        /// <summary>
+        /// Полученное исключение
+        /// </summary>
         protected Exception exception;
+
+        /// <summary>
+        /// Выбранная ось
+        /// </summary>
         protected Axis axis;
     }
 }

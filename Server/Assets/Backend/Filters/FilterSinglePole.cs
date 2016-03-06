@@ -6,8 +6,16 @@ using Assets.Backend.Auxiliary;
 
 namespace Assets.Backend.Filters
 {
+    /// <summary>
+    /// Однополярный фильтр
+    /// </summary>
     public class FilterSinglePole : FilterIIR
     {
+        /// <summary>
+        /// Создает однополярный фильтр
+        /// </summary>
+        /// <param name="stage"></param>
+        /// <param name="x"></param>
         public FilterSinglePole(int stage, double x) : base(stage + 1, 1)
         {
             weightOutput[0] = Math.Pow(1 - x, stage);

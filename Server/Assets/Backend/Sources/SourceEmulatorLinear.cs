@@ -1,60 +1,78 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
-using Assets.Backend.Noisers;
-
-
+using Assets.Backend.Auxiliary;
 
 namespace Assets.Backend.Sources
 {
     public class SourceEmulatorLinear : SourceEmulator
     {
-        public SourceEmulatorLinear(Noiser _noiser, double _min, double _max, double _step) : base(_noiser)
+        /// <summary>
+        /// Создает линейный источник-эмулятор данных
+        /// </summary>
+        /// <param name="_noiser"></param>
+        /// <param name="_min"></param>
+        /// <param name="_max"></param>
+        /// <param name="_step"></param>
+        public SourceEmulatorLinear(EmulatorSettings _emulatorSettings, double _min, double _max) : base(_emulatorSettings)
         {
             min = _min;
             max = _max;
-            step = _step;
 
-            IsWorking = true;
-            IsCorrect = true;
             thread.Name = "SourceEmulatorLinear";
         }
 
-        protected override void doThread()
+        /// <summary>
+        /// Вычисляет следующее выходное значение
+        /// </summary>
+        /// <returns>Выходное значение</returns>
+        protected override double calculateNext()
         {
-            double current = 0;
-            
-            bool isIncreasing = true;       
+            return current;
+        }
 
-            while (mustWork)
+        /// <summary>
+        /// Смещает текущий аргумент
+        /// </summary>
+        protected override void iterate()
+        {
+            if (isIncreasing)
             {
-                if (isIncreasing)
-                {
-                    if (current <= max)
-                        current += step;
-                    else
-                    {
-                        current = max;
-                        isIncreasing = false;
-                    }
-                }
+                if (current <= max)
+                    current += settings.Step;
                 else
                 {
-                    if (current >= min)
-                        current -= step;
-                    else
-                    {
-                        current = min;
-                        isIncreasing = true;
-                    }
+                    current = max;
+                    isIncreasing = false;
                 }
-
-                DataPure = current;
-                Thread.Sleep(interval);
+            }
+            else
+            {
+                if (current >= min)
+                    current -= settings.Step;
+                else
+                {
+                    current = min;
+                    isIncreasing = true;
+                }
             }
         }
 
-        protected double max = 90;
-        protected double min = -90;
-        protected double step = 5;
+
+
+        /// <summary>
+        /// Сейчас выходное значение увеличивается
+        /// </summary>
+        protected bool isIncreasing = true;
+
+        /// <summary>
+        /// Максимальное значение
+        /// </summary>
+        protected double max;
+
+        /// <summary>
+        /// Минимальное значение
+        /// </summary>
+        protected double min;
     }
 }
