@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Backend.Auxiliary;
+using System;
 using System.Threading;
 
 namespace Assets.Backend.Sources
@@ -6,7 +7,7 @@ namespace Assets.Backend.Sources
     /// <summary>
     /// Абстрактный источник данных
     /// </summary>
-    public abstract class Source
+    public abstract class Source : IThreadHandler
     {
         /// <summary>
         /// Создает источник данных

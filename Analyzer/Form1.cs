@@ -8,6 +8,7 @@ using Assets.Backend.Auxiliary;
 using Assets.Backend.Sources;
 using Assets.Backend.Filters;
 using Assets.Backend.Noisers;
+using Assets.Backend.Estimators;
 
 namespace Analyzer
 {
@@ -29,16 +30,17 @@ namespace Analyzer
         protected double time;
 
         protected bool isWorking;
-        
+
+        protected bool isEmulation;
 
         protected List<Control> controls;
         protected List<GroupBox> sourceGroups;
 
         protected List<double> aList, bList;
 
-        
 
-        protected List<double> input, pure, output, noise;
+        protected List<double> input, output, pure, noise;
+
 
         #region GuiEvents
 
@@ -46,7 +48,7 @@ namespace Analyzer
         {
             InitializeComponent();
 
-            maxPoints = 50;
+            maxPoints = 100;
 
             source = null;
             filter = null;
@@ -81,14 +83,26 @@ namespace Analyzer
                 {
                     double currentInput = source.Data;
 
+                    double currentPure = 0.0;
+
+                    if (isEmulation)
+                        currentPure = ((SourceEmulator)source).DataPure;
+
                     filter.AddInput(currentInput);
 
                     double currentOutput = filter.GetOutput();
+
+                    output.Add(currentOutput);
+                    pure.Add(currentPure);
 
                     if (currentPoints < maxPoints)
                     {
                         mainChart.Series["input"].Points.AddXY(time, currentInput);
                         mainChart.Series["output"].Points.AddXY(time, currentOutput);
+
+                        if (isEmulation)
+                            mainChart.Series["pure"].Points.AddXY(time, currentPure);
+
                         time += interval / 1000.0;
                     }
                     else
@@ -101,6 +115,9 @@ namespace Analyzer
 
                     labelData.Text = "Input = " + String.Format("{0:0.00}", currentInput)
                         + "\nOutput = " + String.Format("{0:0.00}", currentOutput);
+
+                    if (isEmulation)
+                        labelData.Text += "\nPure = " + String.Format("{0:0.00}", currentPure);
                 }
                 else
                     labelData.Text = "Not correct";
@@ -128,6 +145,8 @@ namespace Analyzer
             range = double.Parse(textEmulationRange.Text, CultureInfo.InvariantCulture);
             step = double.Parse(textEmulationStep.Text, CultureInfo.InvariantCulture);
 
+            
+
             if (!fast)
             {
                 if (isWorking == false)
@@ -141,6 +160,7 @@ namespace Analyzer
 
                     buttonSwitch.Text = "Выключить";
                     timerNetwork.Enabled = true;
+                    timerNetwork.Interval = interval;
 
                     refreshChart();
 
@@ -162,6 +182,15 @@ namespace Analyzer
 
                     switchControls(true);
 
+                    if (isEmulation)
+                    {
+                        Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
+                        Estimator estimatorMinkowski = new EstimatorMinkowski(pure, output, 2.0);
+
+                        labelEstimate.Text = "Correlation = " + String.Format("{0:0.00}", estimatorCorrelation.Estimate()) +
+                            "\nMinkowski = " + String.Format("{0:0.00}", estimatorMinkowski.Estimate());
+                    }
+
                     textEmulationRange.Enabled = checkBoxFast.Checked;
                 }
             }
@@ -177,20 +206,31 @@ namespace Analyzer
 
                 while (x <= range)
                 {
-                    double currentInput, currentOutput;
+                    double currentInput, currentOutput, currentPure;
 
                     currentInput = ((SourceEmulator)source).GetNext();
-                    input.Add(currentInput);
 
                     filter.AddInput(currentInput);
+
                     currentOutput = filter.GetOutput();
-                    output.Add(currentOutput);
+                    currentPure = ((SourceEmulator)source).DataPure;
+
+                    input.Add(currentInput);
+                    pure.Add(currentPure);
+                    output.Add(currentOutput);      
 
                     mainChart.Series["input"].Points.AddXY(x, currentInput);
                     mainChart.Series["output"].Points.AddXY(x, currentOutput);
+                    mainChart.Series["pure"].Points.AddXY(x, currentPure);
 
                     x += interval / 1000.0;
                 }
+
+                Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
+                Estimator estimatorMinkowski = new EstimatorMinkowski(pure, output, 2.0);
+
+                labelEstimate.Text = "Correlation = " + String.Format("{0:0.00}", estimatorCorrelation.Estimate()) +
+                    "\nMinkowski = " + String.Format("{0:0.00}", estimatorMinkowski.Estimate());
             }
         }
 
@@ -323,8 +363,13 @@ namespace Analyzer
             mainChart.Series["output"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             mainChart.Series["output"].BorderWidth = 2;
 
-            mainChart.ChartAreas[0].AxisX.Minimum = Math.Round(time);
-            mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * interval / 1000);
+            mainChart.Series.Add("pure");
+            mainChart.Series["pure"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            mainChart.Series["pure"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            mainChart.Series["pure"].BorderWidth = 2;
+
+            mainChart.ChartAreas[0].AxisX.Minimum = Math.Round(time, 1);
+            mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * (double)interval / 1000.0, 1);
             mainChart.ChartAreas[0].AxisY.Minimum = -100;
             mainChart.ChartAreas[0].AxisY.Maximum = 100;
         }     
@@ -362,6 +407,8 @@ namespace Analyzer
                 udpThread = new UdpThread();
                 udpThread.Start();
 
+                isEmulation = false;
+
                 if (radioSourcePitch.Checked)
                     source = new SourceNetwork(Axis.Pitch, IPAddress.Parse(comboIp.Text));
                 else if (radioSourceRoll.Checked)
@@ -372,6 +419,8 @@ namespace Analyzer
             else
             {
                 EmulatorSettings settings = new EmulatorSettings(noiser, interval, step, fast, range);
+
+                isEmulation = true;
 
                 if (radioSourceEmulatorSin.Checked)
                 {

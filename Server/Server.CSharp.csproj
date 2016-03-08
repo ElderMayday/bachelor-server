@@ -71,10 +71,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Backend\Auxiliary\AddressProvider.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\IThreadHandler.cs" />
     <Compile Include="Assets\Backend\Auxiliary\EmulatorSettings.cs" />
     <Compile Include="Assets\Backend\Auxiliary\ExceptionServer.cs" />
     <Compile Include="Assets\Backend\Auxiliary\ExtraMath.cs" />
     <Compile Include="Assets\Backend\Auxiliary\Logger.cs" />
+    <Compile Include="Assets\Backend\Estimators\Estimator.cs" />
+    <Compile Include="Assets\Backend\Estimators\EstimatorCorrelation.cs" />
+    <Compile Include="Assets\Backend\Estimators\EstimatorMinkowski.cs" />
     <Compile Include="Assets\Backend\Filters\Filter.cs" />
     <Compile Include="Assets\Backend\Filters\FilterFIR.cs" />
     <Compile Include="Assets\Backend\Filters\FilterIIR.cs" />
@@ -87,7 +91,7 @@
     <Compile Include="Assets\Backend\Noisers\NoiserIdle.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserNormal.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserUniform.cs" />
-    <Compile Include="Assets\Backend\Sources\Axis.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\Axis.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorLinear.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorSin.cs" />

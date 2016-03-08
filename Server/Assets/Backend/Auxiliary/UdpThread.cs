@@ -11,7 +11,7 @@ namespace Assets.Backend.Auxiliary
     /// <summary>
     /// Обработчик UDP потока для посылания сообщений-приглашений клиентов
     /// </summary>
-    public class UdpThread
+    public class UdpThread : IThreadHandler
     {
         /// <summary>
         /// Создает поток

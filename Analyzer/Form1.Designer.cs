@@ -58,13 +58,15 @@
             this.labelNoiserFourierHalfOffset = new System.Windows.Forms.Label();
             this.labelNoiserFourierCoefficients = new System.Windows.Forms.Label();
             this.listBoxSourceFourierCoefficients = new System.Windows.Forms.ListBox();
-            this.radioSourceEmulatorFourier = new System.Windows.Forms.RadioButton();
-            this.radioSourceEmulatorLinear = new System.Windows.Forms.RadioButton();
             this.groupBoxSourceSin = new System.Windows.Forms.GroupBox();
+            this.labelSinPeriod = new System.Windows.Forms.Label();
+            this.textSourceSinPeriod = new System.Windows.Forms.TextBox();
             this.labelSinAverage = new System.Windows.Forms.Label();
             this.labelSinAmplitude = new System.Windows.Forms.Label();
             this.textSourceSinAverage = new System.Windows.Forms.TextBox();
             this.textSourceSinAmplitude = new System.Windows.Forms.TextBox();
+            this.radioSourceEmulatorFourier = new System.Windows.Forms.RadioButton();
+            this.radioSourceEmulatorLinear = new System.Windows.Forms.RadioButton();
             this.groupBoxNoise = new System.Windows.Forms.GroupBox();
             this.radioNoiserFunction = new System.Windows.Forms.RadioButton();
             this.labelNoiseErlangLambda = new System.Windows.Forms.Label();
@@ -99,8 +101,7 @@
             this.radioSourceRoll = new System.Windows.Forms.RadioButton();
             this.radioSourcePitch = new System.Windows.Forms.RadioButton();
             this.radioSourceNetwork = new System.Windows.Forms.RadioButton();
-            this.textSourceSinPeriod = new System.Windows.Forms.TextBox();
-            this.labelSinPeriod = new System.Windows.Forms.Label();
+            this.labelEstimate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainChart)).BeginInit();
             this.groupBoxPanel.SuspendLayout();
             this.groupBoxFilter.SuspendLayout();
@@ -160,9 +161,9 @@
             this.groupBoxFilter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBoxFilter.Controls.Add(this.radioFilterSinglePole);
             this.groupBoxFilter.Controls.Add(this.radioFilterMovingAverage);
-            this.groupBoxFilter.Location = new System.Drawing.Point(5, 139);
+            this.groupBoxFilter.Location = new System.Drawing.Point(6, 158);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Size = new System.Drawing.Size(139, 111);
+            this.groupBoxFilter.Size = new System.Drawing.Size(139, 92);
             this.groupBoxFilter.TabIndex = 3;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Фильтр";
@@ -192,18 +193,19 @@
             // groupBoxData
             // 
             this.groupBoxData.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBoxData.Controls.Add(this.labelEstimate);
             this.groupBoxData.Controls.Add(this.buttonSwitch);
             this.groupBoxData.Controls.Add(this.labelData);
             this.groupBoxData.Location = new System.Drawing.Point(5, 13);
             this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Size = new System.Drawing.Size(140, 121);
+            this.groupBoxData.Size = new System.Drawing.Size(140, 136);
             this.groupBoxData.TabIndex = 2;
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "Данные";
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(9, 53);
+            this.buttonSwitch.Location = new System.Drawing.Point(9, 89);
             this.buttonSwitch.Name = "buttonSwitch";
             this.buttonSwitch.Size = new System.Drawing.Size(125, 41);
             this.buttonSwitch.TabIndex = 1;
@@ -399,29 +401,6 @@
             this.listBoxSourceFourierCoefficients.Size = new System.Drawing.Size(81, 69);
             this.listBoxSourceFourierCoefficients.TabIndex = 26;
             // 
-            // radioSourceEmulatorFourier
-            // 
-            this.radioSourceEmulatorFourier.AutoSize = true;
-            this.radioSourceEmulatorFourier.Location = new System.Drawing.Point(6, 81);
-            this.radioSourceEmulatorFourier.Margin = new System.Windows.Forms.Padding(2);
-            this.radioSourceEmulatorFourier.Name = "radioSourceEmulatorFourier";
-            this.radioSourceEmulatorFourier.Size = new System.Drawing.Size(111, 17);
-            this.radioSourceEmulatorFourier.TabIndex = 27;
-            this.radioSourceEmulatorFourier.Text = "Эмулятор Фурье";
-            this.radioSourceEmulatorFourier.UseVisualStyleBackColor = true;
-            this.radioSourceEmulatorFourier.CheckedChanged += new System.EventHandler(this.radioSourceEmulatorFourier_CheckedChanged);
-            // 
-            // radioSourceEmulatorLinear
-            // 
-            this.radioSourceEmulatorLinear.AutoSize = true;
-            this.radioSourceEmulatorLinear.Location = new System.Drawing.Point(6, 58);
-            this.radioSourceEmulatorLinear.Name = "radioSourceEmulatorLinear";
-            this.radioSourceEmulatorLinear.Size = new System.Drawing.Size(127, 17);
-            this.radioSourceEmulatorLinear.TabIndex = 2;
-            this.radioSourceEmulatorLinear.Text = "Эмулятор линейный";
-            this.radioSourceEmulatorLinear.UseVisualStyleBackColor = true;
-            this.radioSourceEmulatorLinear.CheckedChanged += new System.EventHandler(this.radioSourceEmulatorLinear_CheckedChanged);
-            // 
             // groupBoxSourceSin
             // 
             this.groupBoxSourceSin.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -436,6 +415,23 @@
             this.groupBoxSourceSin.Size = new System.Drawing.Size(166, 203);
             this.groupBoxSourceSin.TabIndex = 4;
             this.groupBoxSourceSin.TabStop = false;
+            // 
+            // labelSinPeriod
+            // 
+            this.labelSinPeriod.AutoSize = true;
+            this.labelSinPeriod.Location = new System.Drawing.Point(0, 84);
+            this.labelSinPeriod.Name = "labelSinPeriod";
+            this.labelSinPeriod.Size = new System.Drawing.Size(45, 13);
+            this.labelSinPeriod.TabIndex = 7;
+            this.labelSinPeriod.Text = "Период";
+            // 
+            // textSourceSinPeriod
+            // 
+            this.textSourceSinPeriod.Location = new System.Drawing.Point(64, 81);
+            this.textSourceSinPeriod.Name = "textSourceSinPeriod";
+            this.textSourceSinPeriod.Size = new System.Drawing.Size(81, 20);
+            this.textSourceSinPeriod.TabIndex = 6;
+            this.textSourceSinPeriod.Text = "6.28";
             // 
             // labelSinAverage
             // 
@@ -470,6 +466,29 @@
             this.textSourceSinAmplitude.Size = new System.Drawing.Size(81, 20);
             this.textSourceSinAmplitude.TabIndex = 1;
             this.textSourceSinAmplitude.Text = "30.0";
+            // 
+            // radioSourceEmulatorFourier
+            // 
+            this.radioSourceEmulatorFourier.AutoSize = true;
+            this.radioSourceEmulatorFourier.Location = new System.Drawing.Point(6, 81);
+            this.radioSourceEmulatorFourier.Margin = new System.Windows.Forms.Padding(2);
+            this.radioSourceEmulatorFourier.Name = "radioSourceEmulatorFourier";
+            this.radioSourceEmulatorFourier.Size = new System.Drawing.Size(111, 17);
+            this.radioSourceEmulatorFourier.TabIndex = 27;
+            this.radioSourceEmulatorFourier.Text = "Эмулятор Фурье";
+            this.radioSourceEmulatorFourier.UseVisualStyleBackColor = true;
+            this.radioSourceEmulatorFourier.CheckedChanged += new System.EventHandler(this.radioSourceEmulatorFourier_CheckedChanged);
+            // 
+            // radioSourceEmulatorLinear
+            // 
+            this.radioSourceEmulatorLinear.AutoSize = true;
+            this.radioSourceEmulatorLinear.Location = new System.Drawing.Point(6, 58);
+            this.radioSourceEmulatorLinear.Name = "radioSourceEmulatorLinear";
+            this.radioSourceEmulatorLinear.Size = new System.Drawing.Size(127, 17);
+            this.radioSourceEmulatorLinear.TabIndex = 2;
+            this.radioSourceEmulatorLinear.Text = "Эмулятор линейный";
+            this.radioSourceEmulatorLinear.UseVisualStyleBackColor = true;
+            this.radioSourceEmulatorLinear.CheckedChanged += new System.EventHandler(this.radioSourceEmulatorLinear_CheckedChanged);
             // 
             // groupBoxNoise
             // 
@@ -818,22 +837,14 @@
             this.radioSourceNetwork.UseVisualStyleBackColor = true;
             this.radioSourceNetwork.CheckedChanged += new System.EventHandler(this.radioSourceNetwork_CheckedChanged);
             // 
-            // textSourceSinPeriod
+            // labelEstimate
             // 
-            this.textSourceSinPeriod.Location = new System.Drawing.Point(64, 81);
-            this.textSourceSinPeriod.Name = "textSourceSinPeriod";
-            this.textSourceSinPeriod.Size = new System.Drawing.Size(81, 20);
-            this.textSourceSinPeriod.TabIndex = 6;
-            this.textSourceSinPeriod.Text = "6.28";
-            // 
-            // labelSinPeriod
-            // 
-            this.labelSinPeriod.AutoSize = true;
-            this.labelSinPeriod.Location = new System.Drawing.Point(0, 84);
-            this.labelSinPeriod.Name = "labelSinPeriod";
-            this.labelSinPeriod.Size = new System.Drawing.Size(45, 13);
-            this.labelSinPeriod.TabIndex = 7;
-            this.labelSinPeriod.Text = "Период";
+            this.labelEstimate.AutoSize = true;
+            this.labelEstimate.Location = new System.Drawing.Point(6, 51);
+            this.labelEstimate.Name = "labelEstimate";
+            this.labelEstimate.Size = new System.Drawing.Size(63, 13);
+            this.labelEstimate.TabIndex = 2;
+            this.labelEstimate.Text = "No estimate";
             // 
             // Form1
             // 
@@ -941,6 +952,7 @@
         private System.Windows.Forms.TextBox textEmulationInterval;
         private System.Windows.Forms.Label labelSinPeriod;
         private System.Windows.Forms.TextBox textSourceSinPeriod;
+        private System.Windows.Forms.Label labelEstimate;
     }
 }
 

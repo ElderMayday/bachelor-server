@@ -42,7 +42,7 @@ namespace Assets.Backend.Sources
                 result = calculateNext();
                 DataPure = result;
                 iterate();
-                return result;
+                return Data;
             }
             else
                 throw new ExceptionServer("Incorrect operation");

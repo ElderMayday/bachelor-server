@@ -1,7 +1,7 @@
 ﻿
 
 
-namespace Assets.Backend.Sources
+namespace Assets.Backend.Auxiliary
 {
     /// <summary>
     /// Ось вращения
