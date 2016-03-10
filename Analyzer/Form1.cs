@@ -48,6 +48,8 @@ namespace Analyzer
         {
             InitializeComponent();
 
+            Filter filter = new FilterGaussian(3, 0.5);
+
             maxPoints = 100;
 
             source = null;
@@ -335,6 +337,10 @@ namespace Analyzer
             controls.Add(textEmulationStep);
             controls.Add(textEmulationInterval);
             controls.Add(textSourceSinPeriod);
+            controls.Add(textFilterLength);
+            controls.Add(radioFilterGaussian);
+            controls.Add(textFilterSinglePoleK);
+            controls.Add(textFilterGaussianA);
 
             sourceGroups = new List<GroupBox>();
 
@@ -382,9 +388,13 @@ namespace Analyzer
             noise = new List<double>();
 
             if (radioFilterMovingAverage.Checked)
-                filter = new FilterMovingAverage(5);
+                filter = new FilterMovingAverage(int.Parse(textFilterLength.Text));
             else if (radioFilterSinglePole.Checked)
-                filter = new FilterSinglePole(4, 0.5);
+                filter = new FilterSinglePole(int.Parse(textFilterLength.Text),
+                    double.Parse(textFilterSinglePoleK.Text, CultureInfo.InvariantCulture));
+            else
+                filter = new FilterGaussian(int.Parse(textFilterLength.Text),
+                    double.Parse(textFilterGaussianA.Text, CultureInfo.InvariantCulture));
 
             if (radioNoiserIdle.Checked)
                 noiser = new NoiserIdle();

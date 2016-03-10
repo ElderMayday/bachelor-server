@@ -40,6 +40,7 @@
             this.radioFilterSinglePole = new System.Windows.Forms.RadioButton();
             this.radioFilterMovingAverage = new System.Windows.Forms.RadioButton();
             this.groupBoxData = new System.Windows.Forms.GroupBox();
+            this.labelEstimate = new System.Windows.Forms.Label();
             this.buttonSwitch = new System.Windows.Forms.Button();
             this.groupBoxSource = new System.Windows.Forms.GroupBox();
             this.groupBoxEmultaion = new System.Windows.Forms.GroupBox();
@@ -101,7 +102,13 @@
             this.radioSourceRoll = new System.Windows.Forms.RadioButton();
             this.radioSourcePitch = new System.Windows.Forms.RadioButton();
             this.radioSourceNetwork = new System.Windows.Forms.RadioButton();
-            this.labelEstimate = new System.Windows.Forms.Label();
+            this.radioFilterGaussian = new System.Windows.Forms.RadioButton();
+            this.textFilterSinglePoleK = new System.Windows.Forms.TextBox();
+            this.labelFilterSinglePoleK = new System.Windows.Forms.Label();
+            this.textFilterGaussianA = new System.Windows.Forms.TextBox();
+            this.labelFilterGaussianA = new System.Windows.Forms.Label();
+            this.textFilterLength = new System.Windows.Forms.TextBox();
+            this.labelFilterLength = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainChart)).BeginInit();
             this.groupBoxPanel.SuspendLayout();
             this.groupBoxFilter.SuspendLayout();
@@ -122,7 +129,7 @@
             // labelData
             // 
             this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(6, 24);
+            this.labelData.Location = new System.Drawing.Point(6, 18);
             this.labelData.Name = "labelData";
             this.labelData.Size = new System.Drawing.Size(45, 13);
             this.labelData.TabIndex = 0;
@@ -140,7 +147,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.mainChart.Series.Add(series1);
-            this.mainChart.Size = new System.Drawing.Size(779, 381);
+            this.mainChart.Size = new System.Drawing.Size(936, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
             // 
@@ -152,18 +159,25 @@
             this.groupBoxPanel.Controls.Add(this.groupBoxSource);
             this.groupBoxPanel.Location = new System.Drawing.Point(12, 399);
             this.groupBoxPanel.Name = "groupBoxPanel";
-            this.groupBoxPanel.Size = new System.Drawing.Size(779, 264);
+            this.groupBoxPanel.Size = new System.Drawing.Size(936, 279);
             this.groupBoxPanel.TabIndex = 2;
             this.groupBoxPanel.TabStop = false;
             // 
             // groupBoxFilter
             // 
             this.groupBoxFilter.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBoxFilter.Controls.Add(this.labelFilterLength);
+            this.groupBoxFilter.Controls.Add(this.textFilterLength);
+            this.groupBoxFilter.Controls.Add(this.labelFilterGaussianA);
+            this.groupBoxFilter.Controls.Add(this.textFilterGaussianA);
+            this.groupBoxFilter.Controls.Add(this.labelFilterSinglePoleK);
+            this.groupBoxFilter.Controls.Add(this.textFilterSinglePoleK);
+            this.groupBoxFilter.Controls.Add(this.radioFilterGaussian);
             this.groupBoxFilter.Controls.Add(this.radioFilterSinglePole);
             this.groupBoxFilter.Controls.Add(this.radioFilterMovingAverage);
-            this.groupBoxFilter.Location = new System.Drawing.Point(6, 158);
+            this.groupBoxFilter.Location = new System.Drawing.Point(769, 13);
             this.groupBoxFilter.Name = "groupBoxFilter";
-            this.groupBoxFilter.Size = new System.Drawing.Size(139, 92);
+            this.groupBoxFilter.Size = new System.Drawing.Size(155, 260);
             this.groupBoxFilter.TabIndex = 3;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Фильтр";
@@ -171,7 +185,7 @@
             // radioFilterSinglePole
             // 
             this.radioFilterSinglePole.AutoSize = true;
-            this.radioFilterSinglePole.Location = new System.Drawing.Point(5, 48);
+            this.radioFilterSinglePole.Location = new System.Drawing.Point(10, 93);
             this.radioFilterSinglePole.Name = "radioFilterSinglePole";
             this.radioFilterSinglePole.Size = new System.Drawing.Size(101, 17);
             this.radioFilterSinglePole.TabIndex = 1;
@@ -182,7 +196,7 @@
             // 
             this.radioFilterMovingAverage.AutoSize = true;
             this.radioFilterMovingAverage.Checked = true;
-            this.radioFilterMovingAverage.Location = new System.Drawing.Point(5, 25);
+            this.radioFilterMovingAverage.Location = new System.Drawing.Point(10, 68);
             this.radioFilterMovingAverage.Name = "radioFilterMovingAverage";
             this.radioFilterMovingAverage.Size = new System.Drawing.Size(134, 17);
             this.radioFilterMovingAverage.TabIndex = 0;
@@ -196,18 +210,27 @@
             this.groupBoxData.Controls.Add(this.labelEstimate);
             this.groupBoxData.Controls.Add(this.buttonSwitch);
             this.groupBoxData.Controls.Add(this.labelData);
-            this.groupBoxData.Location = new System.Drawing.Point(5, 13);
+            this.groupBoxData.Location = new System.Drawing.Point(11, 13);
             this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Size = new System.Drawing.Size(140, 136);
+            this.groupBoxData.Size = new System.Drawing.Size(134, 147);
             this.groupBoxData.TabIndex = 2;
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "Данные";
             // 
+            // labelEstimate
+            // 
+            this.labelEstimate.AutoSize = true;
+            this.labelEstimate.Location = new System.Drawing.Point(6, 58);
+            this.labelEstimate.Name = "labelEstimate";
+            this.labelEstimate.Size = new System.Drawing.Size(63, 13);
+            this.labelEstimate.TabIndex = 2;
+            this.labelEstimate.Text = "No estimate";
+            // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(9, 89);
+            this.buttonSwitch.Location = new System.Drawing.Point(9, 101);
             this.buttonSwitch.Name = "buttonSwitch";
-            this.buttonSwitch.Size = new System.Drawing.Size(125, 41);
+            this.buttonSwitch.Size = new System.Drawing.Size(113, 33);
             this.buttonSwitch.TabIndex = 1;
             this.buttonSwitch.Text = "Включить";
             this.buttonSwitch.UseVisualStyleBackColor = true;
@@ -228,7 +251,7 @@
             this.groupBoxSource.Controls.Add(this.radioSourceNetwork);
             this.groupBoxSource.Location = new System.Drawing.Point(151, 13);
             this.groupBoxSource.Name = "groupBoxSource";
-            this.groupBoxSource.Size = new System.Drawing.Size(612, 237);
+            this.groupBoxSource.Size = new System.Drawing.Size(612, 260);
             this.groupBoxSource.TabIndex = 1;
             this.groupBoxSource.TabStop = false;
             this.groupBoxSource.Text = "Источник";
@@ -837,20 +860,73 @@
             this.radioSourceNetwork.UseVisualStyleBackColor = true;
             this.radioSourceNetwork.CheckedChanged += new System.EventHandler(this.radioSourceNetwork_CheckedChanged);
             // 
-            // labelEstimate
+            // radioFilterGaussian
             // 
-            this.labelEstimate.AutoSize = true;
-            this.labelEstimate.Location = new System.Drawing.Point(6, 51);
-            this.labelEstimate.Name = "labelEstimate";
-            this.labelEstimate.Size = new System.Drawing.Size(63, 13);
-            this.labelEstimate.TabIndex = 2;
-            this.labelEstimate.Text = "No estimate";
+            this.radioFilterGaussian.AutoSize = true;
+            this.radioFilterGaussian.Location = new System.Drawing.Point(10, 144);
+            this.radioFilterGaussian.Name = "radioFilterGaussian";
+            this.radioFilterGaussian.Size = new System.Drawing.Size(60, 17);
+            this.radioFilterGaussian.TabIndex = 2;
+            this.radioFilterGaussian.TabStop = true;
+            this.radioFilterGaussian.Text = "Гаусса";
+            this.radioFilterGaussian.UseVisualStyleBackColor = true;
+            // 
+            // textFilterSinglePoleK
+            // 
+            this.textFilterSinglePoleK.Location = new System.Drawing.Point(30, 117);
+            this.textFilterSinglePoleK.Name = "textFilterSinglePoleK";
+            this.textFilterSinglePoleK.Size = new System.Drawing.Size(81, 20);
+            this.textFilterSinglePoleK.TabIndex = 3;
+            this.textFilterSinglePoleK.Text = "0.5";
+            // 
+            // labelFilterSinglePoleK
+            // 
+            this.labelFilterSinglePoleK.AutoSize = true;
+            this.labelFilterSinglePoleK.Location = new System.Drawing.Point(7, 121);
+            this.labelFilterSinglePoleK.Name = "labelFilterSinglePoleK";
+            this.labelFilterSinglePoleK.Size = new System.Drawing.Size(14, 13);
+            this.labelFilterSinglePoleK.TabIndex = 4;
+            this.labelFilterSinglePoleK.Text = "K";
+            // 
+            // textFilterGaussianA
+            // 
+            this.textFilterGaussianA.Location = new System.Drawing.Point(30, 171);
+            this.textFilterGaussianA.Name = "textFilterGaussianA";
+            this.textFilterGaussianA.Size = new System.Drawing.Size(81, 20);
+            this.textFilterGaussianA.TabIndex = 5;
+            this.textFilterGaussianA.Text = "0.5";
+            // 
+            // labelFilterGaussianA
+            // 
+            this.labelFilterGaussianA.AutoSize = true;
+            this.labelFilterGaussianA.Location = new System.Drawing.Point(7, 178);
+            this.labelFilterGaussianA.Name = "labelFilterGaussianA";
+            this.labelFilterGaussianA.Size = new System.Drawing.Size(14, 13);
+            this.labelFilterGaussianA.TabIndex = 6;
+            this.labelFilterGaussianA.Text = "A";
+            // 
+            // textFilterLength
+            // 
+            this.textFilterLength.Location = new System.Drawing.Point(77, 18);
+            this.textFilterLength.Name = "textFilterLength";
+            this.textFilterLength.Size = new System.Drawing.Size(32, 20);
+            this.textFilterLength.TabIndex = 7;
+            this.textFilterLength.Text = "5";
+            // 
+            // labelFilterLength
+            // 
+            this.labelFilterLength.AutoSize = true;
+            this.labelFilterLength.Location = new System.Drawing.Point(7, 20);
+            this.labelFilterLength.Name = "labelFilterLength";
+            this.labelFilterLength.Size = new System.Drawing.Size(51, 13);
+            this.labelFilterLength.TabIndex = 8;
+            this.labelFilterLength.Text = "Порядок";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 676);
+            this.ClientSize = new System.Drawing.Size(960, 690);
             this.Controls.Add(this.groupBoxPanel);
             this.Controls.Add(this.mainChart);
             this.Name = "Form1";
@@ -953,6 +1029,13 @@
         private System.Windows.Forms.Label labelSinPeriod;
         private System.Windows.Forms.TextBox textSourceSinPeriod;
         private System.Windows.Forms.Label labelEstimate;
+        private System.Windows.Forms.Label labelFilterGaussianA;
+        private System.Windows.Forms.TextBox textFilterGaussianA;
+        private System.Windows.Forms.Label labelFilterSinglePoleK;
+        private System.Windows.Forms.TextBox textFilterSinglePoleK;
+        private System.Windows.Forms.RadioButton radioFilterGaussian;
+        private System.Windows.Forms.Label labelFilterLength;
+        private System.Windows.Forms.TextBox textFilterLength;
     }
 }
 
