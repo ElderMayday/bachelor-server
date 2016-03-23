@@ -37,6 +37,13 @@
             this.mainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBoxPanel = new System.Windows.Forms.GroupBox();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
+            this.labelFilterLength = new System.Windows.Forms.Label();
+            this.textFilterLength = new System.Windows.Forms.TextBox();
+            this.labelFilterGaussianA = new System.Windows.Forms.Label();
+            this.textFilterGaussianA = new System.Windows.Forms.TextBox();
+            this.labelFilterSinglePoleK = new System.Windows.Forms.Label();
+            this.textFilterSinglePoleK = new System.Windows.Forms.TextBox();
+            this.radioFilterGaussian = new System.Windows.Forms.RadioButton();
             this.radioFilterSinglePole = new System.Windows.Forms.RadioButton();
             this.radioFilterMovingAverage = new System.Windows.Forms.RadioButton();
             this.groupBoxData = new System.Windows.Forms.GroupBox();
@@ -70,22 +77,14 @@
             this.radioSourceEmulatorLinear = new System.Windows.Forms.RadioButton();
             this.groupBoxNoise = new System.Windows.Forms.GroupBox();
             this.radioNoiserFunction = new System.Windows.Forms.RadioButton();
-            this.labelNoiseErlangLambda = new System.Windows.Forms.Label();
-            this.textNoiseErlangLambda = new System.Windows.Forms.TextBox();
-            this.labelNoiseErlangK = new System.Windows.Forms.Label();
-            this.labelNoiseExponentialLambda = new System.Windows.Forms.Label();
             this.labelNoiseNormalDeviation = new System.Windows.Forms.Label();
             this.labelNoiseNormalMean = new System.Windows.Forms.Label();
             this.labelNoiseIdleMax = new System.Windows.Forms.Label();
             this.labelNoiseIdleMin = new System.Windows.Forms.Label();
             this.textNoiseNormalMean = new System.Windows.Forms.TextBox();
-            this.textNoiseErlangK = new System.Windows.Forms.TextBox();
-            this.textNoiseExponentialLambda = new System.Windows.Forms.TextBox();
             this.textNoiseNormalDeviation = new System.Windows.Forms.TextBox();
             this.textNoiseUniformMax = new System.Windows.Forms.TextBox();
             this.textNoiseUniformMin = new System.Windows.Forms.TextBox();
-            this.radioNoiserErlang = new System.Windows.Forms.RadioButton();
-            this.radioNoiserExponential = new System.Windows.Forms.RadioButton();
             this.radioNoiserNormal = new System.Windows.Forms.RadioButton();
             this.radioNoiserUniform = new System.Windows.Forms.RadioButton();
             this.radioNoiserIdle = new System.Windows.Forms.RadioButton();
@@ -102,13 +101,6 @@
             this.radioSourceRoll = new System.Windows.Forms.RadioButton();
             this.radioSourcePitch = new System.Windows.Forms.RadioButton();
             this.radioSourceNetwork = new System.Windows.Forms.RadioButton();
-            this.radioFilterGaussian = new System.Windows.Forms.RadioButton();
-            this.textFilterSinglePoleK = new System.Windows.Forms.TextBox();
-            this.labelFilterSinglePoleK = new System.Windows.Forms.Label();
-            this.textFilterGaussianA = new System.Windows.Forms.TextBox();
-            this.labelFilterGaussianA = new System.Windows.Forms.Label();
-            this.textFilterLength = new System.Windows.Forms.TextBox();
-            this.labelFilterLength = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainChart)).BeginInit();
             this.groupBoxPanel.SuspendLayout();
             this.groupBoxFilter.SuspendLayout();
@@ -147,7 +139,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.mainChart.Series.Add(series1);
-            this.mainChart.Size = new System.Drawing.Size(936, 381);
+            this.mainChart.Size = new System.Drawing.Size(825, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
             // 
@@ -159,7 +151,7 @@
             this.groupBoxPanel.Controls.Add(this.groupBoxSource);
             this.groupBoxPanel.Location = new System.Drawing.Point(12, 399);
             this.groupBoxPanel.Name = "groupBoxPanel";
-            this.groupBoxPanel.Size = new System.Drawing.Size(936, 279);
+            this.groupBoxPanel.Size = new System.Drawing.Size(825, 279);
             this.groupBoxPanel.TabIndex = 2;
             this.groupBoxPanel.TabStop = false;
             // 
@@ -175,12 +167,74 @@
             this.groupBoxFilter.Controls.Add(this.radioFilterGaussian);
             this.groupBoxFilter.Controls.Add(this.radioFilterSinglePole);
             this.groupBoxFilter.Controls.Add(this.radioFilterMovingAverage);
-            this.groupBoxFilter.Location = new System.Drawing.Point(769, 13);
+            this.groupBoxFilter.Location = new System.Drawing.Point(658, 13);
             this.groupBoxFilter.Name = "groupBoxFilter";
             this.groupBoxFilter.Size = new System.Drawing.Size(155, 260);
             this.groupBoxFilter.TabIndex = 3;
             this.groupBoxFilter.TabStop = false;
             this.groupBoxFilter.Text = "Фильтр";
+            // 
+            // labelFilterLength
+            // 
+            this.labelFilterLength.AutoSize = true;
+            this.labelFilterLength.Location = new System.Drawing.Point(7, 20);
+            this.labelFilterLength.Name = "labelFilterLength";
+            this.labelFilterLength.Size = new System.Drawing.Size(51, 13);
+            this.labelFilterLength.TabIndex = 8;
+            this.labelFilterLength.Text = "Порядок";
+            // 
+            // textFilterLength
+            // 
+            this.textFilterLength.Location = new System.Drawing.Point(77, 18);
+            this.textFilterLength.Name = "textFilterLength";
+            this.textFilterLength.Size = new System.Drawing.Size(32, 20);
+            this.textFilterLength.TabIndex = 7;
+            this.textFilterLength.Text = "5";
+            // 
+            // labelFilterGaussianA
+            // 
+            this.labelFilterGaussianA.AutoSize = true;
+            this.labelFilterGaussianA.Location = new System.Drawing.Point(7, 178);
+            this.labelFilterGaussianA.Name = "labelFilterGaussianA";
+            this.labelFilterGaussianA.Size = new System.Drawing.Size(14, 13);
+            this.labelFilterGaussianA.TabIndex = 6;
+            this.labelFilterGaussianA.Text = "A";
+            // 
+            // textFilterGaussianA
+            // 
+            this.textFilterGaussianA.Location = new System.Drawing.Point(30, 171);
+            this.textFilterGaussianA.Name = "textFilterGaussianA";
+            this.textFilterGaussianA.Size = new System.Drawing.Size(81, 20);
+            this.textFilterGaussianA.TabIndex = 5;
+            this.textFilterGaussianA.Text = "0.5";
+            // 
+            // labelFilterSinglePoleK
+            // 
+            this.labelFilterSinglePoleK.AutoSize = true;
+            this.labelFilterSinglePoleK.Location = new System.Drawing.Point(7, 121);
+            this.labelFilterSinglePoleK.Name = "labelFilterSinglePoleK";
+            this.labelFilterSinglePoleK.Size = new System.Drawing.Size(14, 13);
+            this.labelFilterSinglePoleK.TabIndex = 4;
+            this.labelFilterSinglePoleK.Text = "K";
+            // 
+            // textFilterSinglePoleK
+            // 
+            this.textFilterSinglePoleK.Location = new System.Drawing.Point(30, 117);
+            this.textFilterSinglePoleK.Name = "textFilterSinglePoleK";
+            this.textFilterSinglePoleK.Size = new System.Drawing.Size(81, 20);
+            this.textFilterSinglePoleK.TabIndex = 3;
+            this.textFilterSinglePoleK.Text = "0.5";
+            // 
+            // radioFilterGaussian
+            // 
+            this.radioFilterGaussian.AutoSize = true;
+            this.radioFilterGaussian.Location = new System.Drawing.Point(10, 144);
+            this.radioFilterGaussian.Name = "radioFilterGaussian";
+            this.radioFilterGaussian.Size = new System.Drawing.Size(60, 17);
+            this.radioFilterGaussian.TabIndex = 2;
+            this.radioFilterGaussian.TabStop = true;
+            this.radioFilterGaussian.Text = "Гаусса";
+            this.radioFilterGaussian.UseVisualStyleBackColor = true;
             // 
             // radioFilterSinglePole
             // 
@@ -251,7 +305,7 @@
             this.groupBoxSource.Controls.Add(this.radioSourceNetwork);
             this.groupBoxSource.Location = new System.Drawing.Point(151, 13);
             this.groupBoxSource.Name = "groupBoxSource";
-            this.groupBoxSource.Size = new System.Drawing.Size(612, 260);
+            this.groupBoxSource.Size = new System.Drawing.Size(501, 260);
             this.groupBoxSource.TabIndex = 1;
             this.groupBoxSource.TabStop = false;
             this.groupBoxSource.Text = "Источник";
@@ -517,28 +571,20 @@
             // 
             this.groupBoxNoise.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBoxNoise.Controls.Add(this.radioNoiserFunction);
-            this.groupBoxNoise.Controls.Add(this.labelNoiseErlangLambda);
-            this.groupBoxNoise.Controls.Add(this.textNoiseErlangLambda);
-            this.groupBoxNoise.Controls.Add(this.labelNoiseErlangK);
-            this.groupBoxNoise.Controls.Add(this.labelNoiseExponentialLambda);
             this.groupBoxNoise.Controls.Add(this.labelNoiseNormalDeviation);
             this.groupBoxNoise.Controls.Add(this.labelNoiseNormalMean);
             this.groupBoxNoise.Controls.Add(this.labelNoiseIdleMax);
             this.groupBoxNoise.Controls.Add(this.labelNoiseIdleMin);
             this.groupBoxNoise.Controls.Add(this.textNoiseNormalMean);
-            this.groupBoxNoise.Controls.Add(this.textNoiseErlangK);
-            this.groupBoxNoise.Controls.Add(this.textNoiseExponentialLambda);
             this.groupBoxNoise.Controls.Add(this.textNoiseNormalDeviation);
             this.groupBoxNoise.Controls.Add(this.textNoiseUniformMax);
             this.groupBoxNoise.Controls.Add(this.textNoiseUniformMin);
-            this.groupBoxNoise.Controls.Add(this.radioNoiserErlang);
-            this.groupBoxNoise.Controls.Add(this.radioNoiserExponential);
             this.groupBoxNoise.Controls.Add(this.radioNoiserNormal);
             this.groupBoxNoise.Controls.Add(this.radioNoiserUniform);
             this.groupBoxNoise.Controls.Add(this.radioNoiserIdle);
             this.groupBoxNoise.Location = new System.Drawing.Point(343, 11);
             this.groupBoxNoise.Name = "groupBoxNoise";
-            this.groupBoxNoise.Size = new System.Drawing.Size(253, 220);
+            this.groupBoxNoise.Size = new System.Drawing.Size(141, 220);
             this.groupBoxNoise.TabIndex = 6;
             this.groupBoxNoise.TabStop = false;
             this.groupBoxNoise.Text = "Шум";
@@ -546,7 +592,7 @@
             // radioNoiserFunction
             // 
             this.radioNoiserFunction.AutoSize = true;
-            this.radioNoiserFunction.Location = new System.Drawing.Point(133, 151);
+            this.radioNoiserFunction.Location = new System.Drawing.Point(15, 176);
             this.radioNoiserFunction.Margin = new System.Windows.Forms.Padding(2);
             this.radioNoiserFunction.Name = "radioNoiserFunction";
             this.radioNoiserFunction.Size = new System.Drawing.Size(72, 17);
@@ -554,41 +600,6 @@
             this.radioNoiserFunction.TabStop = true;
             this.radioNoiserFunction.Text = "Кусочная";
             this.radioNoiserFunction.UseVisualStyleBackColor = true;
-            // 
-            // labelNoiseErlangLambda
-            // 
-            this.labelNoiseErlangLambda.AutoSize = true;
-            this.labelNoiseErlangLambda.Location = new System.Drawing.Point(131, 123);
-            this.labelNoiseErlangLambda.Name = "labelNoiseErlangLambda";
-            this.labelNoiseErlangLambda.Size = new System.Drawing.Size(47, 13);
-            this.labelNoiseErlangLambda.TabIndex = 18;
-            this.labelNoiseErlangLambda.Text = "Лямбда";
-            // 
-            // textNoiseErlangLambda
-            // 
-            this.textNoiseErlangLambda.Location = new System.Drawing.Point(181, 120);
-            this.textNoiseErlangLambda.Name = "textNoiseErlangLambda";
-            this.textNoiseErlangLambda.Size = new System.Drawing.Size(61, 20);
-            this.textNoiseErlangLambda.TabIndex = 17;
-            this.textNoiseErlangLambda.Text = "5.0";
-            // 
-            // labelNoiseErlangK
-            // 
-            this.labelNoiseErlangK.AutoSize = true;
-            this.labelNoiseErlangK.Location = new System.Drawing.Point(131, 100);
-            this.labelNoiseErlangK.Name = "labelNoiseErlangK";
-            this.labelNoiseErlangK.Size = new System.Drawing.Size(14, 13);
-            this.labelNoiseErlangK.TabIndex = 16;
-            this.labelNoiseErlangK.Text = "K";
-            // 
-            // labelNoiseExponentialLambda
-            // 
-            this.labelNoiseExponentialLambda.AutoSize = true;
-            this.labelNoiseExponentialLambda.Location = new System.Drawing.Point(129, 49);
-            this.labelNoiseExponentialLambda.Name = "labelNoiseExponentialLambda";
-            this.labelNoiseExponentialLambda.Size = new System.Drawing.Size(47, 13);
-            this.labelNoiseExponentialLambda.TabIndex = 15;
-            this.labelNoiseExponentialLambda.Text = "Лямбда";
             // 
             // labelNoiseNormalDeviation
             // 
@@ -634,22 +645,6 @@
             this.textNoiseNormalMean.TabIndex = 10;
             this.textNoiseNormalMean.Text = "0.0";
             // 
-            // textNoiseErlangK
-            // 
-            this.textNoiseErlangK.Location = new System.Drawing.Point(181, 96);
-            this.textNoiseErlangK.Name = "textNoiseErlangK";
-            this.textNoiseErlangK.Size = new System.Drawing.Size(63, 20);
-            this.textNoiseErlangK.TabIndex = 9;
-            this.textNoiseErlangK.Text = "10";
-            // 
-            // textNoiseExponentialLambda
-            // 
-            this.textNoiseExponentialLambda.Location = new System.Drawing.Point(181, 47);
-            this.textNoiseExponentialLambda.Name = "textNoiseExponentialLambda";
-            this.textNoiseExponentialLambda.Size = new System.Drawing.Size(63, 20);
-            this.textNoiseExponentialLambda.TabIndex = 8;
-            this.textNoiseExponentialLambda.Text = "1.0";
-            // 
             // textNoiseNormalDeviation
             // 
             this.textNoiseNormalDeviation.Location = new System.Drawing.Point(63, 151);
@@ -673,26 +668,6 @@
             this.textNoiseUniformMin.Size = new System.Drawing.Size(63, 20);
             this.textNoiseUniformMin.TabIndex = 5;
             this.textNoiseUniformMin.Text = "-10.0";
-            // 
-            // radioNoiserErlang
-            // 
-            this.radioNoiserErlang.AutoSize = true;
-            this.radioNoiserErlang.Location = new System.Drawing.Point(131, 70);
-            this.radioNoiserErlang.Name = "radioNoiserErlang";
-            this.radioNoiserErlang.Size = new System.Drawing.Size(67, 17);
-            this.radioNoiserErlang.TabIndex = 4;
-            this.radioNoiserErlang.Text = "Эрланга";
-            this.radioNoiserErlang.UseVisualStyleBackColor = true;
-            // 
-            // radioNoiserExponential
-            // 
-            this.radioNoiserExponential.AutoSize = true;
-            this.radioNoiserExponential.Location = new System.Drawing.Point(132, 25);
-            this.radioNoiserExponential.Name = "radioNoiserExponential";
-            this.radioNoiserExponential.Size = new System.Drawing.Size(124, 17);
-            this.radioNoiserExponential.TabIndex = 3;
-            this.radioNoiserExponential.Text = "Экспоненциальный";
-            this.radioNoiserExponential.UseVisualStyleBackColor = true;
             // 
             // radioNoiserNormal
             // 
@@ -860,73 +835,11 @@
             this.radioSourceNetwork.UseVisualStyleBackColor = true;
             this.radioSourceNetwork.CheckedChanged += new System.EventHandler(this.radioSourceNetwork_CheckedChanged);
             // 
-            // radioFilterGaussian
-            // 
-            this.radioFilterGaussian.AutoSize = true;
-            this.radioFilterGaussian.Location = new System.Drawing.Point(10, 144);
-            this.radioFilterGaussian.Name = "radioFilterGaussian";
-            this.radioFilterGaussian.Size = new System.Drawing.Size(60, 17);
-            this.radioFilterGaussian.TabIndex = 2;
-            this.radioFilterGaussian.TabStop = true;
-            this.radioFilterGaussian.Text = "Гаусса";
-            this.radioFilterGaussian.UseVisualStyleBackColor = true;
-            // 
-            // textFilterSinglePoleK
-            // 
-            this.textFilterSinglePoleK.Location = new System.Drawing.Point(30, 117);
-            this.textFilterSinglePoleK.Name = "textFilterSinglePoleK";
-            this.textFilterSinglePoleK.Size = new System.Drawing.Size(81, 20);
-            this.textFilterSinglePoleK.TabIndex = 3;
-            this.textFilterSinglePoleK.Text = "0.5";
-            // 
-            // labelFilterSinglePoleK
-            // 
-            this.labelFilterSinglePoleK.AutoSize = true;
-            this.labelFilterSinglePoleK.Location = new System.Drawing.Point(7, 121);
-            this.labelFilterSinglePoleK.Name = "labelFilterSinglePoleK";
-            this.labelFilterSinglePoleK.Size = new System.Drawing.Size(14, 13);
-            this.labelFilterSinglePoleK.TabIndex = 4;
-            this.labelFilterSinglePoleK.Text = "K";
-            // 
-            // textFilterGaussianA
-            // 
-            this.textFilterGaussianA.Location = new System.Drawing.Point(30, 171);
-            this.textFilterGaussianA.Name = "textFilterGaussianA";
-            this.textFilterGaussianA.Size = new System.Drawing.Size(81, 20);
-            this.textFilterGaussianA.TabIndex = 5;
-            this.textFilterGaussianA.Text = "0.5";
-            // 
-            // labelFilterGaussianA
-            // 
-            this.labelFilterGaussianA.AutoSize = true;
-            this.labelFilterGaussianA.Location = new System.Drawing.Point(7, 178);
-            this.labelFilterGaussianA.Name = "labelFilterGaussianA";
-            this.labelFilterGaussianA.Size = new System.Drawing.Size(14, 13);
-            this.labelFilterGaussianA.TabIndex = 6;
-            this.labelFilterGaussianA.Text = "A";
-            // 
-            // textFilterLength
-            // 
-            this.textFilterLength.Location = new System.Drawing.Point(77, 18);
-            this.textFilterLength.Name = "textFilterLength";
-            this.textFilterLength.Size = new System.Drawing.Size(32, 20);
-            this.textFilterLength.TabIndex = 7;
-            this.textFilterLength.Text = "5";
-            // 
-            // labelFilterLength
-            // 
-            this.labelFilterLength.AutoSize = true;
-            this.labelFilterLength.Location = new System.Drawing.Point(7, 20);
-            this.labelFilterLength.Name = "labelFilterLength";
-            this.labelFilterLength.Size = new System.Drawing.Size(51, 13);
-            this.labelFilterLength.TabIndex = 8;
-            this.labelFilterLength.Text = "Порядок";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 690);
+            this.ClientSize = new System.Drawing.Size(850, 690);
             this.Controls.Add(this.groupBoxPanel);
             this.Controls.Add(this.mainChart);
             this.Name = "Form1";
@@ -989,22 +902,14 @@
         private System.Windows.Forms.Label labelLinearMin;
         private System.Windows.Forms.TextBox textSourceLinearMax;
         private System.Windows.Forms.TextBox textSourceLinearMin;
-        private System.Windows.Forms.RadioButton radioNoiserErlang;
-        private System.Windows.Forms.RadioButton radioNoiserExponential;
         private System.Windows.Forms.RadioButton radioNoiserNormal;
         private System.Windows.Forms.RadioButton radioNoiserUniform;
         private System.Windows.Forms.RadioButton radioNoiserIdle;
-        private System.Windows.Forms.Label labelNoiseErlangLambda;
-        private System.Windows.Forms.TextBox textNoiseErlangLambda;
-        private System.Windows.Forms.Label labelNoiseErlangK;
-        private System.Windows.Forms.Label labelNoiseExponentialLambda;
         private System.Windows.Forms.Label labelNoiseNormalDeviation;
         private System.Windows.Forms.Label labelNoiseNormalMean;
         private System.Windows.Forms.Label labelNoiseIdleMax;
         private System.Windows.Forms.Label labelNoiseIdleMin;
         private System.Windows.Forms.TextBox textNoiseNormalMean;
-        private System.Windows.Forms.TextBox textNoiseErlangK;
-        private System.Windows.Forms.TextBox textNoiseExponentialLambda;
         private System.Windows.Forms.TextBox textNoiseNormalDeviation;
         private System.Windows.Forms.TextBox textNoiseUniformMax;
         private System.Windows.Forms.TextBox textNoiseUniformMin;

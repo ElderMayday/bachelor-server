@@ -37,8 +37,6 @@ namespace Analyzer
         protected List<GroupBox> sourceGroups;
 
         protected List<double> aList, bList;
-
-
         protected List<double> input, output, pure, noise;
 
 
@@ -146,8 +144,6 @@ namespace Analyzer
             interval = int.Parse(textEmulationInterval.Text);
             range = double.Parse(textEmulationRange.Text, CultureInfo.InvariantCulture);
             step = double.Parse(textEmulationStep.Text, CultureInfo.InvariantCulture);
-
-            
 
             if (!fast)
             {
@@ -264,6 +260,11 @@ namespace Analyzer
             groupBoxEmultaion.Visible = false;
             hideSources();
             groupBoxSourceNetwork.Visible = true;
+
+            if (radioSourceNetwork.Checked)
+                groupBoxNoise.Visible = false;
+            else
+                groupBoxNoise.Visible = true;
         }
 
         private void radioSourceEmulatorSin_CheckedChanged(object sender, EventArgs e)
@@ -321,11 +322,6 @@ namespace Analyzer
             controls.Add(radioNoiserNormal);
             controls.Add(textNoiseNormalMean);
             controls.Add(textNoiseNormalDeviation);
-            controls.Add(radioNoiserExponential);
-            controls.Add(textNoiseExponentialLambda);
-            controls.Add(radioNoiserErlang);
-            controls.Add(textNoiseErlangK);
-            controls.Add(textNoiseErlangLambda);
             controls.Add(radioNoiserFunction);
             controls.Add(radioSourceEmulatorFourier);
             controls.Add(textSourceFourierHalfOffset);
@@ -404,11 +400,6 @@ namespace Analyzer
             else if (radioNoiserNormal.Checked)
                 noiser = new NoiserNormal(double.Parse(textNoiseNormalMean.Text, CultureInfo.InvariantCulture),
                     double.Parse(textNoiseNormalDeviation.Text, CultureInfo.InvariantCulture));
-            else if (radioNoiserExponential.Checked)
-                noiser = new NoiserExponential(double.Parse(textNoiseExponentialLambda.Text, CultureInfo.InvariantCulture));
-            else if (radioNoiserErlang.Checked)
-                noiser = new NoiserErlang(double.Parse(textNoiseErlangLambda.Text, CultureInfo.InvariantCulture),
-                    int.Parse(textNoiseErlangK.Text, CultureInfo.InvariantCulture));
             else if (radioNoiserFunction.Checked)
                 noiser = new NoiserFunction(ExtraMath.PieceWiseExample1);
 
