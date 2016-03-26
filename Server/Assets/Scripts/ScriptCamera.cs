@@ -10,7 +10,7 @@ namespace Assets.Scripts
 {
     public class ScriptCamera : MonoBehaviour
     {
-        private Source source;
+        private SourceNetwork source;
 
         void Start()
         {
@@ -30,10 +30,13 @@ namespace Assets.Scripts
 
             float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
             float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
-            Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
 
+            Backend.Auxiliary.Vector3 direction;
+            direction = source.Direction;
+
+            Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
             if (source.IsWorking)
-                target = Quaternion.Euler((float)((SourceNetwork)source).Pitch, (float)((SourceNetwork)source).Yaw, (float)((SourceNetwork)source).Roll);
+                target = Quaternion.Euler((float)direction.X, (float)direction.Z, (float)direction.Y);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
         }

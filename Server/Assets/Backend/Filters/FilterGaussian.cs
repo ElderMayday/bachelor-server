@@ -5,8 +5,16 @@ using System.Linq;
 
 namespace Assets.Backend.Filters
 {
+    /// <summary>
+    /// Фильтр Гаусса
+    /// </summary>
     public class FilterGaussian : FilterFIR
     {
+        /// <summary>
+        /// Создает фильтр Гаусса
+        /// </summary>
+        /// <param name="length">Порядок фильтра</param>
+        /// <param name="a"></param>
         public FilterGaussian(int length, double a) : base(length)
         {
             double x;

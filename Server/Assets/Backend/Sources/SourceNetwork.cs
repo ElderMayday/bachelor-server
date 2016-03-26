@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 
 using Assets.Backend.Auxiliary;
+using Assets.Backend.Deserializers;
 
 namespace Assets.Backend.Sources
 {
@@ -24,6 +25,7 @@ namespace Assets.Backend.Sources
             axis = _axis;
             thread.Name = "SourceNetwork";
             ipAddress = _ipAddress;
+            deserializer = new DeserializerCustom();
         }
 
         /// <summary>
@@ -50,19 +52,9 @@ namespace Assets.Backend.Sources
 
 
         /// <summary>
-        /// Тангаж
+        /// Направление
         /// </summary>
-        public double Pitch { get; protected set; }
-
-        /// <summary>
-        /// Крен
-        /// </summary>
-        public double Roll { get; protected set; }
-
-        /// <summary>
-        /// Рысканье
-        /// </summary>
-        public double Yaw { get; protected set; }
+        public Vector3 Direction { get; set; }
 
 
 
@@ -91,39 +83,23 @@ namespace Assets.Backend.Sources
                         byte[] bytes = new byte[1024];
                         int bytesLength = socketHandler.Receive(bytes);
 
-                        string stringOriginal = Encoding.UTF8.GetString(bytes, 0, bytesLength);
-                        string stringEdited;
-
-                        int index1 = stringOriginal.IndexOf('<');
-                        int index2 = stringOriginal.IndexOf('>');
-
-                        if ((index1 != -1) && (index2 != -1) && (index2 >= index1))
-                            stringEdited = stringOriginal.Substring(index1 + 1, index2 - index1 - 1);
-                        else
-                        {
-                            IsCorrect = false;
-                            throw new Exception("Block borders are not found");
-                        }
-
-                        string[] parameters = stringEdited.Split(';');
+                        string package = Encoding.UTF8.GetString(bytes, 0, bytesLength);
 
                         try
                         {
-                            Pitch = double.Parse(parameters[0], CultureInfo.InvariantCulture);
-                            Roll = double.Parse(parameters[1], CultureInfo.InvariantCulture);
-                            Yaw = double.Parse(parameters[2], CultureInfo.InvariantCulture);
-                            IsCorrect = true;
+                            Direction = deserializer.Do(package);
                         }
-                        catch (FormatException e)
+                        catch (Exception e)
                         {
                             IsCorrect = false;
                         }
 
+
                         switch (axis)
                         {
-                            case Axis.Pitch: Data = Pitch; break;
-                            case Axis.Roll: Data = Roll; break;
-                            case Axis.Yaw: Data = Yaw; break;
+                            case Axis.Pitch: Data = Direction.X; break;
+                            case Axis.Roll: Data = Direction.Y; break;
+                            case Axis.Yaw: Data = Direction.Z; break;
                         }
 
                         if (bytesLength == 0)
@@ -163,5 +139,10 @@ namespace Assets.Backend.Sources
         /// Выбранная ось
         /// </summary>
         protected Axis axis;
+
+        /// <summary>
+        /// Используемый десериализатор
+        /// </summary>
+        protected Deserializer deserializer;
     }
 }

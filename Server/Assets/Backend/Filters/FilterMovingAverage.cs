@@ -11,7 +11,7 @@ namespace Assets.Backend.Filters
         /// <summary>
         /// Создает фильтр скользящей средней
         /// </summary>
-        /// <param name="length"></param>
+        /// <param name="length">Порядок фильтра</param>
         public FilterMovingAverage(int length) : base(length)
         {
             double average = 1.0 / length;

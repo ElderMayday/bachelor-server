@@ -4,8 +4,15 @@
 
 namespace Assets.Backend.Noisers
 {
+    /// <summary>
+    /// Генератор шума по заданной функции
+    /// </summary>
     public class NoiserFunction : Noiser
     {
+        /// <summary>
+        /// Создает генератор по заданной функции
+        /// </summary>
+        /// <param name="_f">Функция распределения</param>
         public NoiserFunction(Func<double, double> _f)
         {
             f = _f;
@@ -20,6 +27,13 @@ namespace Assets.Backend.Noisers
             return result;
         }
 
+
+
+        /// <summary>
+        /// Совершает двоичный поиск корня по функции и значению функции
+        /// </summary>
+        /// <param name="yValue">значение функции</param>
+        /// <returns></returns>
         protected double binarySearch(double yValue)
         {
             double startValue = 10.0;
@@ -69,6 +83,11 @@ namespace Assets.Backend.Noisers
             return current;
         }
 
-        Func<double, double> f;
+
+
+        /// <summary>
+        /// Функция распределения
+        /// </summary>
+        protected Func<double, double> f;
     }
 }

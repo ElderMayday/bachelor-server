@@ -14,8 +14,8 @@ namespace Assets.Backend.Filters
         /// <summary>
         /// Создает однополярный фильтр
         /// </summary>
-        /// <param name="stage"></param>
-        /// <param name="x"></param>
+        /// <param name="stage">Порядок фильтра</param>
+        /// <param name="x">Параметр генерации коэффициентов</param>
         public FilterSinglePole(int stage, double x) : base(stage + 1, 1)
         {
             weightOutput[0] = Math.Pow(1 - x, stage);

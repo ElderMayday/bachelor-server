@@ -3,8 +3,16 @@
 
 namespace Assets.Backend.Noisers
 {
+    /// <summary>
+    /// Генератор равномерного шума
+    /// </summary>
     public class NoiserUniform : Noiser
     {
+        /// <summary>
+        /// Создает генератор равномерного шума
+        /// </summary>
+        /// <param name="_min">Минимальное значение</param>
+        /// <param name="_max">Максимальное значение</param>
         public NoiserUniform(double _min, double _max)
         {
             min = _min;
@@ -16,6 +24,16 @@ namespace Assets.Backend.Noisers
             return min + (max - min) * getRandom();
         }
 
-        protected double min, max;
+
+
+        /// <summary>
+        /// Минимальное значение
+        /// </summary>
+        protected double min;
+
+        /// <summary>
+        /// Максимальное значение
+        /// </summary>
+        protected double max;
     }
 }

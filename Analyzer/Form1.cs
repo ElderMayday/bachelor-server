@@ -184,9 +184,11 @@ namespace Analyzer
                     {
                         Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
                         Estimator estimatorMinkowski = new EstimatorMinkowski(pure, output, 2.0);
+                        Estimator estimatorDistance = new EstimatorDistance(pure, output);
 
-                        labelEstimate.Text = "Correlation = " + String.Format("{0:0.00}", estimatorCorrelation.Estimate()) +
-                            "\nMinkowski = " + String.Format("{0:0.00}", estimatorMinkowski.Estimate());
+                        labelEstimate.Text = "Коэффициент корреляции=" + String.Format("{0:0.000}", estimatorCorrelation.Estimate()) +
+                            "\nРасстояние Минковского=" + String.Format("{0:0.000}", estimatorMinkowski.Estimate()) +
+                            "\nРасстояние=" + String.Format("{0:0.000}", estimatorDistance.Estimate());
                     }
 
                     textEmulationRange.Enabled = checkBoxFast.Checked;
@@ -226,9 +228,11 @@ namespace Analyzer
 
                 Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
                 Estimator estimatorMinkowski = new EstimatorMinkowski(pure, output, 2.0);
+                Estimator estimatorDistance = new EstimatorDistance(pure, output);
 
-                labelEstimate.Text = "Correlation = " + String.Format("{0:0.00}", estimatorCorrelation.Estimate()) +
-                    "\nMinkowski = " + String.Format("{0:0.00}", estimatorMinkowski.Estimate());
+                labelEstimate.Text = "Коэффициент корреляции=" + String.Format("{0:0.000}", estimatorCorrelation.Estimate()) +
+                    "\nРасстояние Минковского=" + String.Format("{0:0.000}", estimatorMinkowski.Estimate()) +
+                    "\nРасстояние=" + String.Format("{0:0.000}", estimatorDistance.Estimate());
             }
         }
 

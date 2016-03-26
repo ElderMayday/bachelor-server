@@ -61,6 +61,8 @@ namespace Assets.Backend.Sources
         /// </summary>
         protected abstract void doThread();
 
+
+
         /// <summary>
         /// Генератор случайных чисел
         /// </summary>

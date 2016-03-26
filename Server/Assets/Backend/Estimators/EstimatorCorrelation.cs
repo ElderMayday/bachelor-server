@@ -8,10 +8,19 @@ namespace Assets.Backend.Estimators
 {
     public class EstimatorCorrelation : Estimator
     {
+        /// <summary>
+        /// Создает оценщика
+        /// </summary>
+        /// <param name="_pure">Исходные данные</param>
+        /// <param name="_output">Конечные данные</param>
         public EstimatorCorrelation(List<double> _pure, List<double> _output) : base(_pure, _output)
         {
         }
 
+        /// <summary>
+        /// Проводит оценку
+        /// </summary>
+        /// <returns>Величина метрики</returns>
         public override double Estimate()
         {
             double meanPure = pure.Average();

@@ -3,8 +3,16 @@
 
 namespace Assets.Backend.Noisers
 {
+    /// <summary>
+    /// Генератор шума по нормальному распределению
+    /// </summary>
     public class NoiserNormal : Noiser
     {
+        /// <summary>
+        /// Создает генератор шума по заданному распределению
+        /// </summary>
+        /// <param name="_mean">Математическое ожидание</param>
+        /// <param name="_deviation">Среднеквадратичное отклонение</param>
         public NoiserNormal(double _mean, double _deviation)
         {
             mean = _mean;
@@ -23,6 +31,16 @@ namespace Assets.Backend.Noisers
             return sum;
         }
 
-        protected double mean, deviation;
+
+
+        /// <summary>
+        /// Математическое ожидание
+        /// </summary>
+        protected double mean;
+
+        /// <summary>
+        /// Среднеквадратичное отклонение
+        /// </summary>
+        protected double deviation;
     }
 }

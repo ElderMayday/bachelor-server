@@ -22,6 +22,8 @@ namespace Assets.Backend.Sources
             thread.Name = "SourceEmulatorLinear";
         }
 
+
+
         /// <summary>
         /// Вычисляет следующее выходное значение
         /// </summary>

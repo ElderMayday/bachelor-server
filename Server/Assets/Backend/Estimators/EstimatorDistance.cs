@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
+using System.Linq;
+using System.Text;
 
 namespace Assets.Backend.Estimators
 {
-    public class EstimatorMinkowski : Estimator
+    public class EstimatorDistance : Estimator
     {
         /// <summary>
         /// Создает оценщика
         /// </summary>
         /// <param name="_pure">Исходные данные</param>
         /// <param name="_output">Конечные данные</param>
-        /// <param name="_order">Порядок расстояния Минковского</param>
-        public EstimatorMinkowski(List<double> _pure, List<double> _output, double _order) : base(_pure, _output)
+        public EstimatorDistance(List<double> _pure, List<double> _output) : base(_pure, _output)
         {
-            order = _order;
         }
 
         /// <summary>
@@ -26,18 +24,13 @@ namespace Assets.Backend.Estimators
         {
             double result = 0.0;
 
-            for (int i = 0; i < length; i++)
-                result += Math.Pow(Math.Abs(pure[i] - output[i]), order);
-
-            result = Math.Pow(result, 1.0 / order);
+            for (int i = 0; i < pure.Count; i++)
+            {
+                if (Math.Abs(pure[i] - output[i]) > result)
+                    result = Math.Abs(pure[i] - output[i]);
+            }
 
             return result;
         }
-
-
-        /// <summary>
-        /// Порядок расстояния Минковского
-        /// </summary>
-        protected double order;
     }
 }

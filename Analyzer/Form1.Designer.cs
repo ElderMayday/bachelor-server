@@ -139,7 +139,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.mainChart.Series.Add(series1);
-            this.mainChart.Size = new System.Drawing.Size(825, 381);
+            this.mainChart.Size = new System.Drawing.Size(989, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
             // 
@@ -151,7 +151,7 @@
             this.groupBoxPanel.Controls.Add(this.groupBoxSource);
             this.groupBoxPanel.Location = new System.Drawing.Point(12, 399);
             this.groupBoxPanel.Name = "groupBoxPanel";
-            this.groupBoxPanel.Size = new System.Drawing.Size(825, 279);
+            this.groupBoxPanel.Size = new System.Drawing.Size(989, 279);
             this.groupBoxPanel.TabIndex = 2;
             this.groupBoxPanel.TabStop = false;
             // 
@@ -167,7 +167,7 @@
             this.groupBoxFilter.Controls.Add(this.radioFilterGaussian);
             this.groupBoxFilter.Controls.Add(this.radioFilterSinglePole);
             this.groupBoxFilter.Controls.Add(this.radioFilterMovingAverage);
-            this.groupBoxFilter.Location = new System.Drawing.Point(658, 13);
+            this.groupBoxFilter.Location = new System.Drawing.Point(828, 13);
             this.groupBoxFilter.Name = "groupBoxFilter";
             this.groupBoxFilter.Size = new System.Drawing.Size(155, 260);
             this.groupBoxFilter.TabIndex = 3;
@@ -266,7 +266,7 @@
             this.groupBoxData.Controls.Add(this.labelData);
             this.groupBoxData.Location = new System.Drawing.Point(11, 13);
             this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Size = new System.Drawing.Size(134, 147);
+            this.groupBoxData.Size = new System.Drawing.Size(304, 161);
             this.groupBoxData.TabIndex = 2;
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "Данные";
@@ -282,7 +282,7 @@
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(9, 101);
+            this.buttonSwitch.Location = new System.Drawing.Point(9, 107);
             this.buttonSwitch.Name = "buttonSwitch";
             this.buttonSwitch.Size = new System.Drawing.Size(113, 33);
             this.buttonSwitch.TabIndex = 1;
@@ -303,7 +303,7 @@
             this.groupBoxSource.Controls.Add(this.radioSourceEmulatorSin);
             this.groupBoxSource.Controls.Add(this.groupBoxSourceNetwork);
             this.groupBoxSource.Controls.Add(this.radioSourceNetwork);
-            this.groupBoxSource.Location = new System.Drawing.Point(151, 13);
+            this.groupBoxSource.Location = new System.Drawing.Point(321, 13);
             this.groupBoxSource.Name = "groupBoxSource";
             this.groupBoxSource.Size = new System.Drawing.Size(501, 260);
             this.groupBoxSource.TabIndex = 1;
@@ -839,7 +839,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 690);
+            this.ClientSize = new System.Drawing.Size(1013, 690);
             this.Controls.Add(this.groupBoxPanel);
             this.Controls.Add(this.mainChart);
             this.Name = "Form1";
