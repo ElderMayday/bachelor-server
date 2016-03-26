@@ -45,10 +45,11 @@ namespace Analyzer
         public Form1()
         {
             InitializeComponent();
+        }
 
-            Filter filter = new FilterGaussian(3, 0.5);
-
-            maxPoints = 100;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            maxPoints = 10;
 
             source = null;
             filter = null;
@@ -58,11 +59,8 @@ namespace Analyzer
             aList = new List<double>();
             bList = new List<double>();
 
-            isWorking = false;      
-        }
+            isWorking = false;
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
             refreshChart();
 
             setGUI();

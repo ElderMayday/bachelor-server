@@ -8,11 +8,17 @@ using Assets.Backend.Auxiliary;
 
 namespace Assets.Scripts
 {
+    /// <summary>
+    /// Скрипт камеры
+    /// </summary>
     public class ScriptCamera : MonoBehaviour
     {
         private SourceNetwork source;
 
-        void Start()
+        /// <summary>
+        /// Метод запука скрипта
+        /// </summary>
+        private void Start()
         {
             List<IPAddress> ipList = AddressProvider.GetLocalIp();
 
@@ -23,7 +29,11 @@ namespace Assets.Scripts
             udpThread.Start();
         }
 
-        void Update()
+
+        /// <summary>
+        /// Метода-обработчик обновления кадра
+        /// </summary>
+        private void Update()
         {
             float smooth = 10.0f;
             float tiltAngle = 30.0f;

@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 
 
 namespace Assets.Backend.Auxiliary
@@ -54,6 +55,17 @@ namespace Assets.Backend.Auxiliary
                 return (x - 10.0) / 20.0 + 0.5; // f(10.0) = 0.5, f(20.0) = 1.0
 
             return 1.0;
+        }
+
+        /// <summary>
+        /// Определяет равенство двух величин с некоторой точностью (для тестирования)
+        /// </summary>
+        /// <param name="a">Первая величина</param>
+        /// <param name="b">Вторая величина</param>
+        /// <returns>Результат проверки на равенство</returns>
+        public static bool EqualValue(double a, double  b)
+        {
+            return Math.Abs(a - b) < 0.001;
         }
     }
 }

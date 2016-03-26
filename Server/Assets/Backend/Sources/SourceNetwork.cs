@@ -77,7 +77,7 @@ namespace Assets.Backend.Sources
 
                     IsWorking = true;
                     IsCorrect = true;
-
+                    
                     while (mustWork)
                     {
                         byte[] bytes = new byte[1024];
