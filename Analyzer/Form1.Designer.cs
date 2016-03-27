@@ -5,7 +5,7 @@
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        public System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
@@ -872,75 +872,75 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timerNetwork;
-        private System.Windows.Forms.Label labelData;
-        private System.Windows.Forms.DataVisualization.Charting.Chart mainChart;
-        private System.Windows.Forms.GroupBox groupBoxPanel;
-        private System.Windows.Forms.GroupBox groupBoxData;
-        private System.Windows.Forms.GroupBox groupBoxSource;
-        private System.Windows.Forms.RadioButton radioSourceEmulatorLinear;
-        private System.Windows.Forms.RadioButton radioSourceEmulatorSin;
-        private System.Windows.Forms.RadioButton radioSourceNetwork;
-        private System.Windows.Forms.Button buttonSwitch;
-        private System.Windows.Forms.GroupBox groupBoxFilter;
-        private System.Windows.Forms.RadioButton radioFilterSinglePole;
-        private System.Windows.Forms.RadioButton radioFilterMovingAverage;
-        private System.Windows.Forms.GroupBox groupBoxSourceSin;
-        private System.Windows.Forms.GroupBox groupBoxSourceNetwork;
-        private System.Windows.Forms.GroupBox groupBoxSourceLinear;
-        private System.Windows.Forms.RadioButton radioSourceYaw;
-        private System.Windows.Forms.RadioButton radioSourceRoll;
-        private System.Windows.Forms.RadioButton radioSourcePitch;
-        private System.Windows.Forms.ComboBox comboIp;
-        private System.Windows.Forms.Label labelInterface;
-        private System.Windows.Forms.TextBox textSourceSinAverage;
-        private System.Windows.Forms.TextBox textSourceSinAmplitude;
-        private System.Windows.Forms.Label labelSinAverage;
-        private System.Windows.Forms.Label labelSinAmplitude;
-        private System.Windows.Forms.GroupBox groupBoxNoise;
-        private System.Windows.Forms.Label labelLinearMax;
-        private System.Windows.Forms.Label labelLinearMin;
-        private System.Windows.Forms.TextBox textSourceLinearMax;
-        private System.Windows.Forms.TextBox textSourceLinearMin;
-        private System.Windows.Forms.RadioButton radioNoiserNormal;
-        private System.Windows.Forms.RadioButton radioNoiserUniform;
-        private System.Windows.Forms.RadioButton radioNoiserIdle;
-        private System.Windows.Forms.Label labelNoiseNormalDeviation;
-        private System.Windows.Forms.Label labelNoiseNormalMean;
-        private System.Windows.Forms.Label labelNoiseIdleMax;
-        private System.Windows.Forms.Label labelNoiseIdleMin;
-        private System.Windows.Forms.TextBox textNoiseNormalMean;
-        private System.Windows.Forms.TextBox textNoiseNormalDeviation;
-        private System.Windows.Forms.TextBox textNoiseUniformMax;
-        private System.Windows.Forms.TextBox textNoiseUniformMin;
-        private System.Windows.Forms.RadioButton radioNoiserFunction;
-        private System.Windows.Forms.RadioButton radioSourceEmulatorFourier;
-        private System.Windows.Forms.ListBox listBoxSourceFourierCoefficients;
-        private System.Windows.Forms.TextBox textSourceFourierCoefficients;
-        private System.Windows.Forms.Label labelNoiserFourierCoefficients;
-        private System.Windows.Forms.TextBox textSourceFourierHalfOffset;
-        private System.Windows.Forms.Label labelNoiserFourierHalfOffset;
-        private System.Windows.Forms.Button buttonSourceFourierAdd;
-        private System.Windows.Forms.GroupBox groupBoxSourceFourier;
-        private System.Windows.Forms.Button buttonSourceFourierClear;
-        private System.Windows.Forms.GroupBox groupBoxEmultaion;
-        private System.Windows.Forms.Label labelEmulatorStep;
-        private System.Windows.Forms.Label labelEmulationRange;
-        private System.Windows.Forms.TextBox textEmulationStep;
-        private System.Windows.Forms.TextBox textEmulationRange;
-        private System.Windows.Forms.CheckBox checkBoxFast;
-        private System.Windows.Forms.Label labelEmulatorInterval;
-        private System.Windows.Forms.TextBox textEmulationInterval;
-        private System.Windows.Forms.Label labelSinPeriod;
-        private System.Windows.Forms.TextBox textSourceSinPeriod;
-        private System.Windows.Forms.Label labelEstimate;
-        private System.Windows.Forms.Label labelFilterGaussianA;
-        private System.Windows.Forms.TextBox textFilterGaussianA;
-        private System.Windows.Forms.Label labelFilterSinglePoleK;
-        private System.Windows.Forms.TextBox textFilterSinglePoleK;
-        private System.Windows.Forms.RadioButton radioFilterGaussian;
-        private System.Windows.Forms.Label labelFilterLength;
-        private System.Windows.Forms.TextBox textFilterLength;
+        public System.Windows.Forms.Timer timerNetwork;
+        public System.Windows.Forms.Label labelData;
+        public System.Windows.Forms.DataVisualization.Charting.Chart mainChart;
+        public System.Windows.Forms.GroupBox groupBoxPanel;
+        public System.Windows.Forms.GroupBox groupBoxData;
+        public System.Windows.Forms.GroupBox groupBoxSource;
+        public System.Windows.Forms.RadioButton radioSourceEmulatorLinear;
+        public System.Windows.Forms.RadioButton radioSourceEmulatorSin;
+        public System.Windows.Forms.RadioButton radioSourceNetwork;
+        public System.Windows.Forms.Button buttonSwitch;
+        public System.Windows.Forms.GroupBox groupBoxFilter;
+        public System.Windows.Forms.RadioButton radioFilterSinglePole;
+        public System.Windows.Forms.RadioButton radioFilterMovingAverage;
+        public System.Windows.Forms.GroupBox groupBoxSourceSin;
+        public System.Windows.Forms.GroupBox groupBoxSourceNetwork;
+        public System.Windows.Forms.GroupBox groupBoxSourceLinear;
+        public System.Windows.Forms.RadioButton radioSourceYaw;
+        public System.Windows.Forms.RadioButton radioSourceRoll;
+        public System.Windows.Forms.RadioButton radioSourcePitch;
+        public System.Windows.Forms.ComboBox comboIp;
+        public System.Windows.Forms.Label labelInterface;
+        public System.Windows.Forms.TextBox textSourceSinAverage;
+        public System.Windows.Forms.TextBox textSourceSinAmplitude;
+        public System.Windows.Forms.Label labelSinAverage;
+        public System.Windows.Forms.Label labelSinAmplitude;
+        public System.Windows.Forms.GroupBox groupBoxNoise;
+        public System.Windows.Forms.Label labelLinearMax;
+        public System.Windows.Forms.Label labelLinearMin;
+        public System.Windows.Forms.TextBox textSourceLinearMax;
+        public System.Windows.Forms.TextBox textSourceLinearMin;
+        public System.Windows.Forms.RadioButton radioNoiserNormal;
+        public System.Windows.Forms.RadioButton radioNoiserUniform;
+        public System.Windows.Forms.RadioButton radioNoiserIdle;
+        public System.Windows.Forms.Label labelNoiseNormalDeviation;
+        public System.Windows.Forms.Label labelNoiseNormalMean;
+        public System.Windows.Forms.Label labelNoiseIdleMax;
+        public System.Windows.Forms.Label labelNoiseIdleMin;
+        public System.Windows.Forms.TextBox textNoiseNormalMean;
+        public System.Windows.Forms.TextBox textNoiseNormalDeviation;
+        public System.Windows.Forms.TextBox textNoiseUniformMax;
+        public System.Windows.Forms.TextBox textNoiseUniformMin;
+        public System.Windows.Forms.RadioButton radioNoiserFunction;
+        public System.Windows.Forms.RadioButton radioSourceEmulatorFourier;
+        public System.Windows.Forms.ListBox listBoxSourceFourierCoefficients;
+        public System.Windows.Forms.TextBox textSourceFourierCoefficients;
+        public System.Windows.Forms.Label labelNoiserFourierCoefficients;
+        public System.Windows.Forms.TextBox textSourceFourierHalfOffset;
+        public System.Windows.Forms.Label labelNoiserFourierHalfOffset;
+        public System.Windows.Forms.Button buttonSourceFourierAdd;
+        public System.Windows.Forms.GroupBox groupBoxSourceFourier;
+        public System.Windows.Forms.Button buttonSourceFourierClear;
+        public System.Windows.Forms.GroupBox groupBoxEmultaion;
+        public System.Windows.Forms.Label labelEmulatorStep;
+        public System.Windows.Forms.Label labelEmulationRange;
+        public System.Windows.Forms.TextBox textEmulationStep;
+        public System.Windows.Forms.TextBox textEmulationRange;
+        public System.Windows.Forms.CheckBox checkBoxFast;
+        public System.Windows.Forms.Label labelEmulatorInterval;
+        public System.Windows.Forms.TextBox textEmulationInterval;
+        public System.Windows.Forms.Label labelSinPeriod;
+        public System.Windows.Forms.TextBox textSourceSinPeriod;
+        public System.Windows.Forms.Label labelEstimate;
+        public System.Windows.Forms.Label labelFilterGaussianA;
+        public System.Windows.Forms.TextBox textFilterGaussianA;
+        public System.Windows.Forms.Label labelFilterSinglePoleK;
+        public System.Windows.Forms.TextBox textFilterSinglePoleK;
+        public System.Windows.Forms.RadioButton radioFilterGaussian;
+        public System.Windows.Forms.Label labelFilterLength;
+        public System.Windows.Forms.TextBox textFilterLength;
     }
 }
 
