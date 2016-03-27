@@ -94,7 +94,6 @@ namespace Assets.Backend.Sources
                             IsCorrect = false;
                         }
 
-
                         switch (axis)
                         {
                             case Axis.Pitch: Data = Direction.X; break;

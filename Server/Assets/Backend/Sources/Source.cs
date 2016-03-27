@@ -14,6 +14,7 @@ namespace Assets.Backend.Sources
         /// </summary>
         public Source()
         {
+            dataLock = new object();
             thread = new Thread(doThread);
             mustWork = true;
             random = new Random();
@@ -42,17 +43,29 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Параметр - выходные данные
         /// </summary>
-        public double Data { get; protected set; }
+        public double Data
+        {
+            get { lock (dataLock) { return data; } }
+            set { lock (dataLock) { data = value; } }
+        }
 
         /// <summary>
         /// Параметр - флаг работы потока
         /// </summary>
-        public bool IsWorking { get; protected set; }
+        public bool IsWorking
+        {
+            get { lock (dataLock) { return isWorking; } }
+            set { lock (dataLock) { isWorking = value; } }
+        }
 
         /// <summary>
         /// Параметр - флаг корректности данных
         /// </summary>
-        public bool IsCorrect { get; protected set; }
+        public bool IsCorrect
+        {
+            get { lock (dataLock) { return isCorrect; } }
+            set { lock (dataLock) { isCorrect = value; } }
+        }
 
 
 
@@ -62,6 +75,26 @@ namespace Assets.Backend.Sources
         protected abstract void doThread();
 
 
+
+        /// <summary>
+        /// Объект блокировки данных
+        /// </summary>
+        protected object dataLock;
+
+        /// <summary>
+        /// Поле данных
+        /// </summary>
+        protected double data;
+
+        /// <summary>
+        /// Поле флага работы
+        /// </summary>
+        protected bool isWorking;
+
+        /// <summary>
+        /// Поле флага корректности данных
+        /// </summary>
+        protected bool isCorrect;
 
         /// <summary>
         /// Генератор случайных чисел

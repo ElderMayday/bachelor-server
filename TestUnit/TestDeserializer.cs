@@ -9,7 +9,7 @@ namespace TestUnit
     public class TestDeserializer
     {
         [TestMethod]
-        public void TestDeserializer1()
+        public void DeserializerCustom_Do()
         {
             Deserializer deserializer = new DeserializerCustom();
 

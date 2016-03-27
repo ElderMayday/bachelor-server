@@ -8,7 +8,7 @@ namespace TestUnit
     public class TestExtraMath
     {
         [TestMethod]
-        public void TestFactorial1()
+        public void ExtraMath_Factorial_1()
         {
             int result = ExtraMath.Factorial(0);
 
@@ -16,7 +16,7 @@ namespace TestUnit
         }
 
         [TestMethod]
-        public void TestFactorial2()
+        public void ExtraMath_Factorial_2()
         {
             int result = ExtraMath.Factorial(1);
 
@@ -24,7 +24,7 @@ namespace TestUnit
         }
 
         [TestMethod]
-        public void TestFactorial3()
+        public void ExtraMath_Factorial_3()
         {
             int result = ExtraMath.Factorial(4);
 
@@ -32,7 +32,7 @@ namespace TestUnit
         }
 
         [TestMethod]
-        public void TestCombination1()
+        public void ExtraMath_Combination()
         {
             int result = ExtraMath.Combination(3, 2);
 

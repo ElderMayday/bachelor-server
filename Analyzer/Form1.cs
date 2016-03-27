@@ -49,7 +49,7 @@ namespace Analyzer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            maxPoints = 10;
+            maxPoints = 100;
 
             source = null;
             filter = null;
@@ -129,8 +129,7 @@ namespace Analyzer
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (source != null)
-                if (source.IsWorking)
-                    source.Stop();
+                source.Stop();
 
             if (udpThread != null)
                 udpThread.Stop();
