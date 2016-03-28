@@ -1,11 +1,7 @@
 ﻿namespace Analyzer
 {
-    partial class Form1
+    partial class AnalyzerForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        public System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -751,10 +747,12 @@
             // radioSourceEmulatorSin
             // 
             this.radioSourceEmulatorSin.AutoSize = true;
+            this.radioSourceEmulatorSin.Checked = true;
             this.radioSourceEmulatorSin.Location = new System.Drawing.Point(6, 36);
             this.radioSourceEmulatorSin.Name = "radioSourceEmulatorSin";
             this.radioSourceEmulatorSin.Size = new System.Drawing.Size(162, 17);
             this.radioSourceEmulatorSin.TabIndex = 1;
+            this.radioSourceEmulatorSin.TabStop = true;
             this.radioSourceEmulatorSin.Text = "Эмулятор синусоидальный";
             this.radioSourceEmulatorSin.UseVisualStyleBackColor = true;
             this.radioSourceEmulatorSin.CheckedChanged += new System.EventHandler(this.radioSourceEmulatorSin_CheckedChanged);
@@ -835,14 +833,14 @@
             this.radioSourceNetwork.UseVisualStyleBackColor = true;
             this.radioSourceNetwork.CheckedChanged += new System.EventHandler(this.radioSourceNetwork_CheckedChanged);
             // 
-            // Form1
+            // AnalyzerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 690);
             this.Controls.Add(this.groupBoxPanel);
             this.Controls.Add(this.mainChart);
-            this.Name = "Form1";
+            this.Name = "AnalyzerForm";
             this.Text = "Analyzer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -941,6 +939,7 @@
         public System.Windows.Forms.RadioButton radioFilterGaussian;
         public System.Windows.Forms.Label labelFilterLength;
         public System.Windows.Forms.TextBox textFilterLength;
+        private System.ComponentModel.IContainer components;
     }
 }
 

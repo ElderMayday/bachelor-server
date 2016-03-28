@@ -94,7 +94,7 @@
     <Compile Include="Assets\Backend\Noisers\NoiserIdle.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserNormal.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserUniform.cs" />
-    <Compile Include="Assets\Backend\Auxiliary\Axis.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\RotationAxis.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorLinear.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorSin.cs" />

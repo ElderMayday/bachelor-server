@@ -36,7 +36,10 @@ namespace Assets.Backend.Sources
         public virtual void Stop()
         {
             mustWork = false;
-            thread.Join();
+
+            if (IsWorking == true)
+                thread.Join();
+
             IsWorking = false;
         }
         

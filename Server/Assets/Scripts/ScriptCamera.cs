@@ -22,7 +22,7 @@ namespace Assets.Scripts
         {
             List<IPAddress> ipList = AddressProvider.GetLocalIp();
 
-            source = new SourceNetwork(Axis.Yaw, ipList[ipList.Count - 1]);
+            source = new SourceNetwork(RotationAxis.Yaw, ipList[ipList.Count - 1]);
             source.Start();
 
             UdpThread udpThread = new UdpThread();

@@ -19,7 +19,7 @@ namespace Assets.Backend.Sources
         /// </summary>
         /// <param name="_axis">выбранная ось вращения</param>
         /// <param name="_ipAddress">IP-адрес сервера</param>
-        public SourceNetwork(Axis _axis, IPAddress _ipAddress) : base()
+        public SourceNetwork(RotationAxis _axis, IPAddress _ipAddress) : base()
         {
             IsWorking = false;
             axis = _axis;
@@ -96,9 +96,9 @@ namespace Assets.Backend.Sources
 
                         switch (axis)
                         {
-                            case Axis.Pitch: Data = Direction.X; break;
-                            case Axis.Roll: Data = Direction.Y; break;
-                            case Axis.Yaw: Data = Direction.Z; break;
+                            case RotationAxis.Pitch: Data = Direction.X; break;
+                            case RotationAxis.Roll: Data = Direction.Y; break;
+                            case RotationAxis.Yaw: Data = Direction.Z; break;
                         }
 
                         if (bytesLength == 0)
@@ -137,7 +137,7 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Выбранная ось
         /// </summary>
-        protected Axis axis;
+        protected RotationAxis axis;
 
         /// <summary>
         /// Используемый десериализатор

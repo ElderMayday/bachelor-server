@@ -6,7 +6,7 @@ namespace Assets.Backend.Auxiliary
     /// <summary>
     /// Ось вращения
     /// </summary>
-    public enum Axis
+    public enum RotationAxis
     {
         Pitch,
         Roll,
