@@ -89,10 +89,12 @@
     <Compile Include="Assets\Backend\Filters\FilterIIR.cs" />
     <Compile Include="Assets\Backend\Filters\FilterMovingAverage.cs" />
     <Compile Include="Assets\Backend\Filters\FilterSinglePole.cs" />
+    <Compile Include="Assets\Backend\Filters\FilterType.cs" />
     <Compile Include="Assets\Backend\Noisers\Noiser.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserFunction.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserIdle.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserNormal.cs" />
+    <Compile Include="Assets\Backend\Noisers\NoiserType.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserUniform.cs" />
     <Compile Include="Assets\Backend\Auxiliary\RotationAxis.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Assets\Backend\Sources\SourceNetwork.cs" />
     <Compile Include="Assets\Backend\Sources\Source.cs" />
     <Compile Include="Assets\Backend\Auxiliary\UdpThread.cs" />
+    <Compile Include="Assets\Backend\Sources\SourceType.cs" />
     <Compile Include="Assets\Scripts\ScriptCamera.cs" />
   </ItemGroup>
   <ItemGroup />

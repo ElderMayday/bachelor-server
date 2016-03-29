@@ -1,4 +1,5 @@
 ﻿using Assets.Backend.Auxiliary;
+using Assets.Backend.Noisers;
 using System.Threading;
 
 
@@ -15,8 +16,9 @@ namespace Assets.Backend.Sources
         /// </summary>
         /// <param name="_noiser"></param>
         /// <param name="_interval"></param>
-        public SourceEmulator(EmulatorSettings _emulatorSettings)
+        public SourceEmulator(EmulatorSettings _emulatorSettings, Noiser _noiser)
         {
+            noiser = _noiser;
             settings = _emulatorSettings;
             IsCorrect = true;
         }
@@ -27,7 +29,7 @@ namespace Assets.Backend.Sources
         public double DataPure
         {
             get { return dataPure; }
-            protected set { dataPure = value; Data = value + settings.Noiser.Get(); }
+            protected set { dataPure = value; Data = value + noiser.Get(); }
         }
 
         /// <summary>
@@ -89,6 +91,8 @@ namespace Assets.Backend.Sources
         /// </summary>
         protected EmulatorSettings settings;
 
+        protected Noiser noiser;
+        
         /// <summary>
         /// Данные без добавления шума
         /// </summary>

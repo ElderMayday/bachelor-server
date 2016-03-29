@@ -16,7 +16,7 @@ namespace Assets.Backend.Sources
         /// <param name="_halfOffset"></param>
         /// <param name="_aList"></param>
         /// <param name="_bList"></param>
-        public SourceEmulatorFourier(EmulatorSettings _emulatorSettings, double _halfOffset, List<double> _aList, List<double> _bList) : base(_emulatorSettings)
+        public SourceEmulatorFourier(EmulatorSettings _emulatorSettings, Noiser _noiser, double _halfOffset, List<double> _aList, List<double> _bList) : base(_emulatorSettings, _noiser)
         {
             if (_aList.Count != _bList.Count)
                 throw new ExceptionServer("Coefficient lists length mismatch");

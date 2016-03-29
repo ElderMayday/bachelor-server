@@ -18,9 +18,9 @@ C:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEngine.dll
 C:\Bachelor\bachelor-server\Analyzer\bin\Debug\Assembly-CSharp.pdb
 C:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEngine.xml
 C:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.csprojResolveAssemblyReference.cache
-C:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.Form1.resources
 C:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.Properties.Resources.resources
 C:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.csproj.GenerateResource.Cache
 C:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.exe
 C:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.pdb
 D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.AnalyzerForm.resources
+C:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.AnalyzerForm.resources

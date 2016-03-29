@@ -7,3 +7,12 @@ D:\Bachelor\bachelor-server\TestUnit\bin\Debug\Assembly-CSharp.dll
 D:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.dll
 D:\Bachelor\bachelor-server\TestUnit\bin\Debug\Assembly-CSharp.pdb
 D:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.xml
+C:\Bachelor\bachelor-server\TestUnit\bin\Debug\TestUnit.dll
+C:\Bachelor\bachelor-server\TestUnit\bin\Debug\TestUnit.pdb
+C:\Bachelor\bachelor-server\TestUnit\bin\Debug\Assembly-CSharp.dll
+C:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.dll
+C:\Bachelor\bachelor-server\TestUnit\bin\Debug\Assembly-CSharp.pdb
+C:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.xml
+C:\Bachelor\bachelor-server\TestUnit\obj\Debug\TestUnit.csprojResolveAssemblyReference.cache
+C:\Bachelor\bachelor-server\TestUnit\obj\Debug\TestUnit.dll
+C:\Bachelor\bachelor-server\TestUnit\obj\Debug\TestUnit.pdb

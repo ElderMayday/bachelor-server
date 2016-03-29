@@ -2,6 +2,7 @@
 using System.Threading;
 
 using Assets.Backend.Auxiliary;
+using Assets.Backend.Noisers;
 
 namespace Assets.Backend.Sources
 {
@@ -14,7 +15,7 @@ namespace Assets.Backend.Sources
         /// <param name="_min"></param>
         /// <param name="_max"></param>
         /// <param name="_step"></param>
-        public SourceEmulatorLinear(EmulatorSettings _emulatorSettings, double _min, double _max) : base(_emulatorSettings)
+        public SourceEmulatorLinear(EmulatorSettings _emulatorSettings, Noiser _noiser, double _min, double _max) : base(_emulatorSettings, _noiser)
         {
             min = _min;
             max = _max;

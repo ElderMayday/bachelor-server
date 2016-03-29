@@ -2,7 +2,7 @@
 using System.Threading;
 
 using Assets.Backend.Auxiliary;
-
+using Assets.Backend.Noisers;
 
 
 namespace Assets.Backend.Sources
@@ -16,7 +16,7 @@ namespace Assets.Backend.Sources
         /// <param name="_step"></param>
         /// <param name="_amplitude"></param>
         /// <param name="_average"></param>
-        public SourceEmulatorSin(EmulatorSettings _emulatorSettings, double _amplitude, double _average, double _period) : base(_emulatorSettings)
+        public SourceEmulatorSin(EmulatorSettings _emulatorSettings, Noiser _noiser, double _amplitude, double _average, double _period) : base(_emulatorSettings, _noiser)
         {
             amplitude = _amplitude;
             average = _average;

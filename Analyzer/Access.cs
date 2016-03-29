@@ -31,8 +31,6 @@ namespace Analyzer
             bList = new List<double>();
 
             IsWorking = false;
-
-            refreshChart();
         }
 
         public List<IPAddress> GetLocalIp()
@@ -49,16 +47,13 @@ namespace Analyzer
                 udpThread.Stop();
         }
 
-        public void Switch(bool _fast, int _interval, double _range, double _step, out string estimate)
+        public void Switch(StrategiesParameters parameters, out string estimate)
         {
-            fast = _fast;
-            interval = _interval;
-            range = _range;
-            step = _step;
+            emulatorSettings = parameters.EmulatorSetting;
 
             estimate = "Нет оценки";
 
-            if (!fast)
+            if (!emulatorSettings.Fast)
             {
                 if (IsWorking == false)
                 {
@@ -66,7 +61,7 @@ namespace Analyzer
 
                     IsWorking = true;
 
-                    setStrategies();
+                    setStrategies(parameters);
 
                     refreshChart();
 
@@ -95,13 +90,13 @@ namespace Analyzer
             {
                 double x = 0.0;
 
-                setStrategies();
+                setStrategies(parameters);
 
                 time = 0.0;
 
                 refreshChart();
 
-                while (x <= range)
+                while (x <= emulatorSettings.Range)
                 {
                     double currentInput, currentOutput, currentPure;
 
@@ -120,7 +115,7 @@ namespace Analyzer
                     mainChart.Series["output"].Points.AddXY(x, currentOutput);
                     mainChart.Series["pure"].Points.AddXY(x, currentPure);
 
-                    x += interval / 1000.0;
+                    x += emulatorSettings.Interval / 1000.0;
                 }
 
                 Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
@@ -161,7 +156,7 @@ namespace Analyzer
                         if (IsEmulation)
                             mainChart.Series["pure"].Points.AddXY(time, currentPure);
 
-                        time += interval / 1000.0;
+                        time += emulatorSettings.Interval / 1000.0;
                     }
                     else
                     {
@@ -226,75 +221,64 @@ namespace Analyzer
             mainChart.Series["pure"].BorderWidth = 2;
 
             mainChart.ChartAreas[0].AxisX.Minimum = Math.Round(time, 1);
-            mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * (double)interval / 1000.0, 1);
+            mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * (double) emulatorSettings.Interval / 1000.0, 1);
             mainChart.ChartAreas[0].AxisY.Minimum = -100;
             mainChart.ChartAreas[0].AxisY.Maximum = 100;
         }
 
-        private void setStrategies()
+        private void setStrategies(StrategiesParameters parameters)
         {
             input = new List<double>();
             output = new List<double>();
             pure = new List<double>();
             noise = new List<double>();
 
-            if (form.radioFilterMovingAverage.Checked)
-                filter = new FilterMovingAverage(int.Parse(form.textFilterLength.Text));
-            else if (form.radioFilterSinglePole.Checked)
-                filter = new FilterSinglePole(int.Parse(form.textFilterLength.Text),
-                    double.Parse(form.textFilterSinglePoleK.Text, CultureInfo.InvariantCulture));
-            else
-                filter = new FilterGaussian(int.Parse(form.textFilterLength.Text),
-                    double.Parse(form.textFilterGaussianA.Text, CultureInfo.InvariantCulture));
+            switch (parameters.Filter)
+            {
+                case FilterType.MovingAverage:
+                    filter = new FilterMovingAverage(parameters.FilterLength);                       break;
+                case FilterType.SignlePole:
+                    filter = new FilterSinglePole(parameters.FilterLength, parameters.SinglePoleK);  break;
+                case FilterType.Gaussian:
+                    filter = new FilterGaussian(parameters.FilterLength, parameters.GaussianA);      break;
+            }
+               
+            switch (parameters.Noiser)
+            {
+                case NoiserType.Idle:
+                    noiser = new NoiserIdle();                                                    break;
+                case NoiserType.Uniform:
+                    noiser = new NoiserUniform(parameters.UniformMin, parameters.UniformMax);     break;
+                case NoiserType.Normal:
+                    noiser = new NoiserNormal(parameters.NormalMean, parameters.NormalDeviation); break;
+                case NoiserType.Function:
+                    noiser = new NoiserFunction(ExtraMath.PieceWiseExample1);                     break;
+            }
 
-            if (form.radioNoiserIdle.Checked)
-                noiser = new NoiserIdle();
-            else if (form.radioNoiserUniform.Checked)
-                noiser = new NoiserUniform(double.Parse(form.textNoiseUniformMin.Text, CultureInfo.InvariantCulture),
-                    double.Parse(form.textNoiseUniformMax.Text, CultureInfo.InvariantCulture));
-            else if (form.radioNoiserNormal.Checked)
-                noiser = new NoiserNormal(double.Parse(form.textNoiseNormalMean.Text, CultureInfo.InvariantCulture),
-                    double.Parse(form.textNoiseNormalDeviation.Text, CultureInfo.InvariantCulture));
-            else if (form.radioNoiserFunction.Checked)
-                noiser = new NoiserFunction(ExtraMath.PieceWiseExample1);
-
-            if (form.radioSourceNetwork.Checked)
+            if (parameters.Source == SourceType.Network)
             {
                 udpThread = new UdpThread();
                 udpThread.Start();
 
                 IsEmulation = false;
 
-                if (form.radioSourcePitch.Checked)
-                    source = new SourceNetwork(RotationAxis.Pitch, IPAddress.Parse(form.comboIp.Text));
-                else if (form.radioSourceRoll.Checked)
-                    source = new SourceNetwork(RotationAxis.Roll, IPAddress.Parse(form.comboIp.Text));
-                else if (form.radioSourceYaw.Checked)
-                    source = new SourceNetwork(RotationAxis.Yaw, IPAddress.Parse(form.comboIp.Text));
+                source = new SourceNetwork(parameters.Axis, parameters.IP);
             }
             else
             {
-                EmulatorSettings settings = new EmulatorSettings(noiser, interval, step, fast, range);
-
                 IsEmulation = true;
 
-                if (form.radioSourceEmulatorSin.Checked)
+                switch (parameters.Source)
                 {
-                    source = new SourceEmulatorSin(settings,
-                        double.Parse(form.textSourceSinAmplitude.Text, CultureInfo.InvariantCulture),
-                        double.Parse(form.textSourceSinAverage.Text, CultureInfo.InvariantCulture),
-                        double.Parse(form.textSourceSinPeriod.Text, CultureInfo.InvariantCulture));
-                }
-                else if (form.radioSourceEmulatorLinear.Checked)
-                {
-                    source = new SourceEmulatorLinear(settings, double.Parse(form.textSourceLinearMin.Text, CultureInfo.InvariantCulture),
-                        double.Parse(form.textSourceLinearMax.Text, CultureInfo.InvariantCulture));
-                }
-                else if (form.radioSourceEmulatorFourier.Checked)
-                {
-                    source = new SourceEmulatorFourier(settings,
-                        double.Parse(form.textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture),
-                        aList, bList);
+                    case SourceType.Sin:
+                        source = new SourceEmulatorSin(emulatorSettings, noiser, parameters.SinAmplitude, parameters.SinAverage, parameters.SinPeriod);
+                        break;
+                    case SourceType.Linear:
+                        source = new SourceEmulatorLinear(emulatorSettings, noiser, parameters.LinearMin, parameters.LinearMax);
+                        break;
+                    case SourceType.Fourier:
+                        source = new SourceEmulatorFourier(emulatorSettings, noiser, parameters.HalftOsset, aList, bList);
+                        break;
                 }
             }
         }
@@ -320,10 +304,7 @@ namespace Analyzer
         protected Noiser noiser;
         protected UdpThread udpThread;
 
-        protected int interval;
-        protected double range;
-        protected bool fast;
-        protected double step;
+        protected EmulatorSettings emulatorSettings;
 
         protected int maxPoints;
         protected int currentPoints;
@@ -331,8 +312,6 @@ namespace Analyzer
 
         public bool IsWorking { get; protected set; }
         public bool IsEmulation { get; protected set; }
-
-
 
         public List<double> aList { get; protected set; }
         public List<double> bList { get; protected set; }

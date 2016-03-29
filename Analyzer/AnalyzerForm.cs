@@ -57,18 +57,20 @@ namespace Analyzer
 
         private void buttonSwitch_Click(object sender, EventArgs e)
         {
-            bool fast = checkBoxFast.Checked && !radioSourceNetwork.Checked;
-            int interval = int.Parse(textEmulationInterval.Text);
-            double range = double.Parse(textEmulationRange.Text, CultureInfo.InvariantCulture);
-            double step = double.Parse(textEmulationStep.Text, CultureInfo.InvariantCulture);
+            EmulatorSettings emulatorSettings = new EmulatorSettings();
 
-            if (!fast)
+            emulatorSettings.Fast = checkBoxFast.Checked && !radioSourceNetwork.Checked;
+            emulatorSettings.Interval = int.Parse(textEmulationInterval.Text);
+            emulatorSettings.Range = double.Parse(textEmulationRange.Text, CultureInfo.InvariantCulture);
+            emulatorSettings.Step = double.Parse(textEmulationStep.Text, CultureInfo.InvariantCulture);
+
+            if (!emulatorSettings.Fast)
             {
                 if (!access.IsWorking)
                 {
                     buttonSwitch.Text = "Выключить";
                     timerNetwork.Enabled = true;
-                    timerNetwork.Interval = interval;
+                    timerNetwork.Interval = emulatorSettings.Interval;
 
                     switchControls(false);
                 }
@@ -87,9 +89,81 @@ namespace Analyzer
 
             }
 
+            StrategiesParameters parameters = new StrategiesParameters();
+
+            parameters.FilterLength = int.Parse(textFilterLength.Text);
+
+            if (radioFilterMovingAverage.Checked)
+                parameters.Filter = FilterType.MovingAverage;
+            else if (radioFilterSinglePole.Checked)
+            {
+                parameters.Filter = FilterType.SignlePole;
+                parameters.SinglePoleK = double.Parse(textFilterSinglePoleK.Text, CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                parameters.Filter = FilterType.Gaussian;
+                parameters.GaussianA = double.Parse(textFilterGaussianA.Text, CultureInfo.InvariantCulture);
+            }
+
+            if (radioNoiserIdle.Checked)
+            {
+                parameters.Noiser = NoiserType.Idle;
+            }
+            else if (radioNoiserUniform.Checked)
+            {
+                parameters.Noiser = NoiserType.Uniform;
+                parameters.UniformMin = double.Parse(textNoiseUniformMin.Text, CultureInfo.InvariantCulture);
+                parameters.UniformMax = double.Parse(textNoiseUniformMax.Text, CultureInfo.InvariantCulture);
+            }
+            else if (radioNoiserNormal.Checked)
+            {
+                parameters.Noiser = NoiserType.Normal;
+                parameters.NormalMean = double.Parse(textNoiseNormalMean.Text, CultureInfo.InvariantCulture);
+                parameters.NormalDeviation = double.Parse(textNoiseNormalDeviation.Text, CultureInfo.InvariantCulture);
+            }
+            else
+                parameters.Noiser = NoiserType.Function;
+
+            if (radioSourceNetwork.Checked)
+            {
+                parameters.Source = SourceType.Network;
+                parameters.IP = IPAddress.Parse(comboIp.Text);
+
+                if (radioSourcePitch.Checked)
+                    parameters.Axis = RotationAxis.Pitch;
+                else if (radioSourceRoll.Checked)
+                    parameters.Axis = RotationAxis.Roll;
+                else
+                    parameters.Axis = RotationAxis.Yaw;
+            }
+            else if (radioSourceEmulatorSin.Checked)
+            {
+                parameters.Source = SourceType.Sin;
+
+                parameters.SinAmplitude = double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture);
+                parameters.SinAverage = double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture);
+                parameters.SinPeriod = double.Parse(textSourceSinPeriod.Text, CultureInfo.InvariantCulture);
+            }
+            else if (radioSourceEmulatorLinear.Checked)
+            {
+                parameters.Source = SourceType.Linear;
+
+                parameters.LinearMin = double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture);
+                parameters.LinearMax = double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                parameters.Source = SourceType.Fourier;
+
+                parameters.HalftOsset = double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture);
+            }
+
+            parameters.EmulatorSetting = emulatorSettings;
+
             string estimate;
 
-            access.Switch(fast, interval, range, step, out estimate);
+            access.Switch(parameters, out estimate);
 
             labelEstimate.Text = estimate;
         }

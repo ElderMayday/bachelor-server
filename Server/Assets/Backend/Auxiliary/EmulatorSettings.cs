@@ -9,9 +9,14 @@ namespace Assets.Backend.Auxiliary
     /// </summary>
     public class EmulatorSettings
     {
-        public EmulatorSettings(Noiser _noiser, int _interval, double _step, bool _fast, double _range)
+
+        public EmulatorSettings()
         {
-            Noiser = _noiser;
+
+        }
+
+        public EmulatorSettings(int _interval, double _step, bool _fast, double _range)
+        {
             Interval = _interval;
             Step = _step;
             Fast = _fast;
@@ -21,28 +26,23 @@ namespace Assets.Backend.Auxiliary
 
 
         /// <summary>
-        /// Параметр - источние шума
-        /// </summary>
-        public Noiser Noiser { get; protected set; }
-
-        /// <summary>
         /// Интервал обновления данных
         /// </summary>
-        public int Interval { get; protected set; }
+        public int Interval { get; set; }
         
         /// <summary>
         /// Шаг изменения аргумента
         /// </summary>
-        public double Step { get; protected set; }
+        public double Step { get; set; }
 
         /// <summary>
         /// Флаг быстрой эмуляции
         /// </summary>
-        public bool Fast { get; protected set; }
+        public bool Fast { get; set; }
 
         /// <summary>
         /// Предел аргумента (для быстрой эмуляции)
         /// </summary>
-        public double Range { get; protected set; }
+        public double Range { get; set; }
     }
 }
