@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Analyzer
 {
+    /// <summary>
+    /// Параметры запуска анализа
+    /// </summary>
     public class StrategiesParameters
     {
         public FilterType Filter { get; set; }
@@ -26,6 +29,8 @@ namespace Analyzer
         public double LinearMin { get; set; }
         public double LinearMax { get; set; }
         public double HalftOsset { get; set; }
+        public List<double> aList { get; set; }
+        public List<double> bList { get; set; }
 
         public NoiserType Noiser { get; set; }
         public double UniformMin { get; set; }

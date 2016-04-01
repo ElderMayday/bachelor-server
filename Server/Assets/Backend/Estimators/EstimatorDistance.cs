@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Backend.Estimators
 {
-    public class EstimatorDistance : Estimator
+    public sealed class EstimatorDistance : Estimator
     {
         /// <summary>
         /// Создает оценщика

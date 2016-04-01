@@ -6,7 +6,7 @@ using Assets.Backend.Noisers;
 
 namespace Assets.Backend.Sources
 {
-    public class SourceEmulatorLinear : SourceEmulator
+    public sealed class SourceEmulatorLinear : SourceEmulator
     {
         /// <summary>
         /// Создает линейный источник-эмулятор данных
@@ -66,16 +66,16 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Сейчас выходное значение увеличивается
         /// </summary>
-        protected bool isIncreasing = true;
+        private bool isIncreasing = true;
 
         /// <summary>
         /// Максимальное значение
         /// </summary>
-        protected double max;
+        private double max;
 
         /// <summary>
         /// Минимальное значение
         /// </summary>
-        protected double min;
+        private double min;
     }
 }

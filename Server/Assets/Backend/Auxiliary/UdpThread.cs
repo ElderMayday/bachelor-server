@@ -43,7 +43,7 @@ namespace Assets.Backend.Auxiliary
         /// <summary>
         /// Флаг работы потока
         /// </summary>
-        public bool isWorking { get; protected set; }
+        public bool IsWorking { get; protected set; }
 
 
 
@@ -56,7 +56,7 @@ namespace Assets.Backend.Auxiliary
 
             try
             {
-                isWorking = true;
+                IsWorking = true;
 
                 byte[] bytes = Encoding.UTF8.GetBytes("<server-request>");
 
@@ -78,7 +78,7 @@ namespace Assets.Backend.Auxiliary
             }
             finally
             {
-                isWorking = false;
+                IsWorking = false;
             }
         }
 

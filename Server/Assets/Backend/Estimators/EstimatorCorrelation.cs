@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Assets.Backend.Estimators
 {
-    public class EstimatorCorrelation : Estimator
+    public sealed class EstimatorCorrelation : Estimator
     {
         /// <summary>
         /// Создает оценщика

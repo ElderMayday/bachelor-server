@@ -6,7 +6,7 @@ namespace Assets.Backend.Noisers
     /// <summary>
     /// Генератор равномерного шума
     /// </summary>
-    public class NoiserUniform : Noiser
+    public sealed class NoiserUniform : Noiser
     {
         /// <summary>
         /// Создает генератор равномерного шума
@@ -29,11 +29,11 @@ namespace Assets.Backend.Noisers
         /// <summary>
         /// Минимальное значение
         /// </summary>
-        protected double min;
+        private double min;
 
         /// <summary>
         /// Максимальное значение
         /// </summary>
-        protected double max;
+        private double max;
     }
 }

@@ -8,7 +8,7 @@ namespace Assets.Backend.Filters
     /// <summary>
     /// Фильтр Гаусса
     /// </summary>
-    public class FilterGaussian : FilterFIR
+    public sealed class FilterGaussian : FilterFIR
     {
         /// <summary>
         /// Создает фильтр Гаусса

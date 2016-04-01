@@ -6,7 +6,7 @@ namespace Assets.Backend.Filters
     /// <summary>
     /// Фильтр скользящей средней
     /// </summary>
-    public class FilterMovingAverage : FilterFIR
+    public sealed class FilterMovingAverage : FilterFIR
     {
         /// <summary>
         /// Создает фильтр скользящей средней

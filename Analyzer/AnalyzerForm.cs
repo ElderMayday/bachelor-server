@@ -14,8 +14,6 @@ namespace Analyzer
 {
     public partial class AnalyzerForm : Form
     {
-        private Access access;
-
         #region GuiEvents
 
         public AnalyzerForm()
@@ -25,7 +23,7 @@ namespace Analyzer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            access = new Access(this, this.mainChart);
+            access = new Access(this.mainChart);
 
             setGUI();
 
@@ -38,21 +36,40 @@ namespace Analyzer
                 comboIp.Items.Add(ip.ToString());
             comboIp.Text = list[list.Count - 1].ToString();
 
-            access.Start();
+            aList = new List<double>();
+            bList = new List<double>();
         }
 
         private void timerNetwork_Tick(object sender, EventArgs e)
         {
-            string data;
+            bool isWorking, isCorrect;
+            double currentInput, currentOutput, currentPure;
 
-            access.TimerTick(out data);
+            access.TimerTick(out isWorking, out isCorrect, out currentInput, out currentOutput, out currentPure);
 
-            labelData.Text = data;
+            if (isWorking && isCorrect)
+            {
+                labelData.Text = "Вход = " + String.Format("{0:0.00}", currentInput)
+                        + "\nВыход = " + String.Format("{0:0.00}", currentOutput);
+
+                if (access.IsEmulation)
+                    labelData.Text += "\nИдеал = " + String.Format("{0:0.00}", currentPure);
+            }
+            else
+            {
+                if (!isWorking)
+                    labelData.Text = "Не работает";
+
+                if (!isCorrect)
+                    labelData.Text = "Не корректные данные";
+            }
+
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            access.Stop();
+            access.Close();
         }
 
         private void buttonSwitch_Click(object sender, EventArgs e)
@@ -84,11 +101,92 @@ namespace Analyzer
                     textEmulationRange.Enabled = checkBoxFast.Checked;
                 }
             }
-            else
+
+            StrategiesParameters parameters = setParameters(emulatorSettings);
+
+            double correlation, minkowski, distance;
+
+            access.Switch(parameters, out correlation, out minkowski, out distance);
+
+            if (access.IsEmulation)
             {
-
+                labelEstimate.Text = "Коэффициент корреляции=" + String.Format("{0:0.000}", correlation) +
+                            "\nРасстояние Минковского=" + String.Format("{0:0.000}", minkowski) +
+                            "\nРасстояние=" + String.Format("{0:0.000}", distance);
             }
+        }
 
+        private void buttonNoiserFourierAdd_Click(object sender, EventArgs e)
+        {
+            string s = textSourceFourierCoefficients.Text;
+
+            string[] parameters = s.Split(';');
+
+            if (parameters.Length < 2)
+                throw new Exception("Not enough parameters");
+
+            double a = Double.Parse(parameters[0], CultureInfo.InvariantCulture);
+            double b = Double.Parse(parameters[1], CultureInfo.InvariantCulture);
+
+            aList.Add(a);
+            bList.Add(b);
+
+            updateListBoxFourier();
+        }
+
+        private void buttonSourceFourierClear_Click(object sender, EventArgs e)
+        {
+            aList.Clear();
+            bList.Clear();
+
+            updateListBoxFourier();
+        }
+
+        private void radioSourceNetwork_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = false;
+            hideSources();
+            groupBoxSourceNetwork.Visible = true;
+
+            if (radioSourceNetwork.Checked)
+                groupBoxNoise.Visible = false;
+            else
+                groupBoxNoise.Visible = true;
+        }
+
+        private void radioSourceEmulatorSin_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = true;
+            hideSources();
+            groupBoxSourceSin.Visible = true;
+        }
+
+        private void radioSourceEmulatorLinear_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = true;
+            hideSources();
+            groupBoxSourceLinear.Visible = true;
+        }
+
+        private void radioSourceEmulatorFourier_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxEmultaion.Visible = true;
+            hideSources();
+            groupBoxSourceFourier.Visible = true;
+        }
+
+        private void checkBoxFast_CheckedChanged(object sender, EventArgs e)
+        {
+            textEmulationRange.Enabled = checkBoxFast.Checked;
+        }
+
+        #endregion
+
+
+        #region GuiExtra
+
+        private StrategiesParameters setParameters(EmulatorSettings emulatorSettings)
+        {
             StrategiesParameters parameters = new StrategiesParameters();
 
             parameters.FilterLength = int.Parse(textFilterLength.Text);
@@ -140,7 +238,6 @@ namespace Analyzer
             else if (radioSourceEmulatorSin.Checked)
             {
                 parameters.Source = SourceType.Sin;
-
                 parameters.SinAmplitude = double.Parse(textSourceSinAmplitude.Text, CultureInfo.InvariantCulture);
                 parameters.SinAverage = double.Parse(textSourceSinAverage.Text, CultureInfo.InvariantCulture);
                 parameters.SinPeriod = double.Parse(textSourceSinPeriod.Text, CultureInfo.InvariantCulture);
@@ -148,92 +245,21 @@ namespace Analyzer
             else if (radioSourceEmulatorLinear.Checked)
             {
                 parameters.Source = SourceType.Linear;
-
                 parameters.LinearMin = double.Parse(textSourceLinearMin.Text, CultureInfo.InvariantCulture);
                 parameters.LinearMax = double.Parse(textSourceLinearMax.Text, CultureInfo.InvariantCulture);
             }
             else
             {
                 parameters.Source = SourceType.Fourier;
-
                 parameters.HalftOsset = double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture);
+                parameters.aList = aList;
+                parameters.bList = bList;
             }
 
             parameters.EmulatorSetting = emulatorSettings;
 
-            string estimate;
-
-            access.Switch(parameters, out estimate);
-
-            labelEstimate.Text = estimate;
+            return parameters;
         }
-
-        private void buttonNoiserFourierAdd_Click(object sender, EventArgs e)
-        {
-            string s = textSourceFourierCoefficients.Text;
-
-            string[] parameters = s.Split(';');
-
-            if (parameters.Length < 2)
-                throw new Exception("Not enough parameters");
-
-            double a = Double.Parse(parameters[0], CultureInfo.InvariantCulture);
-            double b = Double.Parse(parameters[1], CultureInfo.InvariantCulture);
-
-            access.AddFourier(a, b);
-
-            updateListBoxFourier();
-        }
-
-        private void buttonSourceFourierClear_Click(object sender, EventArgs e)
-        {
-            access.ClearFourier();
-
-            updateListBoxFourier();
-        }
-
-        private void radioSourceNetwork_CheckedChanged(object sender, EventArgs e)
-        {
-            groupBoxEmultaion.Visible = false;
-            hideSources();
-            groupBoxSourceNetwork.Visible = true;
-
-            if (radioSourceNetwork.Checked)
-                groupBoxNoise.Visible = false;
-            else
-                groupBoxNoise.Visible = true;
-        }
-
-        private void radioSourceEmulatorSin_CheckedChanged(object sender, EventArgs e)
-        {
-            groupBoxEmultaion.Visible = true;
-            hideSources();
-            groupBoxSourceSin.Visible = true;
-        }
-
-        private void radioSourceEmulatorLinear_CheckedChanged(object sender, EventArgs e)
-        {
-            groupBoxEmultaion.Visible = true;
-            hideSources();
-            groupBoxSourceLinear.Visible = true;
-        }
-
-        private void radioSourceEmulatorFourier_CheckedChanged(object sender, EventArgs e)
-        {
-            groupBoxEmultaion.Visible = true;
-            hideSources();
-            groupBoxSourceFourier.Visible = true;
-        }
-
-        private void checkBoxFast_CheckedChanged(object sender, EventArgs e)
-        {
-            textEmulationRange.Enabled = checkBoxFast.Checked;
-        }
-
-        #endregion
-
-
-        #region GuiExtra
 
         private void hideSources()
         {
@@ -299,13 +325,13 @@ namespace Analyzer
         {
             listBoxSourceFourierCoefficients.Items.Clear();
 
-            for (int i = 0; i < access.aList.Count; i++)
+            for (int i = 0; i < aList.Count; i++)
             {
                 string s = "";
 
                 s += (i + 1).ToString();
-                s += ": (" + String.Format("{0:0.00}", access.aList[i]) + ";";
-                s += String.Format("{0:0.00}", access.bList[i]) + ")";
+                s += ": (" + String.Format("{0:0.00}", aList[i]) + ";";
+                s += String.Format("{0:0.00}", bList[i]) + ")";
 
                 listBoxSourceFourierCoefficients.Items.Add(s);
             }
@@ -313,7 +339,12 @@ namespace Analyzer
 
         #endregion
 
-        protected List<Control> controls;
-        protected List<GroupBox> sourceGroups;
+        private Access access;
+
+        private List<Control> controls;
+
+        private List<GroupBox> sourceGroups;
+
+        private List<double> aList, bList;
     }
 }

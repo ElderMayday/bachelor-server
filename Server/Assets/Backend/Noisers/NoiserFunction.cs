@@ -7,7 +7,7 @@ namespace Assets.Backend.Noisers
     /// <summary>
     /// Генератор шума по заданной функции
     /// </summary>
-    public class NoiserFunction : Noiser
+    public sealed class NoiserFunction : Noiser
     {
         /// <summary>
         /// Создает генератор по заданной функции
@@ -18,6 +18,10 @@ namespace Assets.Backend.Noisers
             f = _f;
         }
 
+        /// <summary>
+        /// Получает шум из генератора
+        /// </summary>
+        /// <returns>Величина шума</returns>
         public override double Get()
         {
             double r = getRandom();
@@ -34,7 +38,7 @@ namespace Assets.Backend.Noisers
         /// </summary>
         /// <param name="yValue">значение функции</param>
         /// <returns></returns>
-        protected double binarySearch(double yValue)
+        private double binarySearch(double yValue)
         {
             double startValue = 10.0;
             double step = 5.0;
@@ -88,6 +92,6 @@ namespace Assets.Backend.Noisers
         /// <summary>
         /// Функция распределения
         /// </summary>
-        protected Func<double, double> f;
+        private Func<double, double> f;
     }
 }

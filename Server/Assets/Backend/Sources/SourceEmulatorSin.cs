@@ -7,7 +7,7 @@ using Assets.Backend.Noisers;
 
 namespace Assets.Backend.Sources
 {
-    public class SourceEmulatorSin : SourceEmulator
+    public sealed class SourceEmulatorSin : SourceEmulator
     {
         /// <summary>
         /// Создает синусоидальный источник-эмулятор данных
@@ -41,16 +41,16 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Амплитуда
         /// </summary>
-        protected double amplitude;
+        private double amplitude;
 
         /// <summary>
         /// Смещение
         /// </summary>
-        protected double average;
+        private double average;
 
         /// <summary>
         /// Период
         /// </summary>
-        protected double period;
+        private double period;
     }
 }

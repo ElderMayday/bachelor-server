@@ -7,7 +7,7 @@ using Assets.Backend.Auxiliary;
 
 namespace Assets.Backend.Sources
 {
-    public class SourceEmulatorFourier : SourceEmulator
+    public sealed class SourceEmulatorFourier : SourceEmulator
     {
         /// <summary>
         /// Создает источник-эмулятор данных по функции частичной суммы ряда Фурье 
@@ -56,16 +56,16 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Списки коэффициентов ряда
         /// </summary>
-        protected List<double> aList, bList;
+        private List<double> aList, bList;
 
         /// <summary>
         /// Порядок суммы
         /// </summary>
-        protected int order;
+        private int order;
 
         /// <summary>
         /// Смещение ряда
         /// </summary>
-        protected double halfOffset;
+        private double halfOffset;
     }
 }

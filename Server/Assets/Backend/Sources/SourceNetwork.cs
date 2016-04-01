@@ -12,7 +12,7 @@ namespace Assets.Backend.Sources
     /// <summary>
     /// Сетевой источник данных
     /// </summary>
-    public class SourceNetwork : Source
+    public sealed class SourceNetwork : Source
     {
         /// <summary>
         /// Создает сетевой источник данных
@@ -122,26 +122,26 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// IP-адрес сервера
         /// </summary>
-        protected IPAddress ipAddress;
+        private IPAddress ipAddress;
 
         /// <summary>
         /// Сокет сервера
         /// </summary>
-        protected Socket socketListener;
+        private Socket socketListener;
 
         /// <summary>
         /// Полученное исключение
         /// </summary>
-        protected Exception exception;
+        private Exception exception;
 
         /// <summary>
         /// Выбранная ось
         /// </summary>
-        protected RotationAxis axis;
+        private RotationAxis axis;
 
         /// <summary>
         /// Используемый десериализатор
         /// </summary>
-        protected Deserializer deserializer;
+        private Deserializer deserializer;
     }
 }

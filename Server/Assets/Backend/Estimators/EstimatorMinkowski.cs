@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Assets.Backend.Estimators
 {
-    public class EstimatorMinkowski : Estimator
+    public sealed class EstimatorMinkowski : Estimator
     {
         /// <summary>
         /// Создает оценщика
@@ -35,9 +35,10 @@ namespace Assets.Backend.Estimators
         }
 
 
+
         /// <summary>
         /// Порядок расстояния Минковского
         /// </summary>
-        protected double order;
+        private double order;
     }
 }

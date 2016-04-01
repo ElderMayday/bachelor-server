@@ -91,6 +91,9 @@ namespace Assets.Backend.Sources
         /// </summary>
         protected EmulatorSettings settings;
 
+        /// <summary>
+        /// Источник искуственного шума
+        /// </summary>
         protected Noiser noiser;
         
         /// <summary>

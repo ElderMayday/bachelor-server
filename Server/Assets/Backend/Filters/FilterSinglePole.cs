@@ -9,7 +9,7 @@ namespace Assets.Backend.Filters
     /// <summary>
     /// Однополярный фильтр
     /// </summary>
-    public class FilterSinglePole : FilterIIR
+    public sealed class FilterSinglePole : FilterIIR
     {
         /// <summary>
         /// Создает однополярный фильтр

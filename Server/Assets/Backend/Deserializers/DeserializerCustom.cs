@@ -10,7 +10,7 @@ namespace Assets.Backend.Deserializers
     /// <summary>
     /// Абстрактный десериализатор для получения данных из сетевого пакета
     /// </summary>
-    public class DeserializerCustom : Deserializer
+    public sealed class DeserializerCustom : Deserializer
     {
         /// <summary>
         /// Проводит десериалзиацию
