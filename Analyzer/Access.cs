@@ -290,7 +290,7 @@ namespace Analyzer
                         source = new SourceEmulatorLinear(emulatorSettings, noiser, parameters.LinearMin, parameters.LinearMax);
                         break;
                     case SourceType.Fourier:
-                        source = new SourceEmulatorFourier(emulatorSettings, noiser, parameters.HalftOsset, parameters.aList, parameters.bList);
+                        source = new SourceEmulatorFourier(emulatorSettings, noiser, parameters.HalfOffset, parameters.aList, parameters.bList);
                         break;
                 }
             }

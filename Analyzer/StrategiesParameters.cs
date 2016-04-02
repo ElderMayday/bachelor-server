@@ -28,7 +28,7 @@ namespace Analyzer
         public double SinPeriod { get; set; }
         public double LinearMin { get; set; }
         public double LinearMax { get; set; }
-        public double HalftOsset { get; set; }
+        public double HalfOffset { get; set; }
         public List<double> aList { get; set; }
         public List<double> bList { get; set; }
 

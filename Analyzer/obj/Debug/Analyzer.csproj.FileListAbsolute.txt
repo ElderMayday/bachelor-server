@@ -24,3 +24,7 @@ C:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.exe
 C:\Bachelor\bachelor-server\Analyzer\bin\Debug\Analyzer.pdb
 D:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.AnalyzerForm.resources
 C:\Bachelor\bachelor-server\Analyzer\obj\Debug\Analyzer.AnalyzerForm.resources
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEngine.UI.dll
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEditor.dll
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEngine.UI.xml
+D:\Bachelor\bachelor-server\Analyzer\bin\Debug\UnityEditor.xml

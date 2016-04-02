@@ -8,6 +8,14 @@ namespace Assets.Backend.Noisers
     /// </summary>
     public sealed class NoiserIdle : Noiser
     {
+        /// <summary>
+        /// Создает генератор нулевого шума
+        /// </summary>
+        public NoiserIdle()
+        {
+
+        }
+
         public override double Get()
         {
             return 0.0;

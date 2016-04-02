@@ -8,10 +8,18 @@ using System.Globalization;
 namespace Assets.Backend.Deserializers
 {
     /// <summary>
-    /// Абстрактный десериализатор для получения данных из сетевого пакета
+    /// Десериализатор собственного пакета
     /// </summary>
     public sealed class DeserializerCustom : Deserializer
     {
+        /// <summary>
+        /// Создает десериализатор собственного пакета
+        /// </summary>
+        public DeserializerCustom()
+        {
+            
+        }
+
         /// <summary>
         /// Проводит десериалзиацию
         /// </summary>

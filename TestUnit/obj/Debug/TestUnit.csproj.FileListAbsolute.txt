@@ -16,3 +16,7 @@ C:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.xml
 C:\Bachelor\bachelor-server\TestUnit\obj\Debug\TestUnit.csprojResolveAssemblyReference.cache
 C:\Bachelor\bachelor-server\TestUnit\obj\Debug\TestUnit.dll
 C:\Bachelor\bachelor-server\TestUnit\obj\Debug\TestUnit.pdb
+D:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.UI.dll
+D:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEditor.dll
+D:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEngine.UI.xml
+D:\Bachelor\bachelor-server\TestUnit\bin\Debug\UnityEditor.xml

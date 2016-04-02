@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,23 +57,19 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Backend\Auxiliary\AddressProvider.cs" />
-    <Compile Include="Assets\Backend\Auxiliary\IThreadHandler.cs" />
     <Compile Include="Assets\Backend\Auxiliary\EmulatorSettings.cs" />
     <Compile Include="Assets\Backend\Auxiliary\ExceptionServer.cs" />
     <Compile Include="Assets\Backend\Auxiliary\ExtraMath.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\IThreadHandler.cs" />
     <Compile Include="Assets\Backend\Auxiliary\Logger.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\RotationAxis.cs" />
+    <Compile Include="Assets\Backend\Auxiliary\UdpThread.cs" />
     <Compile Include="Assets\Backend\Auxiliary\Vector3.cs" />
     <Compile Include="Assets\Backend\Deserializers\Deserializer.cs" />
     <Compile Include="Assets\Backend\Deserializers\DeserializerCustom.cs" />
@@ -96,17 +90,15 @@
     <Compile Include="Assets\Backend\Noisers\NoiserNormal.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserType.cs" />
     <Compile Include="Assets\Backend\Noisers\NoiserUniform.cs" />
-    <Compile Include="Assets\Backend\Auxiliary\RotationAxis.cs" />
+    <Compile Include="Assets\Backend\Sources\Source.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulator.cs" />
+    <Compile Include="Assets\Backend\Sources\SourceEmulatorFourier.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorLinear.cs" />
     <Compile Include="Assets\Backend\Sources\SourceEmulatorSin.cs" />
-    <Compile Include="Assets\Backend\Sources\SourceEmulatorFourier.cs" />
     <Compile Include="Assets\Backend\Sources\SourceNetwork.cs" />
-    <Compile Include="Assets\Backend\Sources\Source.cs" />
-    <Compile Include="Assets\Backend\Auxiliary\UdpThread.cs" />
     <Compile Include="Assets\Backend\Sources\SourceType.cs" />
+    <Compile Include="Assets\Scripts\LaunchScript.cs" />
     <Compile Include="Assets\Scripts\ScriptCamera.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

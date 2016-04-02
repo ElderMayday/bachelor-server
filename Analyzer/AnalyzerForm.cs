@@ -21,7 +21,7 @@ namespace Analyzer
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void analyzerForm_Load(object sender, EventArgs e)
         {
             access = new Access(this.mainChart);
 
@@ -38,6 +38,11 @@ namespace Analyzer
 
             aList = new List<double>();
             bList = new List<double>();
+        }
+
+        private void analyzerForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            access.Close();
         }
 
         private void timerNetwork_Tick(object sender, EventArgs e)
@@ -66,12 +71,7 @@ namespace Analyzer
 
 
         }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            access.Close();
-        }
-
+        
         private void buttonSwitch_Click(object sender, EventArgs e)
         {
             EmulatorSettings emulatorSettings = new EmulatorSettings();
@@ -251,7 +251,7 @@ namespace Analyzer
             else
             {
                 parameters.Source = SourceType.Fourier;
-                parameters.HalftOsset = double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture);
+                parameters.HalfOffset = double.Parse(textSourceFourierHalfOffset.Text, CultureInfo.InvariantCulture);
                 parameters.aList = aList;
                 parameters.bList = bList;
             }
