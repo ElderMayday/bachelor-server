@@ -19,6 +19,8 @@ namespace Assets.Backend.Filters
 
             for (int i = 0; i < orderInput; i++)
                 input.Add(0.0);
+
+            angleGap = 50.0;
         }
 
         /// <summary>
@@ -29,6 +31,20 @@ namespace Assets.Backend.Filters
         {
             input.Add(newInput);
             input.RemoveAt(0);
+
+            if ((-180.0 <= newInput) && (newInput <= -180.0 + angleGap))
+            {
+                for (int i = 0; i < input.Count - 1; i++)
+                    if ((180.0 - angleGap <= input[i]) && (input[i] <= 180.0))
+                        input[i] -= 360.0;
+            }
+
+            if ((180.0 - angleGap <= newInput) && (newInput <= 180.0))
+            {
+                for (int i = 0; i < input.Count - 1; i++)
+                    if ((-180.0 <= input[i]) && (input[i] <= -180.0 + angleGap))
+                        input[i] += 360.0;
+            }
         }
 
         /// <summary>
@@ -43,5 +59,10 @@ namespace Assets.Backend.Filters
         /// Список значений входных данных
         /// </summary>
         protected List<double> input;
+
+        /// <summary>
+        /// Ширина промежутка анализа на разрыв
+        /// </summary>
+        protected double angleGap;
     }
 }

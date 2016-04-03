@@ -231,8 +231,8 @@ namespace Analyzer
 
             mainChart.ChartAreas[0].AxisX.Minimum = Math.Round(time, 1);
             mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * (double) emulatorSettings.Interval / 1000.0, 1);
-            mainChart.ChartAreas[0].AxisY.Minimum = -100;
-            mainChart.ChartAreas[0].AxisY.Maximum = 100;
+            mainChart.ChartAreas[0].AxisY.Minimum = -180.0;
+            mainChart.ChartAreas[0].AxisY.Maximum = 180.0;
         }
 
         /// <summary>
