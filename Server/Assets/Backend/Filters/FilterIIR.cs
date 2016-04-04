@@ -59,8 +59,22 @@ namespace Assets.Backend.Filters
                 result += weightOutput[i] * output[output.Count - i - 2];
 
             output[output.Count - 1] = result;
-
             output.RemoveAt(0);
+
+
+            if ((-180.0 <= newX) && (newX <= -180.0 + angleGap))
+            {
+                for (int i = 0; i < output.Count - 1; i++)
+                    if ((180.0 - angleGap <= output[i]) && (output[i] <= 180.0))
+                        output[i] -= 360.0;
+            }
+
+            if ((180.0 - angleGap <= newX) && (newX <= 180.0))
+            {
+                for (int i = 0; i < output.Count - 1; i++)
+                    if ((-180.0 <= output[i]) && (output[i] <= -180.0 + angleGap))
+                        output[i] += 360.0;
+            }
         }
 
 
