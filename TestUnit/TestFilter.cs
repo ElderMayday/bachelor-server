@@ -9,7 +9,7 @@ namespace TestUnit
     public class TestFilter
     {
         [TestMethod]
-        public void FilterMovingAverage_GetOutput()
+        public void FilterMovingAverage_GetOutput_1()
         {
             Filter filter = new FilterMovingAverage(4);
 
@@ -24,7 +24,22 @@ namespace TestUnit
         }
 
         [TestMethod]
-        public void FilterSinglePole_GetOutput()
+        public void FilterMovingAverage_GetOutput_2()
+        {
+            Filter filter = new FilterMovingAverage(4);
+
+            filter.AddInput(-155.0);
+            filter.AddInput(-160.0);
+            filter.AddInput(-175.0);
+            filter.AddInput(172.0);
+
+            double result = filter.GetOutput();
+
+            Assert.IsTrue(ExtraMath.EqualValue(result, 190.5));
+        }
+
+        [TestMethod]
+        public void FilterSinglePole_GetOutput_1()
         {
             Filter filter = new FilterSinglePole(3, 0.5);
 
@@ -36,6 +51,21 @@ namespace TestUnit
             double result = filter.GetOutput();
 
             Assert.IsTrue(ExtraMath.EqualValue(result, 29.609));
+        }
+
+        [TestMethod]
+        public void FilterSinglePole_GetOutput_2()
+        {
+            Filter filter = new FilterSinglePole(3, 0.5);
+
+            filter.AddInput(-155.0);
+            filter.AddInput(-160.0);
+            filter.AddInput(-175.0);
+            filter.AddInput(172.0);
+
+            double result = filter.GetOutput();
+
+            Assert.IsTrue(ExtraMath.EqualValue(result, 134.023));
         }
 
         [TestMethod]

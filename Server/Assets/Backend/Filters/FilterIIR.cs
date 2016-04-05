@@ -47,6 +47,7 @@ namespace Assets.Backend.Filters
         {
             input.Add(newX);
             input.RemoveAt(0);
+            correctPeriod(ref input, input[input.Count - 1]);
 
             output.Add(0.0);
 
@@ -60,21 +61,7 @@ namespace Assets.Backend.Filters
 
             output[output.Count - 1] = result;
             output.RemoveAt(0);
-
-
-            if ((-180.0 <= newX) && (newX <= -180.0 + angleGap))
-            {
-                for (int i = 0; i < output.Count - 1; i++)
-                    if ((180.0 - angleGap <= output[i]) && (output[i] <= 180.0))
-                        output[i] -= 360.0;
-            }
-
-            if ((180.0 - angleGap <= newX) && (newX <= 180.0))
-            {
-                for (int i = 0; i < output.Count - 1; i++)
-                    if ((-180.0 <= output[i]) && (output[i] <= -180.0 + angleGap))
-                        output[i] += 360.0;
-            }
+            correctPeriod(ref output, input[input.Count - 1]);
         }
 
 

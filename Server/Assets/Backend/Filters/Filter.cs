@@ -31,20 +31,7 @@ namespace Assets.Backend.Filters
         {
             input.Add(newInput);
             input.RemoveAt(0);
-
-            if ((-180.0 <= newInput) && (newInput <= -180.0 + angleGap))
-            {
-                for (int i = 0; i < input.Count - 1; i++)
-                    if ((180.0 - angleGap <= input[i]) && (input[i] <= 180.0))
-                        input[i] -= 360.0;
-            }
-
-            if ((180.0 - angleGap <= newInput) && (newInput <= 180.0))
-            {
-                for (int i = 0; i < input.Count - 1; i++)
-                    if ((-180.0 <= input[i]) && (input[i] <= -180.0 + angleGap))
-                        input[i] += 360.0;
-            }
+            correctPeriod(ref input, input[input.Count - 1]);
         }
 
         /// <summary>
@@ -52,6 +39,30 @@ namespace Assets.Backend.Filters
         /// </summary>
         /// <returns></returns>
         public abstract double GetOutput();
+
+
+
+        /// <summary>
+        /// Корректирует период данных
+        /// </summary>
+        /// <param name="list">список данных</param>
+        /// <param name="newValue">новое значение (обычно последний элемент списка)</param>
+        protected void correctPeriod(ref List<double> list, double newValue)
+        {
+            if ((-180.0 <= newValue) && (newValue <= -180.0 + angleGap))
+            {
+                for (int i = 0; i < list.Count - 1; i++)
+                    if ((180.0 - angleGap <= list[i]) && (list[i] <= 180.0))
+                        list[i] -= 360.0;
+            }
+
+            if ((180.0 - angleGap <= newValue) && (newValue <= 180.0))
+            {
+                for (int i = 0; i < list.Count - 1; i++)
+                    if ((-180.0 <= list[i]) && (list[i] <= -180.0 + angleGap))
+                        list[i] += 360.0;
+            }
+        }
 
 
 
