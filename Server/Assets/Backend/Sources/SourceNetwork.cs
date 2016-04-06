@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 
@@ -35,16 +34,7 @@ namespace Assets.Backend.Sources
         {
             mustWork = false;
 
-            try
-            {
-                socketListener.Shutdown(SocketShutdown.Both);
-            }
-            catch (Exception e)
-            {
-                exception = e;
-            }
-
-            socketListener.Close();
+            closeSocket(); 
 
             thread.Join();
         }
@@ -63,21 +53,24 @@ namespace Assets.Backend.Sources
         /// </summary>
         protected override void doThread()
         {
-            try
+            while (mustWork)
             {
-                while (mustWork)
+                try
                 {
                     IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, 11000);
                     socketListener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                     socketListener.Bind(ipEndPoint);
                     socketListener.Listen(10);
 
+                    Logger.Add("Accepting connection");
                     Socket socketHandler = socketListener.Accept();
+                    Logger.Add("Accepted connection");
+
                     socketHandler.ReceiveTimeout = 1000;
 
                     IsWorking = true;
                     IsCorrect = true;
-                    
+
                     while (mustWork)
                     {
                         byte[] bytes = new byte[1024];
@@ -110,11 +103,31 @@ namespace Assets.Backend.Sources
                     socketListener.Close();
                     ipEndPoint = null;
                 }
+                catch (Exception e)
+                {
+                    exception = new ExceptionServer(e.Message);
+                    closeSocket();
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Закрывает сокет
+        /// </summary>
+        private void closeSocket()
+        {
+            try
+            {
+                socketListener.Shutdown(SocketShutdown.Both);
             }
             catch (Exception e)
             {
-                exception = e;
+                exception = new ExceptionServer(e.Message);
             }
+
+            socketListener.Close();
         }
 
 
@@ -132,7 +145,7 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Полученное исключение
         /// </summary>
-        private Exception exception;
+        private ExceptionServer exception;
 
         /// <summary>
         /// Выбранная ось

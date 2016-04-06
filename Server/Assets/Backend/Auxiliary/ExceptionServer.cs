@@ -14,7 +14,7 @@ namespace Assets.Backend.Auxiliary
         /// <param name="description">Описание исключения</param>
         public ExceptionServer(string description) : base(description)
         {
-            Logger.Add("server-exception: " + description);
+            Logger.Add("[EXCEPTION] " + description);
         }
     }
 }

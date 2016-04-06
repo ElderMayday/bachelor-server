@@ -35,7 +35,7 @@ namespace Assets.Backend.Deserializers
             if ((index1 != -1) && (index2 != -1) && (index2 >= index1))
                 package = package.Substring(index1 + 1, index2 - index1 - 1);
             else
-                throw new Exception("Block borders are not found");
+                throw new ExceptionServer("Block borders are not found");
 
             string[] parameters = package.Split(';');
 

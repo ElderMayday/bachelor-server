@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-
-
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace Assets.Backend.Auxiliary
 {
@@ -15,6 +16,7 @@ namespace Assets.Backend.Auxiliary
         static Logger()
         {
             logs = new List<string>();
+            System.IO.File.WriteAllText(filename, string.Empty);
         }
 
         /// <summary>
@@ -25,7 +27,8 @@ namespace Assets.Backend.Auxiliary
         {
             lock (logs)
             {
-                logs.Add(message);
+                File.AppendAllText(filename, "[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message + "\n", Encoding.GetEncoding("Windows-1251"));
+                logs.Add("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message);
             }
         }
 
@@ -35,5 +38,10 @@ namespace Assets.Backend.Auxiliary
         /// Список сообщений
         /// </summary>
         private static List<string> logs;
+
+        /// <summary>
+        /// Имя лог-файла
+        /// </summary>
+        private static string filename = "Log.txt";
     }
 }
