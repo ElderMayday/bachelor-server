@@ -20,7 +20,7 @@ public class LaunchScript : MonoBehaviour {
 
         DontDestroyOnLoad(this);
 
-        Application.LoadLevel("MainScene");
+        Application.LoadLevel("Example");
     }
 
     public void QuitAll()
