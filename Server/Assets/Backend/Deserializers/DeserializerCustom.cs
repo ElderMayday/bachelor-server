@@ -29,8 +29,17 @@ namespace Assets.Backend.Deserializers
         {
             Vector3 result = new Vector3();
 
-            int index1 = package.IndexOf('<');
-            int index2 = package.IndexOf('>');
+            int index1 = 0;
+            int index2 = package.LastIndexOf('>');
+
+            for (int i = index2 - 1; i >= 0; i--)
+            {
+                if (package[i] == '<')
+                {
+                    index1 = i;
+                    break;
+                }
+            }
 
             if ((index1 != -1) && (index2 != -1) && (index2 >= index1))
                 package = package.Substring(index1 + 1, index2 - index1 - 1);

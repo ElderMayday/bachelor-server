@@ -1,3 +1,28 @@
-[22:35:12] Accepting connection
-[22:35:18] Accepted connection
-[22:35:31] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied
+[03:22:05] Accepting connection
+[03:22:07] Accepted connection
+[03:22:13] [EXCEPTION] Block borders are not found
+[03:22:42] [EXCEPTION] Block borders are not found
+[03:22:47] [EXCEPTION] Block borders are not found
+[03:23:30] [EXCEPTION] Block borders are not found
+[03:23:30] Accepting connection
+[03:23:32] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied
+[03:23:32] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall
+[03:23:32] [EXCEPTION] Доступ к ликвидированному объекту невозможен.
+Имя объекта: "System.Net.Sockets.Socket".
+[03:23:34] Accepting connection
+[03:23:35] Accepted connection
+[03:23:39] [EXCEPTION] Block borders are not found
+[03:23:41] [EXCEPTION] Block borders are not found
+[03:23:41] Accepting connection
+[03:23:42] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied
+[03:23:42] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall
+[03:23:42] [EXCEPTION] Доступ к ликвидированному объекту невозможен.
+Имя объекта: "System.Net.Sockets.Socket".
+[03:23:44] Accepting connection
+[03:23:45] Accepted connection
+[03:24:09] [EXCEPTION] Block borders are not found
+[03:24:09] Accepting connection
+[03:24:11] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied
+[03:24:11] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall
+[03:24:11] [EXCEPTION] Доступ к ликвидированному объекту невозможен.
+Имя объекта: "System.Net.Sockets.Socket".

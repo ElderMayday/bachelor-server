@@ -66,10 +66,9 @@ namespace Assets.Backend.Sources
                     Socket socketHandler = socketListener.Accept();
                     Logger.Add("Accepted connection");
 
-                    socketHandler.ReceiveTimeout = 1000;
+                    socketHandler.ReceiveTimeout = 3000;
 
-                    IsWorking = true;
-                    IsCorrect = true;
+                    IsWorking = true;             
 
                     while (mustWork)
                     {
@@ -77,6 +76,8 @@ namespace Assets.Backend.Sources
                         int bytesLength = socketHandler.Receive(bytes);
 
                         string package = Encoding.UTF8.GetString(bytes, 0, bytesLength);
+
+                        IsCorrect = true;
 
                         try
                         {
