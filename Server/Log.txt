@@ -1,10 +1,19 @@
-[01:07:21] Accepting connection
-[01:07:28] Accepted connection
-[01:07:47] [EXCEPTION] Block borders are not found
-[01:07:47] Accepting connection
-[01:07:49] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied.
+[01:03:53] Accepting connection
+[01:03:55] Accepted connection
+[01:04:41] [EXCEPTION] Block borders are not found
+[01:04:41] Accepting connection
+[01:05:01] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall.
 
-[01:07:52] Accepting connection
-[01:07:54] Accepted connection
-[01:08:31] [EXCEPTION] Block borders are not found
-[01:08:31] Accepting connection
+[01:05:01] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied.
+
+[01:05:01] Accepting connection
+[01:05:01] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall.
+
+[01:05:01] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied.
+
+[01:05:01] Accepting connection
+[01:05:01] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall.
+
+[01:05:01] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied.
+
+[01:05:01] Accepting connection

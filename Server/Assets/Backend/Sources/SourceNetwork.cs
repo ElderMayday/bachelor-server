@@ -25,6 +25,7 @@ namespace Assets.Backend.Sources
             thread.Name = "SourceNetwork";
             ipAddress = _ipAddress;
             deserializer = new DeserializerCustom();
+            mutex = new object();
         }
 
         /// <summary>
@@ -44,9 +45,21 @@ namespace Assets.Backend.Sources
         /// <summary>
         /// Направление
         /// </summary>
-        public Vector3 Direction { get; set; }
+        public Vector3d Direction
+        {
+            get
+            {
+                lock (mutex)
+                    return direction;
+            }
+            set
+            {
+                lock (mutex)
+                    direction = value;
+            }
+        }
 
-
+        private Vector3d direction;
 
         /// <summary>
         /// Функция-обработчик потока
@@ -132,6 +145,8 @@ namespace Assets.Backend.Sources
         }
 
 
+
+        private object mutex;
 
         /// <summary>
         /// IP-адрес сервера

@@ -16,6 +16,6 @@ namespace Assets.Backend.Deserializers
         /// </summary>
         /// <param name="package">Содержимое пакета</param>
         /// <returns>Структура из трех величин</returns>
-        public abstract Vector3 Do(string package); 
+        public abstract Vector3d Do(string package); 
     }
 }

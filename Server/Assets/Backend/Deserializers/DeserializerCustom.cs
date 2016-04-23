@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Assets.Backend.Auxiliary;
 using System.Globalization;
+using UnityEngine;
 
 namespace Assets.Backend.Deserializers
 {
@@ -25,9 +26,10 @@ namespace Assets.Backend.Deserializers
         /// </summary>
         /// <param name="package">Содержимое пакета</param>
         /// <returns>Структура из трех величин</returns>
-        public override Vector3 Do(string package)
+        public override Vector3d Do(string package)
         {
-            Vector3 result = new Vector3();
+            string sub = "";
+            Vector3d result = new Vector3d();
 
             int index1 = 0;
             int index2 = package.LastIndexOf('>');
@@ -42,15 +44,15 @@ namespace Assets.Backend.Deserializers
             }
 
             if ((index1 != -1) && (index2 != -1) && (index2 >= index1))
-                package = package.Substring(index1 + 1, index2 - index1 - 1);
+                sub = package.Substring(index1 + 1, index2 - index1 - 1);
             else
                 throw new ExceptionServer("Block borders are not found");
 
-            string[] parameters = package.Split(';');
+            string[] parameters = sub.Split(';');
 
-            result.X = double.Parse(parameters[0], CultureInfo.InvariantCulture); // Pitch
-            result.Y = double.Parse(parameters[1], CultureInfo.InvariantCulture); // Roll
-            result.Z = double.Parse(parameters[2], CultureInfo.InvariantCulture); // Yaw
+            result.X = double.Parse(parameters[0].Replace(',', '.'), CultureInfo.InvariantCulture); // Pitch
+            result.Y = double.Parse(parameters[1].Replace(',', '.'), CultureInfo.InvariantCulture); // Roll
+            result.Z = double.Parse(parameters[2].Replace(',', '.'), CultureInfo.InvariantCulture); // Yaw
 
             return result;
         }

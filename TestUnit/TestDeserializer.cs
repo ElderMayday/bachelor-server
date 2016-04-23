@@ -13,7 +13,7 @@ namespace TestUnit
         {
             Deserializer deserializer = new DeserializerCustom();
 
-            Vector3 vector = deserializer.Do("<3.5;0.8;-30.5>");
+            Vector3d vector = deserializer.Do("<3.5;0.8;-30.5>");
 
             Assert.IsTrue(ExtraMath.EqualValue(vector.X, 3.5));
             Assert.IsTrue(ExtraMath.EqualValue(vector.Y, 0.8));

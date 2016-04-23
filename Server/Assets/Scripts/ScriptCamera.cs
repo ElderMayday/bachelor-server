@@ -48,7 +48,7 @@ namespace Assets.Scripts
             float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
             float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
 
-            Backend.Auxiliary.Vector3 direction;
+            Backend.Auxiliary.Vector3d direction;
             direction = source.Direction;
 
             Quaternion target; 
