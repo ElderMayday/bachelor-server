@@ -219,15 +219,18 @@ namespace Analyzer
             mainChart.Series.Add("input");
             mainChart.Series["input"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             mainChart.Series["input"].BorderWidth = 2;
+            mainChart.Series["input"].LegendText = "Нефильтрованные данные";
 
             mainChart.Series.Add("output");
             mainChart.Series["output"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             mainChart.Series["output"].BorderWidth = 2;
+            mainChart.Series["output"].LegendText = "Фильтрованные данные";
 
             mainChart.Series.Add("pure");
             mainChart.Series["pure"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             mainChart.Series["pure"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             mainChart.Series["pure"].BorderWidth = 2;
+            mainChart.Series["pure"].LegendText = "Исходные данные";
 
             mainChart.ChartAreas[0].AxisX.Minimum = Math.Round(time, 1);
             mainChart.ChartAreas[0].AxisX.Maximum = Math.Round(time + maxPoints * (double) emulatorSettings.Interval / 1000.0, 1);

@@ -25,9 +25,9 @@
         public void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timerNetwork = new System.Windows.Forms.Timer(this.components);
             this.labelData = new System.Windows.Forms.Label();
             this.mainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -125,16 +125,16 @@
             // 
             // mainChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.mainChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.mainChart.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.mainChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.mainChart.Legends.Add(legend4);
             this.mainChart.Location = new System.Drawing.Point(12, 12);
             this.mainChart.Name = "mainChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.mainChart.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.mainChart.Series.Add(series4);
             this.mainChart.Size = new System.Drawing.Size(989, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
@@ -322,7 +322,6 @@
             this.groupBoxEmultaion.TabIndex = 31;
             this.groupBoxEmultaion.TabStop = false;
             this.groupBoxEmultaion.Text = "Эмуляция";
-            this.groupBoxEmultaion.Visible = false;
             // 
             // labelEmulatorInterval
             // 
@@ -398,9 +397,9 @@
             this.groupBoxSourceFourier.Controls.Add(this.labelNoiserFourierCoefficients);
             this.groupBoxSourceFourier.Controls.Add(this.listBoxSourceFourierCoefficients);
             this.groupBoxSourceFourier.Location = new System.Drawing.Point(173, 11);
-            this.groupBoxSourceFourier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxSourceFourier.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxSourceFourier.Name = "groupBoxSourceFourier";
-            this.groupBoxSourceFourier.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxSourceFourier.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxSourceFourier.Size = new System.Drawing.Size(165, 220);
             this.groupBoxSourceFourier.TabIndex = 29;
             this.groupBoxSourceFourier.TabStop = false;
@@ -408,7 +407,7 @@
             // buttonSourceFourierClear
             // 
             this.buttonSourceFourierClear.Location = new System.Drawing.Point(7, 154);
-            this.buttonSourceFourierClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSourceFourierClear.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSourceFourierClear.Name = "buttonSourceFourierClear";
             this.buttonSourceFourierClear.Size = new System.Drawing.Size(66, 20);
             this.buttonSourceFourierClear.TabIndex = 29;
@@ -419,7 +418,7 @@
             // textSourceFourierCoefficients
             // 
             this.textSourceFourierCoefficients.Location = new System.Drawing.Point(81, 130);
-            this.textSourceFourierCoefficients.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textSourceFourierCoefficients.Margin = new System.Windows.Forms.Padding(2);
             this.textSourceFourierCoefficients.Name = "textSourceFourierCoefficients";
             this.textSourceFourierCoefficients.Size = new System.Drawing.Size(80, 20);
             this.textSourceFourierCoefficients.TabIndex = 24;
@@ -428,7 +427,7 @@
             // textSourceFourierHalfOffset
             // 
             this.textSourceFourierHalfOffset.Location = new System.Drawing.Point(81, 13);
-            this.textSourceFourierHalfOffset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textSourceFourierHalfOffset.Margin = new System.Windows.Forms.Padding(2);
             this.textSourceFourierHalfOffset.Name = "textSourceFourierHalfOffset";
             this.textSourceFourierHalfOffset.Size = new System.Drawing.Size(81, 20);
             this.textSourceFourierHalfOffset.TabIndex = 21;
@@ -437,7 +436,7 @@
             // buttonSourceFourierAdd
             // 
             this.buttonSourceFourierAdd.Location = new System.Drawing.Point(81, 154);
-            this.buttonSourceFourierAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSourceFourierAdd.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSourceFourierAdd.Name = "buttonSourceFourierAdd";
             this.buttonSourceFourierAdd.Size = new System.Drawing.Size(80, 20);
             this.buttonSourceFourierAdd.TabIndex = 28;
@@ -469,7 +468,7 @@
             // 
             this.listBoxSourceFourierCoefficients.FormattingEnabled = true;
             this.listBoxSourceFourierCoefficients.Location = new System.Drawing.Point(80, 57);
-            this.listBoxSourceFourierCoefficients.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxSourceFourierCoefficients.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxSourceFourierCoefficients.Name = "listBoxSourceFourierCoefficients";
             this.listBoxSourceFourierCoefficients.Size = new System.Drawing.Size(81, 69);
             this.listBoxSourceFourierCoefficients.TabIndex = 26;
@@ -485,7 +484,7 @@
             this.groupBoxSourceSin.Controls.Add(this.textSourceSinAmplitude);
             this.groupBoxSourceSin.Location = new System.Drawing.Point(173, 11);
             this.groupBoxSourceSin.Name = "groupBoxSourceSin";
-            this.groupBoxSourceSin.Size = new System.Drawing.Size(166, 203);
+            this.groupBoxSourceSin.Size = new System.Drawing.Size(165, 220);
             this.groupBoxSourceSin.TabIndex = 4;
             this.groupBoxSourceSin.TabStop = false;
             // 
@@ -544,7 +543,7 @@
             // 
             this.radioSourceEmulatorFourier.AutoSize = true;
             this.radioSourceEmulatorFourier.Location = new System.Drawing.Point(6, 81);
-            this.radioSourceEmulatorFourier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioSourceEmulatorFourier.Margin = new System.Windows.Forms.Padding(2);
             this.radioSourceEmulatorFourier.Name = "radioSourceEmulatorFourier";
             this.radioSourceEmulatorFourier.Size = new System.Drawing.Size(111, 17);
             this.radioSourceEmulatorFourier.TabIndex = 27;
@@ -589,7 +588,7 @@
             // 
             this.radioNoiserFunction.AutoSize = true;
             this.radioNoiserFunction.Location = new System.Drawing.Point(15, 176);
-            this.radioNoiserFunction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioNoiserFunction.Margin = new System.Windows.Forms.Padding(2);
             this.radioNoiserFunction.Name = "radioNoiserFunction";
             this.radioNoiserFunction.Size = new System.Drawing.Size(72, 17);
             this.radioNoiserFunction.TabIndex = 19;
@@ -704,11 +703,12 @@
             this.groupBoxSourceLinear.Controls.Add(this.labelLinearMin);
             this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearMax);
             this.groupBoxSourceLinear.Controls.Add(this.textSourceLinearMin);
-            this.groupBoxSourceLinear.Location = new System.Drawing.Point(169, 10);
+            this.groupBoxSourceLinear.Location = new System.Drawing.Point(173, 11);
             this.groupBoxSourceLinear.Name = "groupBoxSourceLinear";
-            this.groupBoxSourceLinear.Size = new System.Drawing.Size(166, 198);
+            this.groupBoxSourceLinear.Size = new System.Drawing.Size(165, 220);
             this.groupBoxSourceLinear.TabIndex = 5;
             this.groupBoxSourceLinear.TabStop = false;
+            this.groupBoxSourceLinear.Visible = false;
             // 
             // labelLinearMax
             // 
@@ -766,9 +766,9 @@
             this.groupBoxSourceNetwork.Controls.Add(this.comboIp);
             this.groupBoxSourceNetwork.Controls.Add(this.radioSourceRoll);
             this.groupBoxSourceNetwork.Controls.Add(this.radioSourcePitch);
-            this.groupBoxSourceNetwork.Location = new System.Drawing.Point(171, 11);
+            this.groupBoxSourceNetwork.Location = new System.Drawing.Point(173, 11);
             this.groupBoxSourceNetwork.Name = "groupBoxSourceNetwork";
-            this.groupBoxSourceNetwork.Size = new System.Drawing.Size(167, 203);
+            this.groupBoxSourceNetwork.Size = new System.Drawing.Size(165, 220);
             this.groupBoxSourceNetwork.TabIndex = 3;
             this.groupBoxSourceNetwork.TabStop = false;
             // 

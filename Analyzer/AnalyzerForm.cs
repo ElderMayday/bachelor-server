@@ -28,6 +28,7 @@ namespace Analyzer
             setGUI();
 
             hideSources();
+            groupBoxSourceSin.Visible = true;
 
             timerNetwork.Enabled = false;
 
