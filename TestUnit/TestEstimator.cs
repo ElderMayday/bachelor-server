@@ -60,5 +60,15 @@ namespace TestUnit
 
             Assert.IsTrue(ExtraMath.EqualValue(result, 4.0));
         }
+
+        [TestMethod]
+        public void EstimatoCos_Estimate()
+        {
+            Estimator estimator = new EstimatorCos(pure, output);
+
+            double result = estimator.Estimate();
+
+            Assert.IsTrue(ExtraMath.EqualValue(result, 0.995));
+        }
     }
 }

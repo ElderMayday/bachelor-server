@@ -25,11 +25,10 @@
         public void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timerNetwork = new System.Windows.Forms.Timer(this.components);
-            this.labelData = new System.Windows.Forms.Label();
             this.mainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBoxPanel = new System.Windows.Forms.GroupBox();
             this.groupBoxFilter = new System.Windows.Forms.GroupBox();
@@ -43,7 +42,22 @@
             this.radioFilterSinglePole = new System.Windows.Forms.RadioButton();
             this.radioFilterMovingAverage = new System.Windows.Forms.RadioButton();
             this.groupBoxData = new System.Windows.Forms.GroupBox();
-            this.labelEstimate = new System.Windows.Forms.Label();
+            this.labelCos = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelEuclid = new System.Windows.Forms.Label();
+            this.textPure = new System.Windows.Forms.TextBox();
+            this.textOutput = new System.Windows.Forms.TextBox();
+            this.textInput = new System.Windows.Forms.TextBox();
+            this.textCos = new System.Windows.Forms.TextBox();
+            this.textCorrelation = new System.Windows.Forms.TextBox();
+            this.textEuclid = new System.Windows.Forms.TextBox();
+            this.textManhattan = new System.Windows.Forms.TextBox();
+            this.labelManhattan = new System.Windows.Forms.Label();
+            this.labelDistance = new System.Windows.Forms.Label();
+            this.labelPure = new System.Windows.Forms.Label();
+            this.labelOutput = new System.Windows.Forms.Label();
+            this.labelInput = new System.Windows.Forms.Label();
+            this.textDistance = new System.Windows.Forms.TextBox();
             this.buttonSwitch = new System.Windows.Forms.Button();
             this.groupBoxSource = new System.Windows.Forms.GroupBox();
             this.groupBoxEmultaion = new System.Windows.Forms.GroupBox();
@@ -114,27 +128,18 @@
             // 
             this.timerNetwork.Tick += new System.EventHandler(this.timerNetwork_Tick);
             // 
-            // labelData
-            // 
-            this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(6, 18);
-            this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(66, 13);
-            this.labelData.TabIndex = 0;
-            this.labelData.Text = "Нет данных";
-            // 
             // mainChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.mainChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.mainChart.Legends.Add(legend4);
+            chartArea3.Name = "ChartArea1";
+            this.mainChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.mainChart.Legends.Add(legend3);
             this.mainChart.Location = new System.Drawing.Point(12, 12);
             this.mainChart.Name = "mainChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.mainChart.Series.Add(series4);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.mainChart.Series.Add(series3);
             this.mainChart.Size = new System.Drawing.Size(989, 381);
             this.mainChart.TabIndex = 1;
             this.mainChart.Text = "MainChart";
@@ -257,30 +262,174 @@
             // groupBoxData
             // 
             this.groupBoxData.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBoxData.Controls.Add(this.labelEstimate);
+            this.groupBoxData.Controls.Add(this.labelCos);
+            this.groupBoxData.Controls.Add(this.label2);
+            this.groupBoxData.Controls.Add(this.labelEuclid);
+            this.groupBoxData.Controls.Add(this.textPure);
+            this.groupBoxData.Controls.Add(this.textOutput);
+            this.groupBoxData.Controls.Add(this.textInput);
+            this.groupBoxData.Controls.Add(this.textCos);
+            this.groupBoxData.Controls.Add(this.textCorrelation);
+            this.groupBoxData.Controls.Add(this.textEuclid);
+            this.groupBoxData.Controls.Add(this.textManhattan);
+            this.groupBoxData.Controls.Add(this.labelManhattan);
+            this.groupBoxData.Controls.Add(this.labelDistance);
+            this.groupBoxData.Controls.Add(this.labelPure);
+            this.groupBoxData.Controls.Add(this.labelOutput);
+            this.groupBoxData.Controls.Add(this.labelInput);
+            this.groupBoxData.Controls.Add(this.textDistance);
             this.groupBoxData.Controls.Add(this.buttonSwitch);
-            this.groupBoxData.Controls.Add(this.labelData);
             this.groupBoxData.Location = new System.Drawing.Point(11, 13);
             this.groupBoxData.Name = "groupBoxData";
-            this.groupBoxData.Size = new System.Drawing.Size(304, 161);
+            this.groupBoxData.Size = new System.Drawing.Size(304, 260);
             this.groupBoxData.TabIndex = 2;
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "Данные";
             // 
-            // labelEstimate
+            // labelCos
             // 
-            this.labelEstimate.AutoSize = true;
-            this.labelEstimate.Location = new System.Drawing.Point(6, 58);
-            this.labelEstimate.Name = "labelEstimate";
-            this.labelEstimate.Size = new System.Drawing.Size(65, 13);
-            this.labelEstimate.TabIndex = 2;
-            this.labelEstimate.Text = "Нет оценки";
+            this.labelCos.AutoSize = true;
+            this.labelCos.Location = new System.Drawing.Point(6, 193);
+            this.labelCos.Name = "labelCos";
+            this.labelCos.Size = new System.Drawing.Size(96, 13);
+            this.labelCos.TabIndex = 22;
+            this.labelCos.Text = "Косинусная мера";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 169);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Коэффициент корреляции";
+            // 
+            // labelEuclid
+            // 
+            this.labelEuclid.AutoSize = true;
+            this.labelEuclid.Location = new System.Drawing.Point(6, 143);
+            this.labelEuclid.Name = "labelEuclid";
+            this.labelEuclid.Size = new System.Drawing.Size(113, 13);
+            this.labelEuclid.TabIndex = 20;
+            this.labelEuclid.Text = "Расстояние Евклида";
+            // 
+            // textPure
+            // 
+            this.textPure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.textPure.Location = new System.Drawing.Point(152, 61);
+            this.textPure.Name = "textPure";
+            this.textPure.ReadOnly = true;
+            this.textPure.Size = new System.Drawing.Size(100, 20);
+            this.textPure.TabIndex = 19;
+            // 
+            // textOutput
+            // 
+            this.textOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.textOutput.Location = new System.Drawing.Point(152, 35);
+            this.textOutput.Name = "textOutput";
+            this.textOutput.ReadOnly = true;
+            this.textOutput.Size = new System.Drawing.Size(100, 20);
+            this.textOutput.TabIndex = 18;
+            // 
+            // textInput
+            // 
+            this.textInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.textInput.Location = new System.Drawing.Point(152, 11);
+            this.textInput.Name = "textInput";
+            this.textInput.ReadOnly = true;
+            this.textInput.Size = new System.Drawing.Size(100, 20);
+            this.textInput.TabIndex = 17;
+            // 
+            // textCos
+            // 
+            this.textCos.Location = new System.Drawing.Point(152, 190);
+            this.textCos.Name = "textCos";
+            this.textCos.ReadOnly = true;
+            this.textCos.Size = new System.Drawing.Size(100, 20);
+            this.textCos.TabIndex = 16;
+            // 
+            // textCorrelation
+            // 
+            this.textCorrelation.Location = new System.Drawing.Point(152, 164);
+            this.textCorrelation.Name = "textCorrelation";
+            this.textCorrelation.ReadOnly = true;
+            this.textCorrelation.Size = new System.Drawing.Size(100, 20);
+            this.textCorrelation.TabIndex = 15;
+            // 
+            // textEuclid
+            // 
+            this.textEuclid.Location = new System.Drawing.Point(152, 138);
+            this.textEuclid.Name = "textEuclid";
+            this.textEuclid.ReadOnly = true;
+            this.textEuclid.Size = new System.Drawing.Size(100, 20);
+            this.textEuclid.TabIndex = 14;
+            // 
+            // textManhattan
+            // 
+            this.textManhattan.Location = new System.Drawing.Point(152, 112);
+            this.textManhattan.Name = "textManhattan";
+            this.textManhattan.ReadOnly = true;
+            this.textManhattan.Size = new System.Drawing.Size(100, 20);
+            this.textManhattan.TabIndex = 13;
+            // 
+            // labelManhattan
+            // 
+            this.labelManhattan.AutoSize = true;
+            this.labelManhattan.Location = new System.Drawing.Point(6, 117);
+            this.labelManhattan.Name = "labelManhattan";
+            this.labelManhattan.Size = new System.Drawing.Size(130, 13);
+            this.labelManhattan.TabIndex = 12;
+            this.labelManhattan.Text = "Расстояние Манхеттена";
+            // 
+            // labelDistance
+            // 
+            this.labelDistance.AutoSize = true;
+            this.labelDistance.Location = new System.Drawing.Point(6, 93);
+            this.labelDistance.Name = "labelDistance";
+            this.labelDistance.Size = new System.Drawing.Size(118, 13);
+            this.labelDistance.TabIndex = 11;
+            this.labelDistance.Text = "Расстояние линейное";
+            // 
+            // labelPure
+            // 
+            this.labelPure.AutoSize = true;
+            this.labelPure.Location = new System.Drawing.Point(6, 64);
+            this.labelPure.Name = "labelPure";
+            this.labelPure.Size = new System.Drawing.Size(99, 13);
+            this.labelPure.TabIndex = 10;
+            this.labelPure.Text = "Исходные данные";
+            // 
+            // labelOutput
+            // 
+            this.labelOutput.AutoSize = true;
+            this.labelOutput.Location = new System.Drawing.Point(6, 38);
+            this.labelOutput.Name = "labelOutput";
+            this.labelOutput.Size = new System.Drawing.Size(132, 13);
+            this.labelOutput.TabIndex = 9;
+            this.labelOutput.Text = "Фильтрованные данные";
+            // 
+            // labelInput
+            // 
+            this.labelInput.AutoSize = true;
+            this.labelInput.Location = new System.Drawing.Point(6, 14);
+            this.labelInput.Name = "labelInput";
+            this.labelInput.Size = new System.Drawing.Size(143, 13);
+            this.labelInput.TabIndex = 8;
+            this.labelInput.Text = "Нефильтрованные данные";
+            // 
+            // textDistance
+            // 
+            this.textDistance.Location = new System.Drawing.Point(152, 86);
+            this.textDistance.Name = "textDistance";
+            this.textDistance.ReadOnly = true;
+            this.textDistance.Size = new System.Drawing.Size(100, 20);
+            this.textDistance.TabIndex = 3;
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(9, 107);
+            this.buttonSwitch.Location = new System.Drawing.Point(9, 211);
             this.buttonSwitch.Name = "buttonSwitch";
-            this.buttonSwitch.Size = new System.Drawing.Size(113, 33);
+            this.buttonSwitch.Size = new System.Drawing.Size(129, 43);
             this.buttonSwitch.TabIndex = 1;
             this.buttonSwitch.Text = "Включить";
             this.buttonSwitch.UseVisualStyleBackColor = true;
@@ -364,7 +513,7 @@
             this.textEmulationStep.Name = "textEmulationStep";
             this.textEmulationStep.Size = new System.Drawing.Size(61, 20);
             this.textEmulationStep.TabIndex = 32;
-            this.textEmulationStep.Text = "5.0";
+            this.textEmulationStep.Text = "1.0";
             // 
             // textEmulationRange
             // 
@@ -373,7 +522,7 @@
             this.textEmulationRange.Name = "textEmulationRange";
             this.textEmulationRange.Size = new System.Drawing.Size(61, 20);
             this.textEmulationRange.TabIndex = 31;
-            this.textEmulationRange.Text = "100.0";
+            this.textEmulationRange.Text = "10.0";
             // 
             // checkBoxFast
             // 
@@ -503,7 +652,7 @@
             this.textSourceSinPeriod.Name = "textSourceSinPeriod";
             this.textSourceSinPeriod.Size = new System.Drawing.Size(81, 20);
             this.textSourceSinPeriod.TabIndex = 6;
-            this.textSourceSinPeriod.Text = "6.28";
+            this.textSourceSinPeriod.Text = "30";
             // 
             // labelSinAverage
             // 
@@ -871,7 +1020,6 @@
         #endregion
 
         public System.Windows.Forms.Timer timerNetwork;
-        public System.Windows.Forms.Label labelData;
         public System.Windows.Forms.DataVisualization.Charting.Chart mainChart;
         public System.Windows.Forms.GroupBox groupBoxPanel;
         public System.Windows.Forms.GroupBox groupBoxData;
@@ -931,7 +1079,6 @@
         public System.Windows.Forms.TextBox textEmulationInterval;
         public System.Windows.Forms.Label labelSinPeriod;
         public System.Windows.Forms.TextBox textSourceSinPeriod;
-        public System.Windows.Forms.Label labelEstimate;
         public System.Windows.Forms.Label labelFilterGaussianA;
         public System.Windows.Forms.TextBox textFilterGaussianA;
         public System.Windows.Forms.Label labelFilterSinglePoleK;
@@ -940,6 +1087,22 @@
         public System.Windows.Forms.Label labelFilterLength;
         public System.Windows.Forms.TextBox textFilterLength;
         private System.ComponentModel.IContainer components;
+        private System.Windows.Forms.TextBox textPure;
+        private System.Windows.Forms.TextBox textOutput;
+        private System.Windows.Forms.TextBox textInput;
+        private System.Windows.Forms.TextBox textCos;
+        private System.Windows.Forms.TextBox textCorrelation;
+        private System.Windows.Forms.TextBox textEuclid;
+        private System.Windows.Forms.TextBox textManhattan;
+        private System.Windows.Forms.Label labelManhattan;
+        private System.Windows.Forms.Label labelDistance;
+        private System.Windows.Forms.Label labelPure;
+        private System.Windows.Forms.Label labelOutput;
+        private System.Windows.Forms.Label labelInput;
+        private System.Windows.Forms.TextBox textDistance;
+        private System.Windows.Forms.Label labelCos;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelEuclid;
     }
 }
 

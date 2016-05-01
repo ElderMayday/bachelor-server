@@ -58,18 +58,22 @@ namespace Analyzer
         /// Переключает режим работы между вводом данных и анализом
         /// </summary>
         /// <param name="parameters">Структура с параметрами запуск</param>
-        /// <param name="correlation">Коэффициент корреляции</param>
-        /// <param name="minkowski">Расстояние Минсковского</param>
         /// <param name="distance">Расстояние</param>
-        public void Switch(StrategiesParameters parameters, out double correlation, out double minkowski, out double distance)
+        /// <param name="manhattan">Расстояние Манхеттена</param>
+        /// <param name="euclid">Расстояние Евклида</param>
+        /// <param name="correlation">Коэффициент корреляции<</param>
+        /// <param name="cos">Косинусная мера</param>
+        public void Switch(StrategiesParameters parameters, out double distance, out double manhattan, out double euclid, out double correlation, out double cos)
         {
             emulatorSettings = parameters.EmulatorSetting;
 
             IsEmulation = parameters.Source != SourceType.Network;
 
             correlation = 0.0;
-            minkowski = 0.0;
+            euclid = 0.0;
             distance = 0.0;
+            manhattan = 0.0;
+            cos = 0.0;
 
             if (!emulatorSettings.Fast)
             {
@@ -94,13 +98,17 @@ namespace Analyzer
 
                     if (IsEmulation)
                     {
-                        Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
-                        Estimator estimatorMinkowski = new EstimatorMinkowski(pure, output, 2.0);
                         Estimator estimatorDistance = new EstimatorDistance(pure, output);
+                        Estimator estimatorManhattan = new EstimatorMinkowski(pure, output, 1.0);
+                        Estimator estimatorEuclid = new EstimatorMinkowski(pure, output, 2.0);
+                        Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
+                        Estimator estimatorCos = new EstimatorCos(pure, output);
 
-                        correlation = estimatorCorrelation.Estimate();
-                        minkowski = estimatorMinkowski.Estimate();
                         distance = estimatorDistance.Estimate();
+                        manhattan = estimatorManhattan.Estimate();
+                        euclid = estimatorEuclid.Estimate();
+                        correlation = estimatorCorrelation.Estimate();
+                        cos = estimatorCos.Estimate();
                     }
                 }
             }
@@ -136,13 +144,17 @@ namespace Analyzer
                     x += emulatorSettings.Interval / 1000.0;
                 }
 
-                Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
-                Estimator estimatorMinkowski = new EstimatorMinkowski(pure, output, 2.0);
                 Estimator estimatorDistance = new EstimatorDistance(pure, output);
+                Estimator estimatorManhattan = new EstimatorMinkowski(pure, output, 1.0);
+                Estimator estimatorEuclid = new EstimatorMinkowski(pure, output, 2.0);
+                Estimator estimatorCorrelation = new EstimatorCorrelation(pure, output);
+                Estimator estimatorCos = new EstimatorCos(pure, output);
 
-                correlation = estimatorCorrelation.Estimate();
-                minkowski = estimatorMinkowski.Estimate();
                 distance = estimatorDistance.Estimate();
+                manhattan = estimatorManhattan.Estimate();
+                euclid = estimatorEuclid.Estimate();
+                correlation = estimatorCorrelation.Estimate();
+                cos = estimatorCos.Estimate();
             }
         }
 

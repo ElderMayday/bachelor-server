@@ -55,19 +55,27 @@ namespace Analyzer
 
             if (isWorking && isCorrect)
             {
-                labelData.Text = "Вход = " + String.Format("{0:0.00}", currentInput)
-                        + "\nВыход = " + String.Format("{0:0.00}", currentOutput);
+                textInput.Text = String.Format("{0:0.00}", currentInput);
+                textOutput.Text = String.Format("{0:0.00}", currentOutput);
 
                 if (access.IsEmulation)
-                    labelData.Text += "\nИдеал = " + String.Format("{0:0.00}", currentPure);
+                    textPure.Text = String.Format("{0:0.00}", currentPure);
+                else
+                    textPure.Text = "Нет данных";
             }
             else
             {
                 if (!isWorking)
-                    labelData.Text = "Не работает";
+                {
+                    textInput.Text = "Не работает";
+                    textOutput.Text = "Не работает";
+                }
 
                 if (!isCorrect)
-                    labelData.Text = "Не корректные данные";
+                {
+                    textInput.Text = "Не корректно";
+                    textOutput.Text = "Не корректно";
+                }
             }
 
 
@@ -105,15 +113,17 @@ namespace Analyzer
 
             StrategiesParameters parameters = setParameters(emulatorSettings);
 
-            double correlation, minkowski, distance;
+            double distance, manhattan, euclid, correlation, cos;
 
-            access.Switch(parameters, out correlation, out minkowski, out distance);
+            access.Switch(parameters, out distance, out manhattan, out euclid, out correlation, out cos);
 
             if (access.IsEmulation)
             {
-                labelEstimate.Text = "Коэффициент корреляции=" + String.Format("{0:0.000}", correlation) +
-                            "\nРасстояние Минковского=" + String.Format("{0:0.000}", minkowski) +
-                            "\nРасстояние=" + String.Format("{0:0.000}", distance);
+                textDistance.Text = String.Format("{0:0.000}", distance);
+                textManhattan.Text = String.Format("{0:0.000}", manhattan);
+                textEuclid.Text = String.Format("{0:0.000}", euclid);
+                textCorrelation.Text = String.Format("{0:0.000}", correlation);
+                textCos.Text = String.Format("{0:0.000}", cos);
             }
         }
 

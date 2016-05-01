@@ -1,8 +1,8 @@
-[01:03:05] Accepting connection
-[01:03:06] Accepted connection
-[01:03:22] [EXCEPTION] Block borders are not found
-[01:03:22] Accepting connection
-[01:03:23] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied
-[01:03:23] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall
-[01:03:23] [EXCEPTION] Доступ к ликвидированному объекту невозможен.
+[03:47:40] Accepting connection
+[03:47:45] Accepted connection
+[03:48:20] [EXCEPTION] Block borders are not found
+[03:48:20] Accepting connection
+[03:48:23] [EXCEPTION] Запрос на отправку или получение данных  (when sending on a datagram socket using a sendto call) no address was supplied
+[03:48:23] [EXCEPTION] Операция блокирования прервана вызовом WSACancelBlockingCall
+[03:48:23] [EXCEPTION] Доступ к ликвидированному объекту невозможен.
 Имя объекта: "System.Net.Sockets.Socket".
