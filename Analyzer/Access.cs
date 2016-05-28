@@ -220,6 +220,8 @@ namespace Analyzer
         private void refreshChart()
         {
             mainChart.ChartAreas[0].AxisY.Interval = 25;
+            mainChart.ChartAreas[0].AxisX.Title = "Время, сек.";
+            mainChart.ChartAreas[0].AxisY.Title = "Угол, градусы";
 
             currentPoints = 0;
 

@@ -21,6 +21,11 @@ namespace Analyzer
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик события загрузки формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void analyzerForm_Load(object sender, EventArgs e)
         {
             access = new Access(this.mainChart);
@@ -41,11 +46,21 @@ namespace Analyzer
             bList = new List<double>();
         }
 
+        /// <summary>
+        /// Обработчик события закрытия формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void analyzerForm_Closing(object sender, FormClosingEventArgs e)
         {
             access.Close();
         }
 
+        /// <summary>
+        /// Обработчик события тика таймера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timerNetwork_Tick(object sender, EventArgs e)
         {
             bool isWorking, isCorrect;
@@ -80,7 +95,12 @@ namespace Analyzer
 
 
         }
-        
+
+        /// <summary>
+        /// Обработчик события кнопки включения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSwitch_Click(object sender, EventArgs e)
         {
             EmulatorSettings emulatorSettings = new EmulatorSettings();
@@ -127,6 +147,11 @@ namespace Analyzer
             }
         }
 
+        /// <summary>
+        /// Обработчик события добавления коэффициентов Фурье
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNoiserFourierAdd_Click(object sender, EventArgs e)
         {
             string s = textSourceFourierCoefficients.Text;
@@ -145,6 +170,11 @@ namespace Analyzer
             updateListBoxFourier();
         }
 
+        /// <summary>
+        /// Обработчик события очистки коэффициентов Фурье
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSourceFourierClear_Click(object sender, EventArgs e)
         {
             aList.Clear();
@@ -153,6 +183,11 @@ namespace Analyzer
             updateListBoxFourier();
         }
 
+        /// <summary>
+        /// Обработчик события выбора источника данных - устройства
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioSourceNetwork_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxEmultaion.Visible = false;
@@ -165,6 +200,11 @@ namespace Analyzer
                 groupBoxNoise.Visible = true;
         }
 
+        /// <summary>
+        /// Обработчик события выбора источника данных - синусоидального изменения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioSourceEmulatorSin_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxEmultaion.Visible = true;
@@ -172,6 +212,11 @@ namespace Analyzer
             groupBoxSourceSin.Visible = true;
         }
 
+        /// <summary>
+        /// Обработчик события выбора источника данных - линейного изменения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioSourceEmulatorLinear_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxEmultaion.Visible = true;
@@ -179,6 +224,11 @@ namespace Analyzer
             groupBoxSourceLinear.Visible = true;
         }
 
+        /// <summary>
+        /// Обработчик события выбора источника данных - изменения Фурье
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioSourceEmulatorFourier_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxEmultaion.Visible = true;
@@ -186,6 +236,11 @@ namespace Analyzer
             groupBoxSourceFourier.Visible = true;
         }
 
+        /// <summary>
+        /// Обработчик события включения быстрого режима эмуляции
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBoxFast_CheckedChanged(object sender, EventArgs e)
         {
             textEmulationRange.Enabled = checkBoxFast.Checked;
@@ -196,6 +251,11 @@ namespace Analyzer
 
         #region GuiExtra
 
+        /// <summary>
+        /// Установка стратегий (настроек)
+        /// </summary>
+        /// <param name="emulatorSettings"></param>
+        /// <returns></returns>
         private StrategiesParameters setParameters(EmulatorSettings emulatorSettings)
         {
             StrategiesParameters parameters = new StrategiesParameters();
@@ -272,12 +332,18 @@ namespace Analyzer
             return parameters;
         }
 
+        /// <summary>
+        /// Спрятать все элементы управления
+        /// </summary>
         private void hideSources()
         {
             foreach (GroupBox g in sourceGroups)
                 g.Visible = false;
         }
 
+        /// <summary>
+        /// Установить пользовательский интерфейс
+        /// </summary>
         private void setGUI()
         {
             controls = new List<Control>();
@@ -326,12 +392,19 @@ namespace Analyzer
             sourceGroups.Add(groupBoxSourceFourier);
         }
 
+        /// <summary>
+        /// Переключить видимость элементов
+        /// </summary>
+        /// <param name="value"></param>
         private void switchControls(bool value)
         {
             foreach (Control c in controls)
                 c.Enabled = value;
         }
 
+        /// <summary>
+        /// Обновить список коэффициентов Фурье
+        /// </summary>
         private void updateListBoxFourier()
         {
             listBoxSourceFourierCoefficients.Items.Clear();
@@ -350,12 +423,25 @@ namespace Analyzer
 
         #endregion
 
+
+        /// <summary>
+        /// Доступ к бизнес логике
+        /// </summary>
         private Access access;
 
+        /// <summary>
+        /// Интерфейсные элементы управления
+        /// </summary>
         private List<Control> controls;
 
+        /// <summary>
+        /// Интерфейсные группы
+        /// </summary>
         private List<GroupBox> sourceGroups;
 
+        /// <summary>
+        /// Списки коэффициентов Фурье
+        /// </summary>
         private List<double> aList, bList;
     }
 }
